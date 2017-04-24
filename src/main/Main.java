@@ -17,6 +17,7 @@ public class Main implements NativeKeyListener{
 			GlobalScreen.registerNativeHook();
 		} catch (NativeHookException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Gomenasai, watashi wa baka desu.");
 			e.printStackTrace();
 		}
 		GlobalScreen.getInstance().addNativeKeyListener(new Main());

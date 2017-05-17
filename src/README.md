@@ -15,9 +15,7 @@ This program is strictly for educational usage only, and I am not responsible fo
 - Experimentation
 
 # Updates
-- v0.2b: Added automated log file with username, hide in known trusted folder
-- v0.3b: Added startup persistance module
-- An update is being worked on for the keylogger to automatically email the logs to the user.
+An update is being worked on for the keylogger to automatically email the logs to the user.
 
 # License
 Licensed under GNU GPL v3

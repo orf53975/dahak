@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.net.*;
 public class ashiatonikki
@@ -21,7 +22,7 @@ public class ashiatonikki
      	  int currentTot = 0; 
      	  byte [] bytearray = new byte [filesize]; 
      	 InputStream is = sock.getInputStream(); 
- 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents/" + System.getProperty("user.name") + ".txt"); 
+ 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents/" + receiveMessage); 
  		BufferedOutputStream bos = new BufferedOutputStream(fos); 
  		bytesRead = is.read(bytearray,0,bytearray.length); 
  		currentTot = bytesRead; 
@@ -34,8 +35,8 @@ public class ashiatonikki
  			while(bytesRead > -1);
  			bos.write(bytearray, 0 , currentTot); 
  			bos.flush(); 
- 			System.out.println("File received and saved from " + System.getProperty("user.name") + ".");
+ 			System.out.println("File received and saved from " + receiveMessage + ".");
  			} 
         }         
       }               
-}      
+}                    

@@ -19,7 +19,8 @@ This program is strictly for educational usage only, and I am not responsible fo
 - v0.2.1b: Added automated log file with username, hide in known trusted folder
 - v0.3b: Added startup persistance module, prevent taskkill /im javaw.exe /f from killing all logger processes
 - v0.4b: Added automatic timestamp to write system session startup time, mild implementation of Command/Control.
-- v0.4.1b: Added automated network sending of logs to a controller-defined IP address.
+- v0.4.1: Added automated network sending of logs to a controller-defined IP address.
+- v0.4.2b: Packaged file receiver client with keylogger, you can now receive files out of the box.
 - UPCOMING: Potential Integration with cassius-flooder payload
 
 # License

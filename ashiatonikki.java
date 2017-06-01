@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
-public class GossipServer
+public class ashiatonikki
 {
   public static void main(String[] args) throws Exception
   {
@@ -31,13 +31,8 @@ public class GossipServer
 			String filename = "C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			// System.out.println("rec " + x);
-			if(x.matches("Space")) {
-				out.print(" ");
-				out.close();
-			} else {
 			out.println(x);
 			out.close();
-			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

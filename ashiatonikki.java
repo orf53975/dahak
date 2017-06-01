@@ -1,8 +1,6 @@
-package artemidoriusrecv;
-
 import java.io.*;
 import java.net.*;
-public class GossipServer
+public class ashiatonikki
 {
   public static void main(String[] args) throws Exception
   {

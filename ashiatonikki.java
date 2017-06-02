@@ -4,9 +4,9 @@ public class ashiatonikki
 {
   public static void main(String[] args) throws IOException
   {
+	  @SuppressWarnings("resource")
+	  ServerSocket sersock = new ServerSocket(25565);
 	  for(;;){
-      @SuppressWarnings("resource")
-      ServerSocket sersock = new ServerSocket(25565);
       System.out.println("Ready to receive files");
       Socket sock = sersock.accept( );                          
       InputStream istream = sock.getInputStream();

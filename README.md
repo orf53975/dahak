@@ -1,5 +1,5 @@
 # artemidorius-keylogger
-A cross-platform program written in JAVA to log keystrokes and save them to a file. 
+A Windows program written in JAVA to log keystrokes and save them to a file. 
 
 # How to use
 1. Compile the following code into a JAR file

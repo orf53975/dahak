@@ -2,8 +2,13 @@ import java.io.*;
 import java.net.*;
 public class ashiatonikki
 {
+  import java.io.*;
+import java.net.*;
+public class ashiatonikki
+{
   public static void main(String[] args) throws IOException
   {
+	  for(;;) {
 	  @SuppressWarnings("resource")
 	  ServerSocket sersock = new ServerSocket(25565);
 	  for(;;){
@@ -12,8 +17,11 @@ public class ashiatonikki
       InputStream istream = sock.getInputStream();
       BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
       String receiveMessage;  
+      String ip = sock.getRemoteSocketAddress().toString().substring(sock.getRemoteSocketAddress().toString().indexOf("/"), sock.getRemoteSocketAddress().toString().indexOf(":"));
+      System.out.println(ip);
+      record(ip);
       for(;;)
-      { 
+      {   
     	  try {
     	  if((receiveMessage = receiveRead.readLine()) != null)  
           {
@@ -30,6 +38,7 @@ public class ashiatonikki
     	  }
       }
 	  }
+  }
   }
   public static void record(String x) {
 		try {

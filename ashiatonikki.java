@@ -2,10 +2,6 @@ import java.io.*;
 import java.net.*;
 public class ashiatonikki
 {
-  import java.io.*;
-import java.net.*;
-public class ashiatonikki
-{
   public static void main(String[] args) throws IOException
   {
 	  for(;;) {

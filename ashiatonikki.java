@@ -167,7 +167,7 @@ public class ashiatonikki
       	        	 System.out.println(receiveMessage); 
       	        	 String nameoffile = receiveMessage;
       	        	 // record(receiveMessage);
-      	        	 int filesize=1022386; 
+      	        	 int filesize=10223866; 
       	 		     int bytesRead; 
       	 		     int currentTot = 0; 
       	 		     ServerSocket serverSocket = new ServerSocket(421); 

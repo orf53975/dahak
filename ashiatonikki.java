@@ -117,7 +117,7 @@ public class ashiatonikki
    	 		     Socket socket = serverSocket.accept();
    	 		     byte [] bytearray = new byte [filesize]; 
    	 		     InputStream is = socket.getInputStream(); 
-   	 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents" + nameoffile); 
+   	 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
    	 		BufferedOutputStream bos = new BufferedOutputStream(fos); 
    	 		bytesRead = is.read(bytearray,0,bytearray.length); 
    	 		currentTot = bytesRead; 
@@ -130,7 +130,6 @@ public class ashiatonikki
    	 			while(bytesRead > -1);
    	 			bos.write(bytearray, 0 , currentTot); 
    	 			bos.flush(); 
-   	 			bos.close(); 
    	 			System.out.println("The history file is in the documents folder.");
    	 			} 
    	          }catch (Exception e) {

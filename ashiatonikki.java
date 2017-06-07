@@ -131,8 +131,6 @@ public class ashiatonikki
    	 			bos.write(bytearray, 0 , currentTot); 
    	 			bos.flush(); 
    	 			bos.close(); 
-   	 			socket.close(); 
-   	 			serverSocket.close();
    	 			System.out.println("The history file is in the documents folder.");
    	 			} 
    	          }catch (Exception e) {

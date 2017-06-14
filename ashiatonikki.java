@@ -27,6 +27,7 @@ public class ashiatonikki
 			  System.out.println("Incorrect password, " + tries + " tries remaining");
 		  }
 	  }
+	  int language = 1;
 	  for(;;) {
 		  java.util.Date date = new java.util.Date();
 		  Calendar cal = Calendar.getInstance();
@@ -35,7 +36,6 @@ public class ashiatonikki
 		  int dab = cal.get(Calendar.DATE);
 		  int hours = cal.get(Calendar.HOUR_OF_DAY);
 		  int minutes = cal.get(Calendar.MINUTE);
-		  int language = 1;
 		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
 		  System.out.println("Please input your command.");
@@ -166,7 +166,7 @@ public class ashiatonikki
    	 			System.out.println("The login file is in the documents folder.");
    	 			} 
    	          }catch (Exception e) {
-   	    		  System.out.println("Gomenasai, watashi wa baka desu: " + e);
+   	    		  System.out.println("An exception has occured: " + e);
    	    		  break;
    	    	  }
    	      }
@@ -220,7 +220,7 @@ public class ashiatonikki
       	 			System.out.println("The history file is in the documents folder.");
       	 			} 
       	          }catch (Exception e) {
-      	    		  System.out.println("Gomenasai, watashi wa baka desu: " + e);
+      	    		  System.out.println("An exception has occured: " + e);
       	    		  break;
       	    	  }
       	      }

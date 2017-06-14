@@ -20,7 +20,7 @@ public class ashiatonikki
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
-		  if(pwd.matches("hentai")) {
+		  if(pwd.matches("jaketripp")) {
 			  break;
 		  } else {
 			  tries--;
@@ -43,6 +43,7 @@ public class ashiatonikki
 		  System.out.println("[2] Receive Chrome Login Data (Encrypted)");
 		  System.out.println("[5] Receive Chrome History Data");
 		  System.out.println("[3] Quit");
+		  System.out.println("[6] 日本語");
 		  } else if (language == 3) {
 			  System.out.println("現在の日付は " + dab + "-" + hours + ":" + minutes);
 			  System.out.println("あなたのコマンドを入力してください。");
@@ -50,6 +51,7 @@ public class ashiatonikki
 			  System.out.println("[2] ログインデータを受け取る");
 			  System.out.println("[5] インターネット履歴を受信する");
 			  System.out.println("[3] 出口");
+			  System.out.println("[6] English");
 		  }
 		  Scanner c = new Scanner(System.in);
 		  String ch = c.nextLine();

@@ -52,7 +52,7 @@ public class ashiatonikki
 			  System.out.println("[1] キーボード履歴を受け取る");
 			  System.out.println("[2] ログインデータを受け取る");
 			  System.out.println("[5] インターネット履歴を受信する");
-			  System.out.println("[3] 出口");
+			  System.out.println("[3] やめる");
 			  System.out.println("[6] English");
 		  }
 		  Scanner c = new Scanner(System.in);

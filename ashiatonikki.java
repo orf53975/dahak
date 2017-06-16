@@ -16,7 +16,7 @@ public class ashiatonikki
 				 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
 				 System.exit(0);
 		  }
-		  System.out.println("KitsuneReceiver v0.4.1 by Carb0n");
+		  System.out.println("KitsuneReceiver v0.4.8 by Carb0n");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();

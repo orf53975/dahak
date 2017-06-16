@@ -45,6 +45,7 @@ public class ashiatonikki
 		  System.out.println("[5] Receive Chrome History Data");
 		  System.out.println("[3] Quit");
 		  System.out.println("[6] 日本語");
+		  System.out.println("[7] 简体中文");
 		  } else if (language == 3) {
 			  System.out.println("現在の日付は " + dab + "-" + hours + ":" + minutes);
 			  System.out.println(".beats: +" + getCurrentTimeInBeats());
@@ -54,6 +55,17 @@ public class ashiatonikki
 			  System.out.println("[5] インターネット履歴を受信する");
 			  System.out.println("[3] やめる");
 			  System.out.println("[6] English");
+			  System.out.println("[7] 简体中文");
+		  } else if (language == 4) {
+			  System.out.println("时间是 " + dab + "-" + hours + ":" + minutes);
+			  System.out.println(".beats: +" + getCurrentTimeInBeats());
+			  System.out.println("请选择一个选项");
+			  System.out.println("[1] 接收键盘记录");
+			  System.out.println("[2] 接收保存的密码（加密）");
+			  System.out.println("[5] 接收网络记录");
+			  System.out.println("[3] 退出");
+			  System.out.println("[6] English");
+			  System.out.println("[7] 日本語");
 		  }
 		  Scanner c = new Scanner(System.in);
 		  String ch = c.nextLine();
@@ -70,6 +82,14 @@ public class ashiatonikki
 				  language = 3;
 			  } else if (language == 3) {
 				  language = 1;
+			  }
+		  } else if (ch.matches("7")) {
+			  if (language == 1) {
+				  language = 4;
+			  } else if (language == 3) {
+				  language = 4;
+			  } else if (language == 4) {
+				  language = 3;
 			  }
 		  }
 	  }
@@ -236,4 +256,4 @@ public class ashiatonikki
       		  }
       	  }
         }
-     }
+     } 

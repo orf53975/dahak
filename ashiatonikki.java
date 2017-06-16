@@ -16,6 +16,9 @@ public class ashiatonikki
 				 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
 				 System.exit(0);
 		  }
+		  if(tries == 1) {
+			  System.out.println("HINT: Sorry, Gen-Eds and Neandethals not allowed, please scram if you don't know what you're doing!");
+		  }
 		  System.out.println("KitsuneReceiver v0.4.8.1 by Carb0n");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
@@ -29,7 +32,7 @@ public class ashiatonikki
 	  }
 	  int language = 1;
 	  for(;;) {
-		  System.out.println(language);
+		 // System.out.println(language);
 		  java.util.Date date = new java.util.Date();
 		  Calendar cal = Calendar.getInstance();
 		  cal.setTime(date);

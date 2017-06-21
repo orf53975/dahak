@@ -19,7 +19,7 @@ public class ashiatonikki
 		  if(tries == 1) {
 			  System.out.println("HINT: MAI SENPAI, THE ALL-SEEING GOD OF ODLE");
 		  }
-		  System.out.println("KitsuneReceiver v0.4.8.1 by Carb0n");
+		  System.out.println("KitsuneReceiver v0.4.8.2 by Carb0n");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
@@ -50,6 +50,7 @@ public class ashiatonikki
 		  System.out.println("[3] Quit");
 		  System.out.println("[6] 日本語");
 		  System.out.println("[7] 简体中文");
+		  System.out.println("[8] Self-destruct");
 		  } else if (language == 3) {
 			  System.out.println("現在の日付は " + dab + "-" + hours + ":" + minutes);
 			  System.out.println(".beats: +" + getCurrentTimeInBeats());
@@ -60,6 +61,7 @@ public class ashiatonikki
 			  System.out.println("[3] やめる");
 			  System.out.println("[6] English");
 			  System.out.println("[7] 简体中文");
+			  System.out.println("[8] 自己破壊");
 		  } else if (language == 4) {
 			  System.out.println("时间是 " + dab + "-" + hours + ":" + minutes);
 			  System.out.println(".beats: +" + getCurrentTimeInBeats());
@@ -70,6 +72,7 @@ public class ashiatonikki
 			  System.out.println("[3] 退出");
 			  System.out.println("[6] English");
 			  System.out.println("[7] 日本語");
+			  System.out.println("[8] 自我毁灭");
 		  }
 		  Scanner c = new Scanner(System.in);
 		  String ch = c.nextLine();
@@ -96,6 +99,53 @@ public class ashiatonikki
 				  language = 4;
 			  } else if (language == 4) {
 				  language = 1;
+			  }
+		  } else if (ch.matches("8")) {
+			  if (language == 1) {
+				  for(;;){
+				  System.out.println("Are you sure you want to do this? Your receiver will be lost permanently! (Y/N)");
+				  Scanner s = new Scanner(System.in);
+				  String sh = s.nextLine();
+				  if (sh.contains("y")) {
+					  System.out.println("Self-destruct activated.");
+					  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+						 @SuppressWarnings("unused")
+						 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
+						 System.exit(0);
+				  } else {
+					  break;
+				  }
+				  }
+			  } else if (language == 3) {
+				  for(;;){
+					  System.out.println("この操作を完了してもよろしいですか？(このプログラムは永遠に消え去ります！) (Y/N)");
+					  Scanner s = new Scanner(System.in);
+					  String sh = s.nextLine();
+					  if (sh.matches("y")) {
+						  System.out.println("自己破壊の活性化.");
+						  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+							 @SuppressWarnings("unused")
+							 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
+							 System.exit(0);
+					  } else {
+						  break;
+					  }
+					  }
+			  } else if (language == 4) {
+				  for(;;){
+					  System.out.println("你想确认这个动作吗？ (Y/N)");
+					  Scanner s = new Scanner(System.in);
+					  String sh = s.nextLine();
+					  if (sh.matches("y")) {
+						  System.out.println("自毁被激活。");
+						  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+							 @SuppressWarnings("unused")
+							 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
+							 System.exit(0);
+					  } else {
+						  break;
+					  }
+					  }
 			  }
 		  }
 	  }
@@ -262,4 +312,4 @@ public class ashiatonikki
       		  }
       	  }
         }
-     } 
+     }

@@ -17,7 +17,7 @@ public class ashiatonikki
 				 System.exit(0);
 		  }
 		  if(tries == 1) {
-			  System.out.println("HINT: Sorry, Gen-Eds and Neandethals not allowed, please scram if you don't know what you're doing!");
+			  System.out.println("HINT: MAI SENPAI, THE ALL-SEEING GOD OF ODLE");
 		  }
 		  System.out.println("KitsuneReceiver v0.4.8.1 by Carb0n");
 		  System.out.println("Enter the passcode");

@@ -40,6 +40,15 @@ public class ashiatonikki
 		  int dab = cal.get(Calendar.DATE);
 		  int hours = cal.get(Calendar.HOUR_OF_DAY);
 		  int minutes = cal.get(Calendar.MINUTE);
+		  System.out.println("[+]=================================================================================================[+]");
+		  System.out.println(" ____  __.__  __                            __________                    .__                    ");
+		  System.out.println("|    |/ _|__|/  |_  ________ __  ____   ____\\______   \\ ____   ____  ____ |__|__  __ ___________ ");
+		  System.out.println("|      < |  \\   __\\/  ___/  |  \\/    \\_/ __ \\|       _// __ \\/ ___\\/ __ \\|  \\  \\/ // __ \\_  __ \\");
+		  System.out.println("|    |  \\|  ||  |  \\___ \\|  |  /   |  \\  ___/|    |   \\  ___/\\  \\__\\  ___/|  |\\   /\\  ___/|  | \\/");
+		  System.out.println("|____|__ \\__||__| /____  >____/|___|  /\\___  |____|_  /\\___  >\\___  >___  >__| \\_/  \\___  >__| ");
+		  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
+		  System.out.println("\n 'The quieter you become, the more you are able to hear.' - Rum Dass");
+		  System.out.println("[+]=================================================================================================[+]");
 		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
 		  System.out.println(".beats: +" + getCurrentTimeInBeats());

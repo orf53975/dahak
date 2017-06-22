@@ -47,7 +47,7 @@ public class ashiatonikki
 		  System.out.println("|    |  \\|  ||  |  \\___ \\|  |  /   |  \\  ___/|    |   \\  ___/\\  \\__\\  ___/|  |\\   /\\  ___/|  | \\/");
 		  System.out.println("|____|__ \\__||__| /____  >____/|___|  /\\___  |____|_  /\\___  >\\___  >___  >__| \\_/  \\___  >__| ");
 		  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
-		  System.out.println("\n 'The quieter you become, the more you are able to hear.' - Rum Dass");
+		  System.out.println("\n 'If you know the enemy and know yourself you need not fear the results of a hundred battles.' - Sun Tsu, The Art of War");
 		  System.out.println("[+]=================================================================================================[+]");
 		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);

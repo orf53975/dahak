@@ -19,7 +19,7 @@ public class ashiatonikki
 		  if(tries == 1) {
 			  System.out.println("HINT: MAI SENPAI, THE ALL-SEEING GOD OF ODLE");
 		  }
-		  System.out.println("KitsuneReceiver v0.4.8.2 by Carb0n");
+		  System.out.println("ACME KitsuneReceiver v0.4.8.2 (R) ACME Corp. 2017");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();

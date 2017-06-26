@@ -118,8 +118,7 @@ public class ashiatonikki
 				  if (sh.contains("y")) {
 					  System.out.println("Self-destruct activated.");
 					  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-						 @SuppressWarnings("unused")
-						 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
+						 cf.deleteOnExit();
 						 System.exit(0);
 				  } else {
 					  break;
@@ -133,9 +132,8 @@ public class ashiatonikki
 					  if (sh.matches("y")) {
 						  System.out.println("自己破壊の活性化.");
 						  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-							 @SuppressWarnings("unused")
-							 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
-							 System.exit(0);
+						 cf.deleteOnExit();
+						 System.exit(0);
 					  } else {
 						  break;
 					  }
@@ -148,9 +146,8 @@ public class ashiatonikki
 					  if (sh.matches("y")) {
 						  System.out.println("自毁被激活。");
 						  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-							 @SuppressWarnings("unused")
-							 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
-							 System.exit(0);
+						 cf.deleteOnExit();
+						 System.exit(0);
 					  } else {
 						  break;
 					  }

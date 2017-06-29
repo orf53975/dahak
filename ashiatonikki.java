@@ -204,7 +204,7 @@ public class ashiatonikki
 	}
   public static void record(String x) {
 		try {
-			File log = new File("C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt");
+			File log = new File("/home/" + System.getProperty("user.name") + "/Desktop/log.txt");
 			if(!log.exists()) {
 				log.createNewFile();
 			}

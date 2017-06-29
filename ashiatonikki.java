@@ -7,23 +7,27 @@ public class ashiatonikki
 {
   public static void main(String[] args) throws IOException, URISyntaxException
   {
+	  System.out.println("-+-[[KitsuneReceiver Rainier Version (Stable v0.5)]]-+-");
 	  int tries = 3;
 	  for(;;) {
 		  if(tries == 0) {
+			  try {
 			  System.out.println("Access denied, receiver will now self-destruct");
 			   File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-				 @SuppressWarnings("unused")
-				 Process bye = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "taskkill /im javaw.exe /f && del " + cf + " && taskkill /im cmd.exe /f");
+				cf.deleteOnExit(); 
+				// System.out.print(cf);
 				 System.exit(0);
+			  } catch (Exception e) {
+				  System.out.println(e);
+			  }
 		  }
-		  if(tries == 1) {
-			  System.out.println("HINT: MAI SENPAI, THE ALL-SEEING GOD OF ODLE");
-		  }
-		  System.out.println("ACME KitsuneReceiver v0.4.8.2 (R) ACME Corp. 2017");
 		  System.out.println("Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
 		  if(pwd.matches("jaketripp")) {
+			  if (System.getProperty("user.name").matches("s-suzukia")) {
+				  System.out.println("Here's a special shout out to Airi!");
+			  }
 			  break;
 		  } else {
 			  tries--;
@@ -31,6 +35,15 @@ public class ashiatonikki
 		  }
 	  }
 	  int language = 1;
+	  System.out.println("[+]=================================================================================================[+]");
+	  System.out.println(" ____  __.__  __                            __________                    .__                    ");
+	  System.out.println("|    |/ _|__|/  |_  ________ __  ____   ____\\______   \\ ____   ____  ____ |__|__  __ ___________ ");
+	  System.out.println("|      < |  \\   __\\/  ___/  |  \\/    \\_/ __ \\|       _// __ \\/ ___\\/ __ \\|  \\  \\/ // __ \\_  __ \\");
+	  System.out.println("|    |  \\|  ||  |  \\___ \\|  |  /   |  \\  ___/|    |   \\  ___/\\  \\__\\  ___/|  |\\   /\\  ___/|  | \\/");
+	  System.out.println("|____|__ \\__||__| /____  >____/|___|  /\\___  |____|_  /\\___  >\\___  >___  >__| \\_/  \\___  >__| ");
+	  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
+	  System.out.println("\n 'If you know the enemy and know yourself you need not fear the results of a hundred battles.' - Sun Tsu, The Art of War");
+	  System.out.println("[+]=================================================================================================[+]");
 	  for(;;) {
 		 // System.out.println(language);
 		  java.util.Date date = new java.util.Date();
@@ -40,15 +53,6 @@ public class ashiatonikki
 		  int dab = cal.get(Calendar.DATE);
 		  int hours = cal.get(Calendar.HOUR_OF_DAY);
 		  int minutes = cal.get(Calendar.MINUTE);
-		  System.out.println("[+]=================================================================================================[+]");
-		  System.out.println(" ____  __.__  __                            __________                    .__                    ");
-		  System.out.println("|    |/ _|__|/  |_  ________ __  ____   ____\\______   \\ ____   ____  ____ |__|__  __ ___________ ");
-		  System.out.println("|      < |  \\   __\\/  ___/  |  \\/    \\_/ __ \\|       _// __ \\/ ___\\/ __ \\|  \\  \\/ // __ \\_  __ \\");
-		  System.out.println("|    |  \\|  ||  |  \\___ \\|  |  /   |  \\  ___/|    |   \\  ___/\\  \\__\\  ___/|  |\\   /\\  ___/|  | \\/");
-		  System.out.println("|____|__ \\__||__| /____  >____/|___|  /\\___  |____|_  /\\___  >\\___  >___  >__| \\_/  \\___  >__| ");
-		  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
-		  System.out.println("\n 'If you know the enemy and know yourself you need not fear the results of a hundred battles.' - Sun Tsu, The Art of War");
-		  System.out.println("[+]=================================================================================================[+]");
 		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
 		  System.out.println(".beats: +" + getCurrentTimeInBeats());
@@ -132,8 +136,10 @@ public class ashiatonikki
 					  if (sh.matches("y")) {
 						  System.out.println("自己破壊の活性化.");
 						  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-						 cf.deleteOnExit();
-						 System.exit(0);
+							// @SuppressWarnings("unused")
+							 //Process bye = Runtime.getRuntime().exec("killall -e java && rm " + cf);
+						  	cf.deleteOnExit();
+							 System.exit(0);
 					  } else {
 						  break;
 					  }
@@ -146,8 +152,10 @@ public class ashiatonikki
 					  if (sh.matches("y")) {
 						  System.out.println("自毁被激活。");
 						  File cf = new File(ashiatonikki.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-						 cf.deleteOnExit();
-						 System.exit(0);
+							// @SuppressWarnings("unused")
+						  	cf.deleteOnExit();
+							 // Process bye = Runtime.getRuntime().exec("killall -e java && rm " + cf);
+							 System.exit(0);
 					  } else {
 						  break;
 					  }
@@ -200,7 +208,7 @@ public class ashiatonikki
 			if(!log.exists()) {
 				log.createNewFile();
 			}
-			String filename = "C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt";
+			String filename = "/home/" + System.getProperty("user.name") + "/Desktop/log.txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			 System.out.println("rec " + x);
 			out.println(x);
@@ -238,7 +246,7 @@ public class ashiatonikki
    	 		     Socket socket = serverSocket.accept();
    	 		     byte [] bytearray = new byte [filesize]; 
    	 		     InputStream is = socket.getInputStream(); 
-   	 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents" + nameoffile); 
+   	 		FileOutputStream fos = new FileOutputStream("/home/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
    	 		BufferedOutputStream bos = new BufferedOutputStream(fos); 
    	 		bytesRead = is.read(bytearray,0,bytearray.length); 
    	 		currentTot = bytesRead; 
@@ -292,7 +300,7 @@ public class ashiatonikki
       	 		     Socket socket = serverSocket.accept();
       	 		     byte [] bytearray = new byte [filesize]; 
       	 		     InputStream is = socket.getInputStream(); 
-      	 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
+      	 		FileOutputStream fos = new FileOutputStream("/home/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
       	 		BufferedOutputStream bos = new BufferedOutputStream(fos); 
       	 		bytesRead = is.read(bytearray,0,bytearray.length); 
       	 		currentTot = bytesRead; 

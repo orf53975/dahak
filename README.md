@@ -1,4 +1,1 @@
-# artemidorius-keylogger
-
-# License
-Licensed under GNU GPL v3
+# SkyNet Official Recon Tool

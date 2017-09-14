@@ -1,0 +1,12 @@
+cd /
+cd ProgramData
+cd App-V
+cd C87BE6C9-9379-431A-AE70-FD15E8F1AACA
+cd BBA5E63B-FA99-4CF9-9FA8-1991602E58BC
+cd Root
+cd VFS
+cd ProgramFilesX64
+cd eclipse
+cd jre
+cd bin
+.\java.exe

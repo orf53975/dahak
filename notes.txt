@@ -1,0 +1,2 @@
+App-V package id is same for all computers, just run commands to install:
+Mount-AppvClientPackage -PackageId packageid (First dir) -VersionId (second dir)

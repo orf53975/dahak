@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.net.*;
 import java.util.Calendar;
@@ -45,6 +46,7 @@ public class ashiatonikki_win
 	  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
 	  System.out.println("\n 'If you know the enemy and know yourself you need not fear the results of a hundred battles.' - Sun Tsu, The Art of War");
 	  System.out.println("[+]=================================================================================================[+]");
+	  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
 	  for(;;) {
 		 // System.out.println(language);
 		  java.util.Date date = new java.util.Date();

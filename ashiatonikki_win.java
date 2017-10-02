@@ -1,8 +1,10 @@
+package skynetreceiver;
 
 import java.io.*;
 import java.net.*;
 import java.util.Calendar;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ashiatonikki_win
 {
@@ -37,6 +39,7 @@ public class ashiatonikki_win
 		  }
 	  }
 	  int language = 1;
+	  int random = ThreadLocalRandom.current().nextInt(0, 21);
 	  System.out.println("[+]=================================================================================================[+]");
 	  System.out.println(" ____  __.__  __                            __________                    .__                    ");
 	  System.out.println("|    |/ _|__|/  |_  ________ __  ____   ____\\______   \\ ____   ____  ____ |__|__  __ ___________ ");
@@ -44,7 +47,18 @@ public class ashiatonikki_win
 	  System.out.println("|    |  \\|  ||  |  \\___ \\|  |  /   |  \\  ___/|    |   \\  ___/\\  \\__\\  ___/|  |\\   /\\  ___/|  | \\/");
 	  System.out.println("|____|__ \\__||__| /____  >____/|___|  /\\___  |____|_  /\\___  >\\___  >___  >__| \\_/  \\___  >__| ");
 	  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
+	  if (random >= 0 && random <= 5) {
 	  System.out.println("\n 'If you know the enemy and know yourself you need not fear the results of a hundred battles.' - Sun Tsu, The Art of War");
+	  } else if (random > 5 && random <= 10) {
+	  System.out.println("\n Wake up, Neo...");
+	  System.out.println("\n The matrix has you.\n");
+	  System.out.println("\n ...follow the white rabbit. \n\n Knock knock, Neo.");
+	  } else if (random > 10 && random <= 15) {
+	  System.out.println("\n 'This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and ");
+	  System.out.println("believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes.' - Morpheus, the Matrix");
+	  } else if (random > 15 && random <= 20) {
+	  System.out.println("'Well, dreams, they feel real while we're in them right? Its only when we wake up then we realize that something was actually strange.' - Cobb, Inception");
+	  }
 	  System.out.println("[+]=================================================================================================[+]");
 	  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
 	  for(;;) {
@@ -163,6 +177,10 @@ public class ashiatonikki_win
 						  break;
 					  }
 					  }
+			  }
+		  } else if (ch.matches("cls")) {
+			  for(int i = 0; i < 69; i++) {
+				  System.out.println("\n");
 			  }
 		  }
 	  }
@@ -330,3 +348,4 @@ public class ashiatonikki_win
       	  }
         }
      }
+

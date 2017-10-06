@@ -27,8 +27,16 @@ public class ashiatonikki_win
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
 		  if(pwd.matches("jaketripp")) {
-			  if (System.getProperty("user.name").matches("s-suzukia")) {
-				  System.out.println("Here's a special shout out to Airi!");
+			   if (System.getProperty("user.name").matches("s-suzukia")) {
+				  System.out.println("wuss poppin airi");
+			  } else if (System.getProperty("user.name").matches("trippj")) {
+				  System.out.println("Sup Mr.Tripp wuss poppin");
+			  } else if (System.getProperty("user.name").matches("weinsteinb")) {
+				  System.out.println("Sup Ms.Benay wuss poppin");
+			  } else if (System.getProperty("user.name").matches("s-wangk")) {
+				  System.out.println("Will you go to homecoming with me Katie?");
+			  } else if (System.getProperty("user.name").matches("s-kinoshitar")) {
+				  System.out.println("Will you go to homecoming with me Ruka?");
 			  }
 			  break;
 		  } else {

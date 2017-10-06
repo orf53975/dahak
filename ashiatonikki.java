@@ -10,6 +10,9 @@ public class ashiatonikki
   {
 	  System.out.println("-+-[[KitsuneReceiver Rainier Version (Stable v0.5)]]-+-");
 	  System.out.println("-+-[[Linux Version (for Kali/Debian/Ubuntu)]]-+-");
+	  if (!(System.getProperty("user.name").matches("root"))) {
+		  System.out.println("[!] You are not the admin. History and Login Data uploader will be unavailable, as they require restricted ports 69 and 420.");
+	  } 
 	  int tries = 3;
 	  for(;;) {
 		  if(tries == 0) {

@@ -1,7 +1,0 @@
-App-V package id is same for all computers, just run commands to install:
-Mount-AppvClientPackage -PackageId packageid -VersionId versionid
-This downloads the package.
-ECLIPSE-PACKAGEID: C87BE6C9-9379-431A-AE70-FD15E8F1AACA
-ECLIPSE-VERSIONID: BBA5E63B-FA99-4CF9-9FA8-1991602E58BC
-For example, to install eclipse, run:
-Mount-AppvClientPackage -PackageId C87BE6C9-9379-431A-AE70-FD15E8F1AACA -VersionId BBA5E63B-FA99-4CF9-9FA8-1991602E58BC

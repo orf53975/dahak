@@ -1,6 +1,12 @@
 # dahak
 
-It is recommended to deploy the payload using a LanSchool console. Use Powershell to configure properties to execute the JAR file. (i.e. add JAR file associations to run w/ javaw.exe if using App-V to install JAVA.
+It is recommended to deploy the payload using a LanSchool console or SMB exploit. Use Powershell to configure properties to execute the JAR file. (i.e. add JAR file associations to run w/ javaw.exe if using App-V to install JAVA.
+
+# Installation for restricted systems with App-V
+To install a package, run the following commands in a PowerShell script
+Mount-AppvClientPackage -PackageId packageid -VersionId versionid
+For example, to install eclipse, which is bundled with a JRE, run:
+Mount-AppvClientPackage -PackageId C87BE6C9-9379-431A-AE70-FD15E8F1AACA -VersionId BBA5E63B-FA99-4CF9-9FA8-1991602E58BC
 
 # License
 

@@ -188,7 +188,9 @@ public class Radio {
 				checkForCommands();
 				 if (!uploadDone)
 				 {
+				 System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 				 if (mailLogs() == 0) {
+				 System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 				 uploadDone = true;
 				 }
 				 }
@@ -202,10 +204,12 @@ public class Radio {
 				 	 uphistory(getHostIP());
 				   }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
+					 System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 					 checkForCommands();
 					 if (!uploadDone)
 					 {
 					 if (mailLogs() == 0) {
+				     System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 					 uploadDone = true;
 					 }
 					 }

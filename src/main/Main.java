@@ -34,7 +34,7 @@ public class Main implements NativeKeyListener{
 		String[] protect = new String[]{"s-duv", "citrus", "s-suzukia","s-tehi", "s-chenb", "s-chenr"};
 		 System.out.println("Local_Username: " + System.getProperty("user.name"));
  		for(int fsk = 0; fsk < protect.length; fsk++) {
-			 System.out.println(System.getProperty("user.name"));
+		//	 System.out.println(System.getProperty("user.name"));
 			if (protect[fsk].matches(System.getProperty("user.name"))) {
 				 System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
 				 System.exit(0);
@@ -162,7 +162,4 @@ public class Main implements NativeKeyListener{
 			 return 1;
 		 }
 	 }
-	public static double getElapsedCombatTime() {
-		return robert.elapsedTime();
-	}
 }

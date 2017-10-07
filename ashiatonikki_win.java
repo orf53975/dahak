@@ -31,13 +31,11 @@ public class ashiatonikki_win
 				  System.out.println("wuss poppin airi");
 			  } else if (System.getProperty("user.name").matches("trippj")) {
 				  System.out.println("Sup Mr.Tripp wuss poppin");
-			  } else if (System.getProperty("user.name").matches("weinsteinb")) {
-				  System.out.println("Sup Ms.Benay wuss poppin");
-			  } else if (System.getProperty("user.name").matches("s-wangk")) {
-				  System.out.println("Will you go to homecoming with me Katie?");
+			  } else if (System.getProperty("user.name").matches("s-chenrob")) {
+				  System.out.println("Sup rob wuss poppin");
 			  } else if (System.getProperty("user.name").matches("s-kinoshitar")) {
 				  System.out.println("Will you go to homecoming with me Ruka?");
-			  }
+			  } 
 			  break;
 		  } else {
 			  tries--;

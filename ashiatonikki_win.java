@@ -23,19 +23,21 @@ public class ashiatonikki_win
 				  System.out.println(e);
 			  }
 		  }
-		  System.out.println("Enter the passcode");
+		  System.out.println("(*・ω・)ﾉ  Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
 		  if(pwd.matches("jaketripp")) {
-			   if (System.getProperty("user.name").matches("s-suzukia")) {
-				  System.out.println("wuss poppin airi");
+			  if (System.getProperty("user.name").matches("s-suzukia")) {
+				  System.out.println("(°ロ°) ! wuss poppin airi");
 			  } else if (System.getProperty("user.name").matches("trippj")) {
-				  System.out.println("Sup Mr.Tripp wuss poppin");
+				  System.out.println("(°ロ°) ! Sup Mr.Tripp wuss poppin");
 			  } else if (System.getProperty("user.name").matches("s-chenrob")) {
-				  System.out.println("Sup rob wuss poppin");
+				  System.out.println("(°ロ°) ! Sup rob wuss poppin");
 			  } else if (System.getProperty("user.name").matches("s-kinoshitar")) {
-				  System.out.println("Will you go to homecoming with me Ruka?");
-			  } 
+				  System.out.println("(°ロ°) ! Will you go to homecoming with me Ruka?");
+			  } else if (System.getProperty("user.name").matches("s-luoj")) {
+				  System.out.println("( ´(ｴ)ˋ ) Konnichiwa Jason-kun!~~~~~");
+			  }
 			  break;
 		  } else {
 			  tries--;
@@ -228,7 +230,7 @@ public class ashiatonikki_win
 	  @SuppressWarnings("resource")
 	  ServerSocket sersock = new ServerSocket(25565);
 	  for(;;){
-      System.out.println("Ready to receive files");
+      System.out.println("Ready to receive files DADADA! (≧▽≦)/");
       Socket sock = sersock.accept( );                          
       InputStream istream = sock.getInputStream();
       BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -248,6 +250,8 @@ public class ashiatonikki_win
         	  break;
           }
     	  } catch (Exception e) {
+    		  System.out.println("‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵");
+    		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
     		  System.out.println("Exception: " + e);
     		  sock.close();
     		  break;
@@ -324,7 +328,9 @@ public class ashiatonikki_win
    	 			System.out.println("The login file is in the documents folder.");
    	 			} 
    	          }catch (Exception e) {
-   	    		  System.out.println("An exception has occured: " + e);
+   	    		  System.out.println("‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵");
+   	    		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
+   	    		  System.out.println("Exception: " + e);
    	    		  break;
    	    	  }
    	      }
@@ -378,7 +384,9 @@ public class ashiatonikki_win
       	 			System.out.println("The history file is in the documents folder.");
       	 			} 
       	          }catch (Exception e) {
-      	    		  System.out.println("An exception has occured: " + e);
+      	    		  System.out.println("‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵");
+      	    		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
+      	    		  System.out.println("Exception: " + e);
       	    		  break;
       	    	  }
       	      }

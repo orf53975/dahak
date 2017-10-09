@@ -1,7 +1,10 @@
 # dahak
-
-It is recommended to deploy the payload using a LanSchool console or SMB exploit. Use Powershell to configure properties to execute the JAR file. (i.e. add JAR file associations to run w/ javaw.exe if using App-V to install JAVA.
-
+This is an exploit kit for restricted secured computer systems that contain a JRE or Microsoft App-V. It is recommended to deploy the payload using a LanSchool console or SMB exploit. Use Powershell to configure properties to execute the JAR file. (i.e. add JAR file associations to run w/ javaw.exe if using App-V to install JAVA.
+     
+         ( ・∀・)・・・--------            ()) () + *
+( ・∀・)︻デ═一 -- - - - - - -- -        ( -__)) ( )  *+
+              ( ・∀・)︻デ═一 --  -  - - - ( ) ) ) *   +_ 
+                                                  * 
 # Installation for restricted systems with App-V
 To install a package, run the following commands in a PowerShell script
 Mount-AppvClientPackage -PackageId packageid -VersionId versionid

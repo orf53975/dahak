@@ -289,7 +289,7 @@ public class ashiatonikki
    		  @SuppressWarnings("resource")
    		  ServerSocket getnom = new ServerSocket(69);
    		  for(;;){
-   	      System.out.println("Ready to receive logins and haxor crap");
+   	      System.out.println("Ready to receive files DADADA! (≧▽≦)/");
    	      Socket namesock = getnom.accept();               
    	      InputStream istream = namesock.getInputStream();
    	      BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -345,7 +345,7 @@ public class ashiatonikki
       		  @SuppressWarnings("resource")
       		  ServerSocket getnom = new ServerSocket(70);
       		  for(;;){
-      	      System.out.println("Ready to receive history and haxor crap");
+      	      System.out.println("Ready to receive files DADADA! (≧▽≦)/");
       	      Socket namesock = getnom.accept();               
       	      InputStream istream = namesock.getInputStream();
       	      BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));

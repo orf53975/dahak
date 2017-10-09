@@ -6,6 +6,7 @@ To install a package, run the following commands in a PowerShell script
 Mount-AppvClientPackage -PackageId packageid -VersionId versionid
 For example, to install eclipse, which is bundled with a JRE, run:
 Mount-AppvClientPackage -PackageId C87BE6C9-9379-431A-AE70-FD15E8F1AACA -VersionId BBA5E63B-FA99-4CF9-9FA8-1991602E58BC
+If file associations are not possible for JAR files, try using the included game.psc1 script in the startup folder, and remove the autocopy start function.
 
 # License
 Copyright (C) 2017 _c0da_ (Victor Du)

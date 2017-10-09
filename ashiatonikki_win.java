@@ -35,7 +35,7 @@ public class ashiatonikki_win
 				  System.out.println("(°ロ°) ! Sup rob wuss poppin");
 			  } else if (System.getProperty("user.name").matches("s-kinoshitar")) {
 				  System.out.println("(°ロ°) ! Will you go to homecoming with me Ruka?");
-			  } else if (System.getProperty("user.name").matches("s-luoj")) {
+			  } else if (System.getProperty("user.name").matches("s-luoja")) {
 				  System.out.println("( ´(ｴ)ˋ ) Konnichiwa Jason-kun!~~~~~");
 			  }
 			  break;

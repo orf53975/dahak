@@ -1,0 +1,9 @@
+cd /
+cd HKCU:
+cd Software
+cd Microsoft
+cd Windows
+cd CurrentVersion
+cd Explorer
+cd FileExts
+New-Item (more stuff to come, dont run this now)

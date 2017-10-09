@@ -5,5 +5,5 @@ cd Microsoft
 cd Windows
 cd CurrentVersion
 cd Explorer
-cd FileExts
+cd FileExts # Go to registry folder for file extensions
 New-Item (more stuff to come, dont run this now)

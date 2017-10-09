@@ -8,7 +8,7 @@ For example, to install eclipse, which is bundled with a JRE, run:
 Mount-AppvClientPackage -PackageId C87BE6C9-9379-431A-AE70-FD15E8F1AACA -VersionId BBA5E63B-FA99-4CF9-9FA8-1991602E58BC
 
 # License
-Copyright (C) 2017 _c0da_
+Copyright (C) 2017 _c0da_ (Victor Du)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

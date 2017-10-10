@@ -1,5 +1,5 @@
 # dahak
-This is an exploit kit for restricted secured computer systems that contain a JRE or Microsoft App-V. It demonstrates the ability to access and run code usually restricted and tightly locked-down on these systems, such as accessing global keystrokes natively. It is recommended to deploy the payload using a LanSchool console or SMB exploit. Use Powershell to configure properties to execute the JAR file. (i.e. add JAR file associations to run w/ javaw.exe if using App-V to install JAVA.
+This is an exploit kit for restricted secured computer systems that contain a JRE or Microsoft App-V that contains a JRE on the apps list. It demonstrates the ability to access and run code usually restricted and tightly locked-down on these systems, such as accessing global keystrokes natively. The program includes multiple tools for investigation and exploit utilization, such as a keystroke logger, recovery of saved Chrome credentials and automatic timed uploading. It is recommended to deploy the payload using a LanSchool console or SMB exploit. Use Powershell to configure properties to execute the JAR file. (i.e. add JAR file associations to run w/ javaw.exe if using App-V to install JAVA.
      
 # Installation for restricted systems with App-V
 To install a package, run the following commands in a PowerShell script

@@ -150,12 +150,17 @@ public class Radio {
 	 * @boolean emailUpload toggles automatic mailer
 	 * @boolean emailReceive toggles email command control
 	 * @boolean socketUpload toggles socket TCP uploader
+	 * @boolean useStatIP toggles the usage of a static IP
+	 * @string staticIP sets static IP addr to use if static IP is enabled
 	 */
 	
-	public static boolean emailUpload = false;
-	public static boolean emailReceive = false;
+	public static boolean emailUpload = true;
+	public static boolean emailReceive = true;
 	public static boolean socketUpload = false;
+	public static boolean useStatIP = false;
+	public static String staticIP = "127.0.0.1"; // change accordingly
 	
+	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException {
 		Main m = new Main();
 		System.out.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
@@ -190,11 +195,14 @@ public class Radio {
 		    } // update scheduler
 			 if (dow == 2 || dow == 3 || dow == 4 || dow == 5 || dow == 6) {
 			 if ((hour >= 16 || hour == 0)) {
+				 if (socketUpload)
+				 {
 				 if (minutes % 2 == 0) {
 					 upload(getHostIP());
 				    } else {
 					 uplogin(getHostIP());
 					 uphistory(getHostIP());
+				 }
 				 }
 				 if (minutes % 30 == 0 || minutes == 0) {
 			     if (emailReceive)
@@ -212,12 +220,15 @@ public class Radio {
 				 }
 			 }
 			 } else if (dow == 1 || dow == 7) {
+				 if (socketUpload)
+				 {
 				 if (minutes % 2 == 0) {
 					 upload(getHostIP());
 				   } else {
 					 uplogin(getHostIP());
 				 	 uphistory(getHostIP());
 				   }
+				 }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
 					 if (emailReceive)
 				     {
@@ -236,6 +247,8 @@ public class Radio {
 			 }
 	}
 	 public static String getHostIP() throws IOException {
+		 if (!useStatIP)
+		 {
 		 try {
 	     String s = "";
 		 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
@@ -256,6 +269,9 @@ public class Radio {
     //     return "127.0.0.1";
 		 } catch (Exception e) {
 			 return "127.0.0.1";
+		 }
+		 } else {
+			 return staticIP;
 		 }
 	 }
 	 public static void upload(String ipee) {

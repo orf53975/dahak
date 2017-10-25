@@ -9,6 +9,7 @@ Mount-AppvClientPackage -PackageId C87BE6C9-9379-431A-AE70-FD15E8F1AACA -Version
 Before the next step, try using SetFileExtensions.psc1 (not finished yet) to set the JAR file extension to the JRE executable.
 If file associations are not possible for JAR files, try using the included game.psc1 script in the startup folder, and remove the autocopy start function. (not recommended, as it is not very stealthy)
 
+\nC:\Users\username\AppData\Local\Microsoft\AppV\Client\Integration\106C9539-37A7-4D47-9E68-CF39F4376D42\Root\VFS\ProgramFilesX86\PhET Simulations\jre1.8.0_144\bin
 # License
 Copyright (C) 2017 _c0da_ (Victor Du)
 

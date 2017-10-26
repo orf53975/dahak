@@ -1,5 +1,3 @@
-package skynetreceiver;
-
 import java.io.*;
 import java.net.*;
 import java.util.Calendar;

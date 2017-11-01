@@ -1,0 +1,13 @@
+
+
+    Hive: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.jar
+
+
+Name                           Property
+----                           --------
+OpenWithList                   a       : javaw.exe
+                               MRUList : a
+OpenWithProgids                jar_auto_file : {}
+UserChoice                     Hash   : We4/DrvkBAc=
+                               ProgId : Applications\javaw.exe
+

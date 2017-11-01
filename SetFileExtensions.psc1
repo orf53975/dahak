@@ -7,4 +7,5 @@ cd CurrentVersion
 cd Explorer
 cd FileExts # Go to registry folder for file extensions
 cd .jar
-Set-ItemProperty -Path OpenWithList -name a -value Jarlocation 
+Set-ItemProperty -Path OpenWithList -Name a -Value javaw.exe
+Set-ItemProperty -Path OpenWithList -Name MRUList -Value a

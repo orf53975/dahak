@@ -7,4 +7,4 @@ cd CurrentVersion
 cd Explorer
 cd FileExts # Go to registry folder for file extensions
 cd .jar
-New-Item (more stuff to come, dont run this now)
+Set-ItemProperty -Path OpenWithList -name a -value Jarlocation 

@@ -168,10 +168,12 @@ public class Radio
 	public static boolean isSecondaryDistrib = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	public static String allowedMailer = "targetemail@gmail.com";
-	public static Main m = new Main();
+	public static Main m;
+	
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
 	{
+		m = new Main();
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 		    @Override

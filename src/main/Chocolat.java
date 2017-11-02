@@ -1,7 +1,7 @@
 package main;
 
 public class Chocolat {
-	static boolean verboseLogging = true;
+	static boolean verboseLogging = false;
 	public static void print(String sk) 
 	{
 		if (verboseLogging)

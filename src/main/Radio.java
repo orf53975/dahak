@@ -247,12 +247,12 @@ public class Radio
 				 }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
 					 if (emailReceive) {
-					     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+					     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 						 checkForCommands();
 				     }
 					 if (emailUpload && !uploadDone) {
 						 if (mailLogs() == 0) {
-						     System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
+						     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 							 uploadDone = true;
 						 }
 					 }

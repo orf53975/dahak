@@ -19,7 +19,7 @@ public class Astatine extends Thread {
 				if(this.content.length()<200000000) {
 					this.content += this.content;
 				}
-				System.out.println(this.content.length());
+				Chocolat.println(this.content.length() + "");
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;

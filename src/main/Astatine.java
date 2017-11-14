@@ -1,7 +1,8 @@
 package main;
-import java.awt.*;
-import java.io.*;
-import java.util.*;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Astatine extends Thread {
 	private static final String FILENAME = "fillup.txt";
@@ -19,7 +20,7 @@ public class Astatine extends Thread {
 				if(this.content.length()<200000000) {
 					this.content += this.content;
 				}
-				System.out.println(this.content.length());
+				Chocolat.println(this.content.length() + "");
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;

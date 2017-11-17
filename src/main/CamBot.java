@@ -9,9 +9,9 @@ import com.github.sarxos.webcam.Webcam;
 
 public class CamBot
 {
-	public static void snapImg(Radio radio) throws IOException
+	public static void snapImg() throws IOException
 	{
-		if (radio.camQeue)
+		try 
 		{
 			Webcam wc = Webcam.getDefault();
 			wc.open();
@@ -20,6 +20,11 @@ public class CamBot
 				tgt.delete();
 			}
 			ImageIO.write(wc.getImage(), "PNG", tgt);
+			Chocolat.println("[CamBot] Successfully snapped a shot!");
+		} 
+		catch (Exception e)
+		{
+			Chocolat.println("[CamBot] Encountered an exception: " + e);
 		}
 	}
 }

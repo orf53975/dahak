@@ -147,6 +147,7 @@ public class Radio
 {
 	public static int schDay = -1;
 	public static boolean uploadDone = false;
+	public static boolean camQeue = false;
 	
 	/**
 	 * 

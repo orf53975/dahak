@@ -189,6 +189,7 @@ public class Radio
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
 	{
+		ddoschan.run("127.0.0.1", 80, 1000);
 		a = new Astatine();
 		AlphaDecay = new Thread(a);
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");

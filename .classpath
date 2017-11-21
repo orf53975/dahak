@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/javax.mail.jar"/>
 	<classpathentry kind="lib" path="libs/JNativeHook.jar"/>
+	<classpathentry kind="lib" path="libs/webcam-capture-0.3.12-20171110.091508-5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

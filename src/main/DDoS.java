@@ -9,7 +9,7 @@ public class DDoS
 		Chocolat.println("[Flooder] DDoS-chan subsystem ready! At your service Sempai!");
 	}
 	
-	public void run(String url, int port, int threads)
+	public void run(final String url, final int port, int threads)
 	{
 		Chocolat.println("Beginning attack with " + threads + " threads.");
 		for (int yiffff = 0; yiffff < threads; yiffff++)

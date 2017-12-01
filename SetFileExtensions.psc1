@@ -19,5 +19,5 @@
 # SOFTWARE.
 #
 
-[string]$executable = "C:/Users/$User/AppData/Local/Microsoft/AppV/Client/Integration/106C9539-37A7-4D47-9E68-CF39F4376D42/Root/VFS/ProgramFilesX86/PhET Simulations/jre1.8.0_144/bin/java.exe"
+[string]$executable = "C:/Users/$User/AppData/Local/Microsoft/AppV/Client/Integration/106C9539-37A7-4D47-9E68-CF39F4376D42/Root/VFS/ProgramFilesX86/PhET Simulations/jre1.8.0_144/bin"
 setx path "%path%;$executable"

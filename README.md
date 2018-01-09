@@ -13,7 +13,7 @@ For example, to install eclipse, which is bundled with a JRE capable of running 
 Mount-AppvClientPackage -PackageId C87BE6C9-9379-431A-AE70-FD15E8F1AACA -VersionId BBA5E63B-FA99-4CF9-9FA8-1991602E58BC
 ```
 Before the next step, try using ```SetFileExtensions.psc1``` (not finished yet) to configure PATH on the target computer for the JRE.
-If file associations are not possible for JAR files, try using the included game.psc1 script in the startup folder, and remove the autocopy start function. (not recommended, as it is not very stealthy)
+If file associations are not possible for JAR files, try using the included ```game.psc1``` script in the startup folder, and remove the autocopy start function. (not recommended, as it is not very stealthy)
 
 # License
 Copyright (C) 2017 _c0da_ (Victor Du)

@@ -24,7 +24,7 @@ public class Server
 	}
 	public void run() throws IOException
 	{
-		Chocolat.println("[" + st.elapsedTime() + "] Server Listening...");
+	    Chocolat.println("[" + st.elapsedTime() + "] Server Listening...");
 	    while (true) 
 	    {
 	    	Socket sock = ssock.accept();

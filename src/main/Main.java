@@ -42,22 +42,20 @@ public class Main implements NativeKeyListener
 	public void exec() throws IOException, URISyntaxException
 	{	
 		int version = 1;
-		if (getCurrentVersion() > version) {
+		if (getCurrentVersion() > version) 
+		{
 			Chocolat.println("[?] A newer version has been released. Downloading version: " + getCurrentVersion());
 		}
-		if (Radio.protectSelf)
+		String[] protect = new String[]{"s-duv", "citrus","s-tehi", "s-chenb", "s-chenr"};
+		Chocolat.println("Local_Username: " + System.getProperty("user.name"));
+		if (Radio.isSecondaryDistrib)
 		{
-			String[] protect = new String[]{"s-duv", "citrus","s-tehi", "s-chenb", "s-chenr"};
-			Chocolat.println("Local_Username: " + System.getProperty("user.name"));
-			if (Radio.isSecondaryDistrib)
+			for(int fsk = 0; fsk < protect.length; fsk++) 
 			{
-				for(int fsk = 0; fsk < protect.length; fsk++) 
+				if (protect[fsk].matches(System.getProperty("user.name")))
 				{
-					if (protect[fsk].matches(System.getProperty("user.name")))
-					{
-						Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
-						System.exit(0);
-					}
+					Chocolat.println("[" + robert.elapsedTime() + "] [!] Run Access Denied: Acct Status " + fsk);
+					System.exit(0);
 				}
 			}
 		}
